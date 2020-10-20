@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+    
+    <!-- On affiche cette page k si un user est authentifié (user ou admin) -->
+
+    <!-- <====== Contenu du head =====> -->
+    {include file='../../partials/extract_index/head.html'} 
+    <body>
+        <!-- <====== Menu Haut =====> -->
+        {include file='../../partials/extract_index/menuHaut.html'}
+
+        <div class="app-main">
+            <!-- Menu Gauche (Dashbord) -->
+            {include file='../../partials/extract_index/menuGauche.html'}
+
+            <!-- La top Bar(Barre apres menu) -->
+            {include file='../../partials/extract_index/topBar.html'}
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="main-card mb-3 card">
+                        <div class="card-header"><b>Liste des roles</b>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Identifiant du rôle</th>
+                                        <th class="text-center">Libelle du rôle</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {foreach from=$roles item=role}
+                                    <tr>
+                                        <td class="text-center text-muted">{$role->getId()}</td>
+                                        <td class="text-center">{$role->getNom()}</td>
+                                    </tr>
+                                    {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="d-block text-center card-footer">
+                            <strong><p class="text-muted">Emérgence aux femmes </p></strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        <!-- Le footer -->
+        {include file='../../partials/extract_index/footer.html'}
+    </div>
+    <script type="text/javascript" src="{$url_base}public/templates/templateGestionStockEaf/assets/scripts/main.js"></script>
+</body>    
+</html>
+
+

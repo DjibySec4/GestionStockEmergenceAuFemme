@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+    
+    <!-- On affiche cette page k si un user est authentifié (user ou admin) -->
+
+    <!-- <====== Contenu du head =====> -->
+    {include file='../../partials/extract_index/head.html'} 
+    <body>
+        <!-- <====== Menu Haut =====> -->
+        {include file='../../partials/extract_index/menuHaut.html'}
+
+        <div class="app-main">
+            <!-- Menu Gauche (Dashbord) -->
+            {include file='../../partials/extract_index/menuGauche.html'}
+
+            <!-- La top Bar(Barre apres menu) -->
+            {include file='../../partials/extract_index/topBar.html'}
+
+            {if isset($fournisseur) }
+            <div class="col-md-8 col-xs-8 offset-md-2 latest-post-area pb-120">
+                <div class="card text-center">
+                    <div class="card-header bg-primary text-white">Modification d'un Travailleur</div>
+                    <div class="card-body text-dark">
+                        <form action="{$url_base}Fournisseur/edit/{$fournisseur->getId()}" method="post" enctype="multipart/form-data" id="edit">
+                            {if isset($vide) && $vide==1}
+                                <div class="alert alert-danger">Tous les champs sont requis</div>
+                            {/if}
+
+                            {if !isset($fournisseur)}
+                                <div class="alert alert-danger">Ce Fournisseur n'est pas dans la base données</div>
+                            {else}
+                            <div class="infoPersonne" id="infoPersonne">
+                                <div class="form-group">
+                                    <img src="{$url_base}public/images/personnes/travailleurs/{$fournisseur->getPersonne()->getPhoto()}" alt="Travailleur">
+                                </div>
+                                <div class="form-row">
+                                     <!-- Nom -->
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">Nom</label>
+                                        <input type="text" class="form-control" name="nom" id="nom" value="{$fournisseur->getPersonne()->getNom()}">
+                                        <input type="hidden" class="form-control" name="idPersonne" id="idPersonne" value="{$fournisseur->getPersonne()->getId()}" required>
+                                    </div>
+
+                                     <!-- Prénom -->
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">Prénom</label>
+                                        <input type="text" class="form-control" name="prenom" id="prenom" value="{$fournisseur->getPersonne()->getPrenom()}">
+                                    </div>
+                                   
+                                </div>
+
+                                <div class="form-row">
+                                    <!-- Date Naissance -->
+                                    <div class="form-group col-md-4">
+                                        <label class="control-label">Date De Naissance</label>
+                                        <input type="date" class="form-control" name="dateNaissance" id="dateNaissance" value="{$fournisseur->getPersonne()->getDateNaissance()}">
+                                    </div>
+
+                                    <!-- Adresse -->
+                                    <div class="form-group col-md-4">
+                                        <label class="control-label">Adresse</label>
+                                        <input type="text" class="form-control" name="adresse" id="adresse" value="{$fournisseur->getPersonne()->getAdresse()}" required>
+                                    </div>
+
+                                      <!-- Potentiel -->
+                                      <div class="form-group col-md-4">
+                                        <label class="control-label">Potentiel</label>
+                                        <select name="potentiel" id="potentiel" class="form-control custom-select" required>
+                                            {if $fournisseur->getPotentiel()}
+                                                <option selected value="{if $fournisseur->getPotentiel() == "Grossiste"} 1 {else} 0 {/if} ">{$fournisseur->getPotentiel()}</option>
+                                            {/if}
+                                                <option value="1">Grossiste</option>
+                                            <option value="0">Détaillant</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="form-row">
+
+                                     <!-- Téléphone -->
+                                     <div class="form-group col-md-4">
+                                        <label class="control-label">Téléphone</label>
+                                        <input type="text" class="form-control" name="telephone" id="telephone" value="{$fournisseur->getPersonne()->getTelephone()}">
+                                    </div>
+                                   
+                                    <!-- Nationalité -->
+                                    <div class="form-group col-md-4">
+                                        <label class="control-label">Nationalite</label>
+                                        <select name="nationalite" id="nationalite" class="form-control">
+                                            {foreach from=$nationalites item=nationalite}
+                                                <option value="{$nationalite->getId()}" selected>
+                                                    {$nationalite->getNom()|utf8_encode}
+                                                </option>
+                                            {/foreach}
+                                        </select>
+                                    </div>
+
+                                    <!-- nomActivité -->
+                                    <div class="form-group col-md-4">
+                                        <label class="control-label">Nom Activité</label>
+                                        <input type="text" class="form-control" name="activiteName" id="activiteName" {if isset($fournisseur)} value="{$fournisseur->getNomActivite()}" {/if}>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-row">
+                                    <!-- Photo -->
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">Photo</label>
+                                        <input type="file" class="form-control" name="photo" id="photo">
+                                    </div>
+
+                                    <!-- Sexe -->
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">Sexe</label>
+                                        <select name="sexe" id="sexe" class="form-control custom-select" required>
+                                            <option value="masculin" {if $fournisseur->getPersonne()->getSexe() == 'masculin'} selected {/if}>Masculin</option>
+                                            <option value="feminin"  {if $fournisseur->getPersonne()->getSexe() == 'feminin'} selected {/if}>Feminin</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                            <!-- Description -->
+                            <div class="form-group">
+                                <label class="control-label">Description</label>
+                                <textArea class="form-control" rows="4" name="descriptionFournisseur" id="descriptionFournisseur">
+                                    {if isset($fournisseur)} {$fournisseur->getPersonne()->getDescription()} {/if}
+                                </textArea>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Modifier" class="btn btn-primary" name="modifier">
+                                <input type="submit" value="Annuler" class="btn btn-danger" name="annuler">
+                            </div>
+                            {/if}
+                        </form>
+                    </div>
+                </div>
+            </div>
+{else}
+<div class="alert alert-danger">Ce fournisseur n'est pas dans la base de données</div>
+{/if}
+<literal>
+    <script src="{$url_base}public/js/chosen.jquery.min.js" id="src"></script>
+    <script src="{$url_base}public/js/personnes/fournisseur/travailleur_choosen.js"></script>
+    <script src="{$url_base}public/js/personnes/fournisseur/fournisseur.js" id="src"></script>
+</literal>
+  <!-- Le footer -->
+  {include file='../../partials/extract_index/footer.html'}
+</div>
+<script type="text/javascript" src="{$url_base}public/templates/templateGestionStockEaf/assets/scripts/main.js"></script>
+</body>    
+</html>

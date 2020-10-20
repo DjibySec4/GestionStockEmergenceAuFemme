@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+    
+    <!-- On affiche cette page k si un user est authentifié (user ou admin) -->
+
+    <!-- <====== Contenu du head =====> -->
+    {include file='../partials/extract_index/head.html'} 
+    <body>
+        <!-- <====== Menu Haut =====> -->
+        {include file='../partials/extract_index/menuHaut.html'}
+
+        <div class="app-main">
+            <!-- Menu Gauche (Dashbord) -->
+            {include file='../partials/extract_index/menuGauche.html'}
+
+            <!-- La top Bar(Barre apres menu) -->
+            {include file='../partials/extract_index/topBar.html'}
+
+            <!-- Le contenu de index (De la page d'accueil) -->
+            {include file='../partials/extract_index/content.html'}       
+            
+            <!-- Le footer -->
+            {include file='../partials/extract_index/footer.html'}
+        </div>
+        <script type="text/javascript" src="{$url_base}public/templates/templateGestionStockEaf/assets/scripts/main.js"></script>
+    </body>    
+</html>

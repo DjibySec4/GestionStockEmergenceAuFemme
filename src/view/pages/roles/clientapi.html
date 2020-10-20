@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>REST</title>
+        <script src="{$url_base}public/js/jquery.js"></script>
+        <script src="{$url_base}public/js/jquery-ui.js"></script>
+        <script language="JavaScript" type="text/javascript">
+            $(document).ready(function () {
+                /*$.get("http://localhost/mesprojets/ISI/2020/LPGL/framework/coursenlignesm/RolesApi/getRolesJson", function(data){
+                    console.log(data);
+                });*/
+
+                $.ajax({
+                    url: 'http://localhost/mesprojets/ISI/2020/LPGL/framework/coursenlignesm/RolesApi/getRolesJson',
+                    dataType: 'json',
+                    success: function (data) {
+                        $.each(data, function (cle, valeur) {
+                            console.log(valeur['nom'] + '  ');
+                        });
+                    }
+                });
+            });
+        </script>
+        </head>
+    <body>
+        ok
+
+    </body>
+</html>

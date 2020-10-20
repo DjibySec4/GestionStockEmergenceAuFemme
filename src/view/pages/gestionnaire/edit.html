@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+    
+    <!-- On affiche cette page k si un user est authentifié (user ou admin) -->
+
+    <!-- <====== Contenu du head =====> -->
+    {include file='../../partials/extract_index/head.html'} 
+    <body>
+        <!-- <====== Menu Haut =====> -->
+        {include file='../../partials/extract_index/menuHaut.html'}
+
+        <div class="app-main">
+            <!-- Menu Gauche (Dashbord) -->
+            {include file='../../partials/extract_index/menuGauche.html'}
+
+            <!-- La top Bar(Barre apres menu) -->
+            {include file='../../partials/extract_index/topBar.html'}
+
+            {if isset($gestionnaire) }
+            <div class="col-md-8 col-xs-8 offset-md-2 latest-post-area pb-120">
+                <div class="card text-center">
+                    <div class="card-header bg-primary text-white">Modification d'un Géstionnaire</div>
+                    <div class="card-body text-dark">
+                        <form action="{$url_base}Gestionnaire/edit/{$gestionnaire->getId()}" method="post" enctype="multipart/form-data" id="edit">
+                            {if isset($vide) && $vide==1}
+                                <div class="alert alert-danger">Tous les champs sont requis</div>
+                            {/if}
+
+                            {if !isset($gestionnaire)}
+                                <div class="alert alert-danger">Ce géstionnaire n'existe pas dans la base données</div>
+                            {else}
+                            <div class="infoPersonne" id="infoPersonne">
+                                <div class="form-group">
+                                    <img src="{$url_base}public/images/personnes/gestionnaires/{$gestionnaire->getPersonne()->getPhoto()}" alt="Gestionnaire">
+                                </div>
+                                <div class="form-row">
+                                     <!-- Nom -->
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">Nom</label>
+                                        <input type="text" class="form-control" name="nom" id="nom" value="{$gestionnaire->getPersonne()->getNom()}">
+                                        <input type="hidden" class="form-control" name="idPersonne" id="idPersonne" value="{$gestionnaire->getPersonne()->getId()}" required>
+                                    </div>
+
+                                     <!-- Prénom -->
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">Prénom</label>
+                                        <input type="text" class="form-control" name="prenom" id="prenom" value="{$gestionnaire->getPersonne()->getPrenom()}">
+                                    </div>
+                                   
+                                </div>
+
+                                <div class="form-row">
+                                    <!-- Date Naissance -->
+                                    <div class="form-group col-md-7">
+                                        <label class="control-label">Date De Naissance</label>
+                                        <input type="date" class="form-control" name="dateNaissance" id="dateNaissance" value="{$gestionnaire->getPersonne()->getDateNaissance()}">
+                                    </div>
+
+                                    <!-- Adresse -->
+                                    <div class="form-group col-md-5">
+                                        <label class="control-label">Adresse</label>
+                                        <input type="text" class="form-control" name="adresse" id="adresse" value="{$gestionnaire->getPersonne()->getAdresse()}" required>
+                                    </div>
+                                </div>
+
+                                <!-- Activités -->
+                                <div class="form-row">
+                                    <div class="form-group col-lg-12 mx-auto">
+                                        <label class="control-label">Activités (maximum 2)</label>
+                                        <select name="activite[]" id="idActivite" class="chosen_select  form-control" multiple data-placeholder="Veuiller choisir les activités " required>
+                                            {foreach from=$activites item=$activite}
+                                                {foreach from=$listeActivites item=$mesActivite}
+                                                    {if $activite == $mesActivite}
+                                                        <option selected value="{$activite->getId()}">{$mesActivite->getNom()}</option>
+                                                    {else}
+                                                        <option value="{$activite->getId()}">{$activite->getNom()}</option>
+                                                    {/if}
+                                                {/foreach}
+                                        {/foreach}
+                                        </select>
+                                        <div class="activite-invalid invalid-feedback">Vous devez choisir deux activités
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Fourniseurs -->
+                                <div class="form-row">
+                                    <div class="form-group col-lg-12 mx-auto">
+                                        <label class="control-label">Fournisseurs (maximum 2)</label>
+                                        <select name="fournisseur[]" id="idFournisseur" class="chosen_select  form-control" multiple data-placeholder="Veuiller choisir les activités " required>
+                                            {foreach from=$fournisseurs item=$fournisseur}
+                                                {foreach from=$listeFournisseurs item=$mesFournisseur}
+                                                    {if $fournisseur == $mesFournisseur}
+                                                        <option selected value="{$fournisseur->getId()}">{$mesFournisseur->getPersonne()->getPrenom()} {$mesFournisseur->getPersonne()->getNom()}</option>
+                                                    {else}
+                                                        <option value="{$fournisseur->getId()}">{$fournisseur->getPersonne()->getPrenom()} {$mesFournisseur->getPersonne()->getNom()}</option>
+                                                    {/if}
+                                                {/foreach}
+                                        {/foreach}
+                                        </select>
+                                        <div class="fournisseur-invalid invalid-feedback">Vous devez choisir deux fournisseurs
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+
+                                     <!-- Téléphone -->
+                                     <div class="form-group col-md-6">
+                                        <label class="control-label">Téléphone</label>
+                                        <input type="text" class="form-control" name="telephone" id="telephone" value="{$gestionnaire->getPersonne()->getTelephone()}">
+                                    </div>
+                                   
+                                    <!-- Nationalité -->
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">Nationalite</label>
+                                        <select name="nationalite" id="nationalite" class="form-control">
+                                            {foreach from=$nationalites item=nationalite}
+                                                <option value="{$nationalite->getId()}" selected>
+                                                    {$nationalite->getNom()|utf8_encode}
+                                                </option>
+                                            {/foreach}
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-row">
+                                    <!-- Photo -->
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">Photo</label>
+                                        <input type="file" class="form-control" name="photo" id="photo">
+                                    </div>
+
+                                    <!-- Sexe -->
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">Sexe</label>
+                                        <select name="sexe" id="sexe" class="form-control custom-select" required>
+                                            <option value="masculin" {if $gestionnaire->getPersonne()->getSexe() == 'masculin'} selected {/if}>Masculin</option>
+                                            <option value="feminin"  {if $gestionnaire->getPersonne()->getSexe() == 'feminin'} selected {/if}>Feminin</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                            <!-- Description -->
+                            <div class="form-group">
+                                <label class="control-label">Description</label>
+                                <textArea class="form-control" rows="4" name="descriptionGestionnaire" id="descriptionGestionnaire">
+                                     {if isset($gestionnaire)} {$gestionnaire->getPersonne()->getDescription()} {/if}
+                                </textArea>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Modifier" class="btn btn-primary" name="modifier">
+                                <input type="submit" value="Annuler" class="btn btn-danger" name="annulerGestionnaire">
+                            </div>
+                            {/if}
+                        </form>
+                    </div>
+                </div>
+            </div>
+{else}
+<div class="alert alert-danger">Ce gestionnaire n'a pas été trouvé dans la base de données</div>
+{/if}
+<literal>
+    <script src="{$url_base}public/js/chosen.jquery.min.js" id="src"></script>
+    <script src="{$url_base}public/js/personnes/gestionnaire/gestionnaire_choosen.js"></script>
+    <script src="{$url_base}public/js/personnes/gestionnaire/gestionnaire.js" id="src"></script>
+</literal>
+  <!-- Le footer -->
+  {include file='../../partials/extract_index/footer.html'}
+</div>
+<script type="text/javascript" src="{$url_base}public/templates/templateGestionStockEaf/assets/scripts/main.js"></script>
+</body>    
+</html>

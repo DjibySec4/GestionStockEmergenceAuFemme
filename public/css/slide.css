@@ -1,0 +1,100 @@
+@keyframes slidy
+{
+	0%
+	{
+	left:0%;
+	}
+	10%
+	{
+	left:0%;
+	}
+	12%
+	{
+	left:-100%;
+	}
+	22%
+	{
+	left:-100%;
+	}
+	24%
+	{
+	left:-200%;
+	}
+	34%
+	{
+	left:-200%;
+	}
+	36%
+	{
+	left:-300%;
+	}
+	46%
+	{
+	left:-300%;
+	}
+	48%
+	{
+	left:-400%;
+	}
+	58%
+	{
+	left:-400%;
+	}
+	60%
+	{
+	left:-300%;
+	}
+	62%
+	{
+	left:-300%;
+	}
+	72%
+	{
+	left:-200%;
+	}
+	74%
+	{
+	left:-200%;
+	}
+	84%
+	{
+	left:-100%;
+	}
+	86%
+	{
+	left:-100%;
+	}
+	96%
+	{
+	left:0%;
+	}
+}
+
+#slider
+{
+overflow:hidden;
+border-radius:3px;
+width:auto;
+}
+#slider figure
+{
+float:left;
+position:relative;
+left:0%;
+animation:30s slidy infinite;
+width:500%;
+}
+#slider figure div
+{
+float:left;
+float:right;
+width:20%;
+
+}
+#slider figure img
+{
+float:left;
+width:100%;
+height: 320px;
+}
+

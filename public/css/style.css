@@ -1,0 +1,9 @@
+.card:hover
+{
+    box-shadow: 1px 2px 13px rgba(0, 0, 0,0.3);
+}
+
+p, h1, h2, h3, h4, h5, p, card-header, th, td, div, strong
+{
+    font-family: 'Times New Roman', Times, serif;
+}
