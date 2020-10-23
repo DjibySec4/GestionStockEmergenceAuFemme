@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-23 11:30:11
+/* Smarty version 3.1.30, created on 2020-10-23 17:33:46
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\produit\edit.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f92a2a3e73847_81391587',
+  'unifunc' => 'content_5f92f7da594de8_26792518',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9e83375da0929f67c40af8cafd267ed96b445da8' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\produit\\edit.html',
-      1 => 1603445411,
+      1 => 1603467198,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f92a2a3e73847_81391587 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f92f7da594de8_26792518 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\libs\\system\\smarty\\libs\\plugins\\modifier.date_format.php';
 ?>
 <!doctype html>
@@ -133,7 +133,7 @@ public/images/stocks/produits/<?php echo $_smarty_tpl->tpl_vars['produit']->valu
                                 <!-- Activités --> 
                                 <div class="form-row">
                                     <div class="form-group col-lg-12 mx-auto" id="selectionnerUneActivite">
-                                        <label class="control-label">Activités (maximum 1)</label>
+                                        <label class="control-label">Activités (maximum 10)</label>
                                         <select name="activite[]" id="idActivite" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir une activité" required>
                                             <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['activites']->value, 'activite');
@@ -178,6 +178,33 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
                                     <!-- Button Ajout -->
                                     <div class="btn btn-primary mb-4" id="addActiviteButton">Ajouter Activité</div>
                                 </div>
+
+
+                                <!-- Composant -->
+                                <div class="form-row">
+                                    <div class="form-group col-lg-12 mx-auto" id="selectionnerUnComposant">
+                                        <label class="control-label">Composants (maximum 50)</label>
+                                        <select name="composant[]" id="idComposant" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir un composant" required>
+                                            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['composants']->value, 'composant');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['composant']->value) {
+?>
+                                            <option value="<?php echo $_smarty_tpl->tpl_vars['composant']->value->getId();?>
+"><?php echo $_smarty_tpl->tpl_vars['composant']->value->getNom();?>
+</option>
+                                            <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
+?>
+
+                                        </select>
+                                        <div class="composant-invalid invalid-feedback">Vous devez choisir un seul composant
+                                        </div>
+                                    </div>
+                                </div>
+
 
                                  <!-- Unité -->
                                  <div class="form-row">
@@ -229,7 +256,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 
                                 <div class="form-row">
                                     <!-- UpdatedAt -->
-                                    <input type="hidden" class="form-control" value="<?php echo smarty_modifier_date_format(time(),'%D %H:%M:%S');?>
+                                    <input type="hidden" class="form-control" value="<?php echo smarty_modifier_date_format(time(),'%d-%m-%Y %H:%M:%S');?>
 " name="updatedAt" id="updatedAt">
                                 </div>
 

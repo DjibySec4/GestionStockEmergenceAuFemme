@@ -13,18 +13,12 @@ class HistoriqueTravailleur
     /** @Column(type="string", nullable=false) **/
     private $dateAdhesion;
 
-    /**
-    * @ManyToOne(targetEntity="Activite", inversedBy="historiqueTravailleurs",cascade={"persist"})
-    * @JoinColumn(name="idActivite", referencedColumnName="id")
-    */
+    /** @Column(type="integer", nullable=false) **/
     private $activite;
 
-    /**
-    * @ManyToOne(targetEntity="Travailleur", inversedBy="historiqueTravailleurs",cascade={"persist"})
-    * @JoinColumn(name="idTravailleur", referencedColumnName="id")
-    */
+    /** @Column(type="integer", nullable=false) **/
     private $travailleur;
-
+ 
     /**
      * Get the value of id
      */ 

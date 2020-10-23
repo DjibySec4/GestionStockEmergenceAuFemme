@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-23 12:20:51
+/* Smarty version 3.1.30, created on 2020-10-23 17:30:01
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\produit\add.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f92ae83c77333_63209210',
+  'unifunc' => 'content_5f92f6f9dcef70_36053815',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '33a120c3df99658e2e685121da4e008fc81588fc' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\produit\\add.html',
-      1 => 1603448427,
+      1 => 1603466826,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f92ae83c77333_63209210 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f92f6f9dcef70_36053815 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\libs\\system\\smarty\\libs\\plugins\\modifier.date_format.php';
 ?>
 <!doctype html>
@@ -177,6 +177,31 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
                                         <div class="btn btn-primary mb-4" id="addActiviteButton">Ajouter Activité</div>
                                     </div>
 
+                                     <!-- Composant -->
+                                     <div class="form-row">
+                                        <div class="form-group col-lg-12 mx-auto" id="selectionnerUnComposant">
+                                            <label class="control-label">Composants (maximum 50)</label>
+                                            <select name="composant[]" id="idComposant" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir un composant" required>
+                                                <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['composants']->value, 'composant');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['composant']->value) {
+?>
+                                                <option value="<?php echo $_smarty_tpl->tpl_vars['composant']->value->getId();?>
+"><?php echo $_smarty_tpl->tpl_vars['composant']->value->getNom();?>
+</option>
+                                                <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
+?>
+
+                                            </select>
+                                            <div class="composant-invalid invalid-feedback">Vous devez choisir un seul composant
+                                            </div>
+                                        </div>
+                                    </div>
+
 
                                     <!-- Unité -->
                                     <div class="form-row">
@@ -227,11 +252,11 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 
                                     <div class="form-row">
                                         <!-- CreatedAt -->
-                                        <input type="hidden" class="form-control" value="<?php echo smarty_modifier_date_format(time(),'%Y-%m-%d %H:%M:%S');?>
+                                        <input type="hidden" class="form-control" value="<?php echo smarty_modifier_date_format(time(),'%d-%m-%Y %H:%M:%S');?>
 " name="createdAt" id="createdAt">
 
                                         <!-- UpdatedAt -->
-                                        <input type="hidden" class="form-control" value="<?php echo smarty_modifier_date_format(time(),'%Y-%m-%d %H:%M:%S');?>
+                                        <input type="hidden" class="form-control" value="<?php echo smarty_modifier_date_format(time(),'%d-%m-%Y %H:%M:%S');?>
 " name="updatedAt" id="updatedAt">
 
                                          <!-- NomOpération -->

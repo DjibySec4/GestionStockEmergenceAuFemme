@@ -16,14 +16,22 @@ $(document).ready(function() {
             $(".activite-invalid").slideUp();
     });
 
-    // $("#new").submit(function(e) {
-    //     resultat = true;
-    //     v = idActivite.val().length;
-    //     if (v < 10) {
-    //         $(".activite-invalid").slideDown();
-    //     }
-    //     return resultat;
-    // });
+
+    // Choosen Composant
+    idComposant = $("#idComposant");
+    $("#idComposant").chosen({ max_selected_options: 50 });
+    $("#idComposant").change(function(e) {
+        e.preventDefault();
+    });
+
+    $(".chosen_select").bind("chosen:maxselected", function() {
+        alert("vous avez atteint le nombre d'éléments autorisés");
+    });
+
+    idComposant.change(function(e) {
+        if (idComposant.val().length >= 50)
+            $(".activite-invalid").slideUp();
+    });
 
 
     // Choosen Unité

@@ -30,7 +30,7 @@ class HistoriqueStockRepository extends Model
     // Modifie une histo dans la BD 
     public function updateHistoriqueStock($historiqueStock)
     {
-        $h = $this->db->find('Travailleur', $historiqueStock->getId());
+        $h = $this->db->find('HistoriqueStock', $historiqueStock->getId());
         if ($h != null) {
             $h->setOperation($historiqueStock->getOperation());
             $h->setDateOperation($historiqueStock->getDateOperation());

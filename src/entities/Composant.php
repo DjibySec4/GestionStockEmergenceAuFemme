@@ -22,7 +22,7 @@ class Composant
     /** @Column(type="integer", length=15, nullable=false) **/
     private $qte;
   
-    /** @Column(type="string", length=20, nullable=false) **/
+    /** @Column(type="string", length=50, nullable=false) **/
     private $dateAchat;
 
     /**

@@ -37,10 +37,10 @@ class Activite
     */
     private $gestionnaires;
 
-    /**
-    * @OneToMany(targetEntity="HistoriqueTravailleur", mappedBy="activite")
-    */
-    private $HistoriqueTravailleur;
+    // /**
+    // * @OneToMany(targetEntity="HistoriqueTravailleur", mappedBy="activite")
+    // */
+    // private $HistoriqueTravailleur;
         
     public function __construct()
     {
@@ -48,7 +48,7 @@ class Activite
         $this->users = new ArrayCollection();
         $this->gestionnaires = new ArrayCollection();
         $this->produits = new ArrayCollection();
-        $this->HistoriqueTravailleur = new ArrayCollection();
+        // $this->HistoriqueTravailleur = new ArrayCollection();
     }
 
     /**
@@ -239,13 +239,13 @@ class Activite
     }
 
 
-     /**
-    * Ajoute un HistoriqueTravailleur dans le tableau des HistoriqueTravailleurs.
-    */
-    public function addHistoriqueTravailleur(HistoriqueTravailleur $historiqueTravailleur)
-    {
-        $this->historiqueTravailleurs[] = $historiqueTravailleur;
-    }
+    //  /**
+    // * Ajoute un HistoriqueTravailleur dans le tableau des HistoriqueTravailleurs.
+    // */
+    // public function addHistoriqueTravailleur(HistoriqueTravailleur $historiqueTravailleur)
+    // {
+    //     $this->historiqueTravailleurs[] = $historiqueTravailleur;
+    // }
 
 
    

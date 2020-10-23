@@ -2,6 +2,7 @@
 
 use libs\system\Controller;
 use src\model\ActiviteRepository;
+use src\model\ComposantRepository;
 use src\model\HistoriqueStockRepository;
 use src\model\ProduitRepository;
 use src\model\UniteRepository;
@@ -13,6 +14,7 @@ class ProduitController extends Controller
     private $produit_db;
     private $data;
     private $historiqueStock_db;
+    private $composant_db;
 
     public function __construct()
     {
@@ -21,6 +23,7 @@ class ProduitController extends Controller
         $this->unite_db = new  UniteRepository;
         $this->activite_db = new  ActiviteRepository;
         $this->historiqueStock_db = new  HistoriqueStockRepository;
+        $this->composant_db = new   ComposantRepository;
         // if (isset($_SESSION['user_session'])) {
         //     $this->data['user'] = $_SESSION['user_session'];
         // } else {
@@ -49,6 +52,8 @@ class ProduitController extends Controller
         $unite = [];
         $this->data['unites'] = $this->produit_db->listeUnites();
         $this->data['activites'] = $this->produit_db->listeActivites();
+        $this->data['composants'] = $this->composant_db->liste();
+
         if (isset($_POST['annuler'])) {
             $this->liste();
         }
@@ -119,8 +124,16 @@ class ProduitController extends Controller
                  foreach($activite as $a)
                  {
                      $produit->addActivite($this->produit_db->getActivite(intval($a)));
-                 }
+                    }
+                }
+                
+                
+                // Ajout des composants séléctionnées
+                foreach($composant as $c)
+                {
+                $produit->addComposant($this->produit_db->getComposant(intval($c)));
             }
+
 
             // Ajout d'une new unite ou ajout des unités séléctionnées
             if (isset($abreviation) && $abreviation != "") {
@@ -180,6 +193,7 @@ class ProduitController extends Controller
 
         $this->data['unites'] = $this->produit_db->listeUnites();
         $this->data['activites'] = $this->produit_db->listeActivites();
+        $this->data['composants'] = $this->composant_db->liste();
 
         if (isset($_POST['annuler'])) {
             $this->liste();
@@ -194,11 +208,20 @@ class ProduitController extends Controller
                 $produit->setUpdatedAt($updatedAt ?? '');
                 $produit->setNomOperation($nomOperation ?? '');
                 $produit->setUnite($this->produit_db->getUnite($unite) ?? '');
+                // Modification des infos de la table produits_activites
                 if (isset($activite)) {
                     $tabActivites = [];
                     foreach ($activite as $a) {
                         $tabActivites[] =  $this->produit_db->getActivite($a);  
                         $produit->setActivites($tabActivites);
+                    } 
+                }
+                // Modification des infos de la table produits_composants
+                if (isset($composant)) {
+                    $tabComposants = [];
+                    foreach ($composant as $c) {
+                        $tabComposants[] =  $this->produit_db->getComposant($c);  
+                        $produit->setComposants($tabComposants);
                     } 
                 }
                 $title = 'photo';

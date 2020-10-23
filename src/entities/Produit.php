@@ -44,7 +44,7 @@ class Produit
 
      /**
      * @ManyToMany(targetEntity="Composant", inversedBy="produits",cascade={"persist"})
-     * @JoinTable(name="fabriquer",
+     * @JoinTable(name="produits_composants",
      *      joinColumns={@JoinColumn(name="idProduit", referencedColumnName="reference")},
      *      inverseJoinColumns={@JoinColumn(name="idComposant", referencedColumnName="id")}
      *      )
@@ -276,6 +276,25 @@ class Produit
         return $this;
     }
 
+     /**
+     * Get joinColumns={@JoinColumn(name="idProduit", referencedColumnName="reference")},
+     */ 
+    public function getComposants()
+    {
+        return $this->composants;
+    }
+
+    /**
+     * Set joinColumns={@JoinColumn(name="idProduit", referencedColumnName="reference")},
+     *
+     * @return  self
+     */ 
+    public function setComposants($composants)
+    {
+        $this->composants = $composants;
+        return $this;
+    }
+
     // ====================================================================================================
 
     /**
@@ -301,6 +320,5 @@ class Produit
     {
         $this->activites[] = $activite;
     }
-
-    
+   
 }

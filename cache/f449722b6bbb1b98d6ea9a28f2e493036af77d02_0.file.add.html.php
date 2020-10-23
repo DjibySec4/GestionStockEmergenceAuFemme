@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-22 14:24:05
+/* Smarty version 3.1.30, created on 2020-10-23 18:09:23
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\travailleur\add.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f9179e50dfb59_49621555',
+  'unifunc' => 'content_5f9300336ca600_18374259',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f449722b6bbb1b98d6ea9a28f2e493036af77d02' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\travailleur\\add.html',
-      1 => 1603369414,
+      1 => 1603469168,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f9179e50dfb59_49621555 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f9300336ca600_18374259 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\libs\\system\\smarty\\libs\\plugins\\modifier.date_format.php';
 ?>
 <!doctype html>
@@ -218,6 +218,10 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
  <?php }?>
                                 </textArea>
                             </div>
+
+                             <!-- dateAdhesion -->
+                             <input type="hidden" name="dateAdhesion" id="dateAdhesion" class="form-control" value="<?php echo smarty_modifier_date_format(time(),'%d-%m-%Y %H:%M:%S');?>
+" >
 
                             <div class="form-group">
                                 <input type="submit" value="Ajouter" class="btn btn-primary" name="ajouter">

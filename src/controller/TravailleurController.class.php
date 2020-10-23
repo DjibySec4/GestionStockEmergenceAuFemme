@@ -2,6 +2,7 @@
 
 use libs\system\Controller;
 use src\model\ActiviteRepository;
+use src\model\HistoriqueTravailleurRepository;
 use src\model\TravailleurRepository;
 use src\service\upload\SamaneUpload;
 
@@ -10,12 +11,14 @@ class TravailleurController extends Controller
 
     private $travailleur_db;
     private $data;
+    private $historiqueTravail_db;
 
     public function __construct()
     {
         parent::__construct();
         $this->travailleur_db = new TravailleurRepository;
         $this->activite_db = new  ActiviteRepository;
+        $this->historiqueTravail_db = new  HistoriqueTravailleurRepository;
         // if (isset($_SESSION['user_session'])) {
         //     $this->data['user'] = $_SESSION['user_session'];
         // } else {
@@ -97,10 +100,10 @@ class TravailleurController extends Controller
             } else {
                 $travailleur->setActivite($this->travailleur_db->getActivite($activite));
             }
-            
+             
             /**
-             * Ajout Info Travailleur
-             */  
+            * Ajout Info Travailleur
+            */  
             if ($personne->getNom() == '' || $personne->getPrenom() == '' || $personne->getAdresse() == '' || $personne->getNationalite() == '' || $personne->getSexe() == '' || $personne->getTelephone() == '' )
             {
                 $this->data['vide'] = 1;
@@ -112,7 +115,17 @@ class TravailleurController extends Controller
              /**
              * Persistance  du Travailleur
              */ 
-            $this->travailleur_db->addTravailleur($travailleur);
+            $idTravailleur = $this->travailleur_db->addTravailleur($travailleur);
+            
+            /**
+            * Persistance  du HistoriqueTravailleur
+            */
+            $historiqueTravailleur= new HistoriqueTravailleur;
+            $historiqueTravailleur->setDateAdhesion($dateAdhesion ?? '');
+            $historiqueTravailleur->setActivite($activite);
+            $historiqueTravailleur->setTravailleur($idTravailleur);
+            $this->historiqueTravail_db->addHistoriqueTravailleur($historiqueTravailleur);
+
             $this->liste();
         } 
         else 
@@ -169,7 +182,17 @@ class TravailleurController extends Controller
                     $this->view->load('pages/travailleur/edit', $this->data);
                 } 
 
-                $this->travailleur_db->updateTravailleur($travailleur);
+                $idTravailleur  = $this->travailleur_db->updateTravailleur($travailleur);
+
+                /**
+                * Persistance  du HistoriqueTravailleur
+                */
+                $historiqueTravailleur= new HistoriqueTravailleur;
+                $historiqueTravailleur->setDateAdhesion($dateAdhesion ?? '');
+                $historiqueTravailleur->setActivite($activite);
+                $historiqueTravailleur->setTravailleur($idTravailleur);
+                $this->historiqueTravail_db->addHistoriqueTravailleur($historiqueTravailleur);
+
                 $this->view->redirect('Travailleur/liste/1');
             } else {
                 $this->data['vide'] = 1;

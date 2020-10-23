@@ -22,15 +22,15 @@ class Travailleur
     */
     private $personne;
 
-     /**
-    * @OneToMany(targetEntity="HistoriqueTravailleur", mappedBy="travailleur")
-    */
-    private $HistoriqueTravailleur;
+    //  /**
+    // * @OneToMany(targetEntity="HistoriqueTravailleur", mappedBy="travailleur")
+    // */
+    // private $HistoriqueTravailleur;
 
 
     public function __construct()
     {
-        $this->HistoriqueTravailleur = new ArrayCollection();
+        // $this->HistoriqueTravailleur = new ArrayCollection();
     }
 
 
@@ -283,13 +283,13 @@ class Travailleur
     }
 
     // =============================================================================================
-     /**
-    * Ajoute un HistoriqueTravailleur dans le tableau des HistoriqueTravailleurs.
-    */
-    public function addHistoriqueTravailleur(HistoriqueTravailleur $historiqueTravailleur)
-    {
-        $this->historiqueTravailleurs[] = $historiqueTravailleur;
-    }
+    //  /**
+    // * Ajoute un HistoriqueTravailleur dans le tableau des HistoriqueTravailleurs.
+    // */
+    // public function addHistoriqueTravailleur(HistoriqueTravailleur $historiqueTravailleur)
+    // {
+    //     $this->historiqueTravailleurs[] = $historiqueTravailleur;
+    // }
 }
 
 

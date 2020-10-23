@@ -53,7 +53,7 @@ class ProduitRepository extends Model
         } else {
             die("Objet " . $reference . " does not existe!");
         }
-    }
+    } 
 
     // Retourne le nombre de produits.
     public function nbProduit(){
@@ -82,7 +82,7 @@ class ProduitRepository extends Model
     }
 
 
-     // Retourne tous les Produits   
+     // Retourne tous les Unités   
      public function listeUnites()
      {
          return $this->db->getRepository('Unite')->findAll();
@@ -92,6 +92,11 @@ class ProduitRepository extends Model
     public function getActivite($id)
     {
         return $this->db->getRepository('Activite')->find(array('id' => $id));
+    }
+    
+    public function getComposant($id)
+    {
+        return $this->db->getRepository('Composant')->find(array('id' => $id));
     }
 
      // Retourne tous les Activités 

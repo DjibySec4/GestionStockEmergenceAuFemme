@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-19 23:10:45
+/* Smarty version 3.1.30, created on 2020-10-23 17:44:40
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\travailleur\liste.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f8e00d5039a00_92721712',
+  'unifunc' => 'content_5f92fa68c39c54_42516400',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9a06013da5d2eb100b2f5172c716057d26608679' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\travailleur\\liste.html',
-      1 => 1603141844,
+      1 => 1603444641,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f8e00d5039a00_92721712 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f92fa68c39c54_42516400 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -119,6 +119,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
                         <!-- Pagination -->
                         <div class="d-block text-center card-footer">
                            <?php if (isset($_smarty_tpl->tpl_vars['page']->value)) {?>
+                           <span class="badge badge-pill badge-primary mx-auto"><?php echo $_smarty_tpl->tpl_vars['page']->value;?>
+</span>
                            <div class="d-flex justify-content-between my-4">
                                <?php if ($_smarty_tpl->tpl_vars['page']->value > 1) {?>
                                    <a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>

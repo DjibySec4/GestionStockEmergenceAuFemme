@@ -16,10 +16,16 @@ class ComposantRepository extends Model
      public function listeComposants($page)
      {
          return $this->db->createQuery("SELECT c FROM Composant c ORDER BY c.id desc")
-         ->setMaxResults(10)
-         ->setFirstResult($page*10)
+         ->setMaxResults(5)
+         ->setFirstResult($page*5)
              ->getResult();
      }
+
+       // Retourne tous les Unités   
+       public function liste()
+       {
+           return $this->db->getRepository('Composant')->findAll();
+       } 
 
 
     // Retourne un composant spécifique.
@@ -66,10 +72,28 @@ class ComposantRepository extends Model
         } else {
             die("Objet " . $id . " does not existe!");
         }
-    }
+    } 
 
     public function getUnite($id)
     {
         return $this->db->getRepository('Unite')->find(array('id' => $id));
     }
+
+     // Retourne le nombre de composants.
+     public function nbComposant(){
+        return count($this->db->createQuery("SELECT c FROM Composant c")->getResult());
+    }
+
+     // Retourne tous les Unités   
+     public function listeUnites()
+     {
+         return $this->db->getRepository('Unite')->findAll();
+     } 
+
+     public function getComposantByMotCle($mc) 
+    {
+        return $this->db->createQuery("SELECT c FROM Composant c WHERE c.nom like '%$mc%' OR c.description like '%$mc%' OR c.prix like '%$mc%' OR c.qte like '%$mc%' ")->getResult();
+    }
+     
+
 }

@@ -87,7 +87,7 @@
                                 <!-- Activités --> 
                                 <div class="form-row">
                                     <div class="form-group col-lg-12 mx-auto" id="selectionnerUneActivite">
-                                        <label class="control-label">Activités (maximum 1)</label>
+                                        <label class="control-label">Activités (maximum 10)</label>
                                         <select name="activite[]" id="idActivite" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir une activité" required>
                                             {foreach from=$activites item=$activite}
                                                 <option value="{$activite->getId()}">{$activite->getNom()}</option>
@@ -121,6 +121,22 @@
                                     <!-- Button Ajout -->
                                     <div class="btn btn-primary mb-4" id="addActiviteButton">Ajouter Activité</div>
                                 </div>
+
+
+                                <!-- Composant -->
+                                <div class="form-row">
+                                    <div class="form-group col-lg-12 mx-auto" id="selectionnerUnComposant">
+                                        <label class="control-label">Composants (maximum 50)</label>
+                                        <select name="composant[]" id="idComposant" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir un composant" required>
+                                            {foreach from=$composants item=$composant}
+                                            <option value="{$composant->getId()}">{$composant->getNom()}</option>
+                                            {/foreach}
+                                        </select>
+                                        <div class="composant-invalid invalid-feedback">Vous devez choisir un seul composant
+                                        </div>
+                                    </div>
+                                </div>
+
 
                                  <!-- Unité -->
                                  <div class="form-row">
