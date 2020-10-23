@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Entity @Table(name="unites")
  **/
 class Unite
-{
+{ 
     /** @Id @Column(type="integer") @GeneratedValue **/
     private $id;
 

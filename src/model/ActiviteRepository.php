@@ -30,16 +30,16 @@ class ActiviteRepository extends Model
     // Modifie une activite dans la BD
     public function updateActivite($activite)
     {
-        $f = $this->db->find('Activite', $activite->getId());
-        if ($f != null) {
-            $this->db->merge($activite);
+        $a = $this->db->find('Activite', $activite->getId());
+        if ($a != null) {
+            $a->setNom($activite->getNom());
+            $a->setDescription($activite->getDescription());
             $this->db->flush();
-            return $activite;
+            return $activite->getId();
         } else {
             die("Objet " . $activite->getId() . " does not existe!!");
         }
     }
-
 
     // Supprime un activite de la BD
     public function deleteActivite($id)
@@ -55,10 +55,20 @@ class ActiviteRepository extends Model
 
 
     // Retourne toutes les activites   
-    public function listeActivites()
+    public function liste()
     {
         return $this->db->getRepository('Activite')->findAll();
     }
+
+    // Retourne tous les Gestionnaires.
+    public function listeActivite($page)
+    {
+        return $this->db->createQuery("SELECT a FROM Activite a ORDER BY a.id desc")
+        ->setMaxResults(5)
+        ->setFirstResult($page*5)
+            ->getResult();
+    }
+
 
     public function getProduit($id)
     {

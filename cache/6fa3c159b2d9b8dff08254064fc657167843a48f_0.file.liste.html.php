@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-19 22:34:09
+/* Smarty version 3.1.30, created on 2020-10-22 15:10:11
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\userroles\liste.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f8df841863030_98084236',
+  'unifunc' => 'content_5f9184b3f00c20_46652652',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6fa3c159b2d9b8dff08254064fc657167843a48f' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\userroles\\liste.html',
-      1 => 1603139636,
+      1 => 1603372201,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f8df841863030_98084236 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f9184b3f00c20_46652652 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -119,8 +119,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
             <div class="row">
                 <div class="col-md-12">
                     <div class="main-card mb-3 card">
-                        <div class="card-header"><b>Liste des roles disponibles</b>
-                        </div>
+                        <div class="card-header"><b>Liste des roles disponibles</b></div>
+
                         <!-- Utilisateur -->
                         <div class="table-responsive">
                             <table class="align-middle mb-0 table table-borderless table-striped table-hover">
@@ -164,7 +164,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
                                 <?php if (isset($_smarty_tpl->tpl_vars['usersroles']->value)) {?>
                                     <tr>
                                         <td colspan="2" align="center">
-                                            <input class="btn btn-success" type="submit" value="Attribuez lui ces roles"/>
+                                            <input class="btn btn-success" name="AttributionRole" type="submit" value="Attribuez lui ces roles"/>
                                         </td>
                                     </tr>
                                 <?php }?>

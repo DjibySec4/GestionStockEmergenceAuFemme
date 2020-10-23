@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+    
+    <!-- On affiche cette page k si un user est authentifié (user ou admin) -->
+
+    <!-- <====== Contenu du head =====> -->
+    {include file='../../partials/extract_index/head.html'} 
+    <body>
+        <!-- <====== Menu Haut =====> -->
+        {include file='../../partials/extract_index/menuHaut.html'}
+
+        <div class="app-main">
+            <!-- Menu Gauche (Dashbord) -->
+            {include file='../../partials/extract_index/menuGauche.html'}
+
+            <!-- La top Bar(Barre apres menu) -->
+            {include file='../../partials/extract_index/topBar.html'}
+
+
+            <div class="col-md-8 col-xs-8 offset-md-2 latest-post-area pb-120">
+                <div class="card text-center">
+                    <div class="card-header bg-primary text-white">Ajout d'un Produit</div>
+                    <div class="card-body text-dark">
+                        <div class="card text-center mb-4">
+                            <p><a href="{$url_base}Produit/liste/1" class="btn btn-pribg-primary mt-4">Liste des Produits</a></p>
+                        </div>
+                        <form action="{$url_base}Produit/add" method="post" enctype="multipart/form-data" id="new" novalidate>
+                            {if isset($vide) && $vide==1}
+                                <div class="alert alert-danger">Tous les champs sont requis</div>
+                            {/if}
+
+                            {if isset($reference_existe)}
+                                <div class="alert alert-danger">{$reference_existe}</div>
+                            {/if}
+
+                            <div class="infoPersonne" id="infoPersonne">
+                                <div class="form-row">
+                                    <!-- Référence -->
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">Référence</label>
+                                        <input type="text" class="form-control" name="reference" id="reference" {if isset($produit)} value="{$produit->getReference()}" {/if}>
+                                    </div>
+
+                                    <!-- Nom -->
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">Nom</label>
+                                        <input type="text" class="form-control" name="nom" id="nom" {if isset($produit)} value="{$produit->getNom()}" {/if}>
+                                    </div>
+                                </div> 
+
+                                <div class="infoPersonne" id="infoPersonne">
+                                    <div class="form-row">
+                                        <!-- Quantité -->
+                                        <div class="form-group col-md-4">
+                                            <label class="control-label">Quantité</label>
+                                            <input type="number" class="form-control" name="qte" id="qte" {if isset($produit)} value="{$produit->getQte()}" {/if}>
+                                        </div>
+    
+                                        <!-- Prix -->
+                                        <div class="form-group col-md-4">
+                                            <label class="control-label">Prix Unitaire</label>
+                                            <div class="input-group">
+                                                <input type="number" class="form-control" name="prix" id="prix" {if isset($produit)} value="{$produit->getPrix()}" {/if}>
+                                                <span class="input-group-text">FCFA</span>
+                                            </div>
+                                        </div>
+
+                                          <!-- En promotion -->
+                                        <div class="form-group col-md-4">
+                                            <label class="control-label">En Promotion ?</label>
+                                            <select name="promotion" id="promotion" class="form-control custom-select" required>
+                                                <option value="1">Oui</option>
+                                                <option value="0">Non</option>
+                                            </select>
+                                        </div>
+                                    </div> 
+
+                                    <!-- Photo -->
+                                    <div class="form-row"></div>
+                                        <div class="form-group ">
+                                            <label class="control-label">Photo</label>
+                                            <input type="file" class="form-control col-lg-12" accept="image/png,image/jpeg,image/jpg" name="photo" id="photo">
+                                        </div>
+                                    </div>
+
+                                    <!-- Activités -->
+                                    <div class="form-row">
+                                        <div class="form-group col-lg-12 mx-auto" id="selectionnerUneActivite">
+                                            <label class="control-label">Activités (maximum 10)</label>
+                                            <select name="activite[]" id="idActivite" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir une activité" required>
+                                                {foreach from=$activites item=$activite}
+                                                <option value="{$activite->getId()}">{$activite->getNom()}</option>
+                                                {/foreach}
+                                            </select>
+                                            <div class="activite-invalid invalid-feedback">Vous devez choisir une seule activité
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Ajouter une activité (Masqué / Afficher) -->
+                                    <div class="btn btn-primary mb-4" id="newActivite">Ajouter une nouvelle activité</div>
+                                    <div id="addActivite">
+                                        <!-- Nom -->
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <label class="control-label">Nom Activité</label>
+                                                <input type="text" class="form-control" name="nomActivite" id="nom">
+                                                <div class="invalid-feedback">
+                                                    Le nom de l'activité est obligatoire
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        
+                                        <!-- Description -->
+                                        <div class="form-group">
+                                            <label class="control-label">Description Activité</label>
+                                            <textArea class="form-control" rows="4" name="descriptionActivite" id="descriptionActivite">
+                                            </textArea>
+                                        </div>
+                                        <!-- Button Ajout -->
+                                        <div class="btn btn-primary mb-4" id="addActiviteButton">Ajouter Activité</div>
+                                    </div>
+
+
+                                    <!-- Unité -->
+                                    <div class="form-row">
+                                        <div class="form-group col-lg-12 mx-auto" id="selectionnerUneUnite">
+                                            <label class="control-label">Unité (maximum 1)</label>
+                                            <select name="unite[]" id="idUnite" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir une unité" required>
+                                                {foreach from=$unites item=$unite}
+                                                <option value="{$unite->getId()}">{$unite->getNomComplet()} ({$unite->getAbreviation()})</option>
+                                                {/foreach}
+                                            </select>
+                                            <div class="unite-invalid invalid-feedback">Vous devez choisir une seule unité</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Ajouter une unité (Masqué / Afficher) -->
+                                    <div class="btn btn-primary mb-4" id="newUnite">Ajouter une nouvelle unité</div>
+                                    <div id="addUnite">
+                                    <!-- Abréviation -->
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <label class="control-label">Abreviation</label>
+                                                <input type="text" class="form-control" name="abreviation" id="abreviation">
+                                            </div>
+                                        </div> 
+                                        
+                                        <!-- Nom complet -->
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <label class="control-label">Nom Complet</label>
+                                                <input type="text" class="form-control" name="nomComplet" id="nomComplet">
+                                            </div>
+                                        </div> 
+                                        <!-- Button Ajout -->
+                                        <div class="btn btn-primary mb-4" id="addUniteButton">Ajouter Unité</div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <!-- CreatedAt -->
+                                        <input type="hidden" class="form-control" value="{$smarty.now|date_format:'%d-%m-%Y %H:%M:%S'}" name="createdAt" id="createdAt">
+
+                                        <!-- UpdatedAt -->
+                                        <input type="hidden" class="form-control" value="{$smarty.now|date_format:'%d-%m-%Y %H:%M:%S'}" name="updatedAt" id="updatedAt">
+
+                                         <!-- NomOpération -->
+                                         <input type="hidden" class="form-control" value="depot" name="nomOperation" id="nomOperation">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="submit" value="Ajouter" class="btn btn-primary" name="ajouter">
+                                    <input type="submit" value="Annuler" class="btn btn-danger" name="annuler">
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <literal>
+                <script src="{$url_base}public/js/chosen.jquery.min.js" id="src"></script>
+                <script src="{$url_base}public/js/stocks/produit/produit_choosen.js"></script>
+                <script src="{$url_base}public/js/stocks/produit/produit.js" id="src"></script>
+            </literal>
+
+
+            <!-- Le footer -->
+            {include file='../../partials/extract_index/footer.html'}
+        </div>
+            <script type="text/javascript" src="{$url_base}public/templates/templateGestionStockEaf/assets/scripts/main.js"></script>
+</body>    
+</html>

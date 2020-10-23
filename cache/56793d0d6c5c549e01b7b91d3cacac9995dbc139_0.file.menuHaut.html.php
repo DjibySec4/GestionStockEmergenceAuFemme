@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-16 18:43:29
+/* Smarty version 3.1.30, created on 2020-10-22 14:04:26
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\partials\extract_index\menuHaut.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f89cdb14f68e9_68482052',
+  'unifunc' => 'content_5f91754a385186_32138114',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '56793d0d6c5c549e01b7b91d3cacac9995dbc139' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\partials\\extract_index\\menuHaut.html',
-      1 => 1602866606,
+      1 => 1603368253,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f89cdb14f68e9_68482052 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f91754a385186_32138114 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
     <div class="app-header header-shadow">
@@ -35,7 +35,7 @@ public/images/logo/logo.png" alt="" class="mb-3 logo-src" style="width: 160px; h
                             <span class="hamburger-inner"></span>
                         </span>
                     </button>
-                </div>
+                </div> 
             </div>
         </div>
         <div class="app-header__mobile-menu">
@@ -106,12 +106,13 @@ Login/index" class="nav-link">
                                         <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                     </a>
                                     <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                        <button type="button" tabindex="0" class="dropdown-item"><a href="" class="btn" >Profil</a></button>
-                                        <button type="button" tabindex="0" class="dropdown-item"><a href="" class="btn" >Parametrage</a></button>
-                                        <button type="button" tabindex="0" class="dropdown-item"><a href="" class="btn" >Aides</a></button>
+                                        <button type="button" tabindex="0" class="dropdown-item"><a href="" class="btn" >  <i class="metismenu-icon pe-7s-users mr-2"></i> Profil</a></button>
+                                        <button type="button" tabindex="0" class="dropdown-item"><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+UserRoles/liste/1" class="btn" >  <i class="metismenu-icon pe-7s-tools mr-2"></i> Parametrage</a></button>
+                                        <button type="button" tabindex="0" class="dropdown-item"><a href="" class="btn" >  <i class="metismenu-icon pe-7s-help1 mr-2"></i> Aides</a></button>
                                         <div tabindex="-1" class="dropdown-divider"></div>
                                         <button type="button" tabindex="0" class="dropdown-item"><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-Login/logout" class="btn">Deconnexion</a></button>
+Login/logout" class="btn"> <i class="metismenu-icon pe-7s-power  mr-2"></i> Deconnexion</a></button>
                                     </div>
                                 </div>
                             </div>

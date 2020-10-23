@@ -19,9 +19,9 @@
             {if isset($activite) }
             <div class="col-md-8 col-xs-8 offset-md-2 latest-post-area pb-120">
                 <div class="card text-center">
-                    <div class="card-header bg-primary text-white">Modification d'un Travailleur</div>
+                    <div class="card-header bg-primary text-white">Modification d'une Activité</div>
                     <div class="card-body text-dark">
-                        <form action="{$url_base}Acticite/edit/{$activite->getId()}" method="post" enctype="multipart/form-data" id="edit">
+                        <form action="{$url_base}Activite/edit/{$activite->getId()}" method="post" enctype="multipart/form-data" id="edit">
                             {if isset($vide) && $vide==1}
                                 <div class="alert alert-danger">Tous les champs sont requis</div>
                             {/if}
@@ -45,6 +45,7 @@
                                     {if isset($activite)} {$activite->getDescription()} {/if}
                                 </textArea>
                             </div>
+
                             <div class="form-group">
                                 <input type="submit" value="Modifier" class="btn btn-primary" name="modifier">
                                 <input type="submit" value="Annuler" class="btn btn-danger" name="annuler">

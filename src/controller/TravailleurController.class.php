@@ -41,6 +41,7 @@ class TravailleurController extends Controller
     // Ajoute un travailleur    
     public function add()
     {
+
         $activite = [];
         $this->data['nationalites'] = $this->travailleur_db->listeNationalites();
         $this->data['activites'] = $this->travailleur_db->listeActivites();
@@ -57,46 +58,49 @@ class TravailleurController extends Controller
             /**
              * Ajout des infos de la Personne
              */
-            $personne->setNom($nom ?? '');
-            $personne->setPrenom($prenom ?? '');
-            $personne->setAdresse($adresse ?? '');
-            $personne->setDateNaissance($dateNaissance ?? '');
-            $personne->setTelephone($telephone ?? '');
-            $upload = new SamaneUpload;
-            $title = 'photo';
-            $folder = 'public/images/personnes/travailleurs';
-            if (isset($_FILES[$title]) && $_FILES[$title] != '') 
-            {
-                $resultat = $upload->load($title, $folder);
-                $personne->setPhoto($_FILES[$title]['name']);
-            } else {
-                $personne->setPhoto('');
-            }
-            $personne->setSexe($sexe ?? '');
-            $personne->setDescription($descriptionTravailleur ?? '');
-            $personne->setNationalite($this->travailleur_db->getNationalite($nationalite));
-
-            // Ajout d'une new activité ou ajout des activité séléctionnées
-            if (isset($idActivite) && $idActivite != "") {
-                 //Ajout des Activités sélectionnées
-                foreach($activite as $a)
+            // if (!$nomActivite)
+            // {
+                $personne->setNom($nom ?? '');
+                $personne->setPrenom($prenom ?? '');
+                $personne->setAdresse($adresse ?? '');
+                $personne->setDateNaissance($dateNaissance ?? '');
+                $personne->setTelephone($telephone ?? '');
+                $upload = new SamaneUpload;
+                $title = 'photo';
+                $folder = 'public/images/personnes/travailleurs';
+                if (isset($_FILES[$title]) && $_FILES[$title] != '') 
                 {
-                    $travailleur->addActivite($this->travailleur_db->getActivite($a));
-                } 
+                    $upload->load($title, $folder);
+                    $personne->setPhoto($_FILES[$title]['name']);
+                } else {
+                    $personne->setPhoto('');
+                }
+                $personne->setSexe($sexe ?? '');
+                $personne->setDescription($descriptionTravailleur ?? '');
+                $personne->setNationalite($this->travailleur_db->getNationalite($nationalite));
+            // }
+            $travailleur->setPersonne($personne);
+            
+            // Ajout d'une new activité ou ajout des activité séléctionnées
+            if (isset($nomActivite) && $nomActivite != "") {
+              // Ajout d'une new activité
+              $newActivite->setNom($nomActivite ?? '');
+              $newActivite->setDescription($descriptionActivite ?? '');
+              
+              $this->activite_db->addActivite($newActivite);
+              $this->data['vide'] = 0;
+              $this->data['travailleur'] = $travailleur;
+              $this->data['activite_ajouter'] = "L'activité " . $nomActivite . " a été ajoutée avec success. Veuillez maintenant ajouté le travailleur ! ";
+              $this->data['title'] = "Ajout d'un Travailleur";
+              $this->data['activites'] = $this->travailleur_db->listeActivites();
+              return $this->view->load('pages/travailleur/add', $this->data);
             } else {
-                // Ajout d'une new activité
-                $newActivite->setNom($nomActivite ?? '');
-                $newActivite->setDescription($descriptionActivite ?? '');
-
-                $this->activite_db->addActivite($newActivite);
-                return header("location:$url_base/Travailleur/add");
+                $travailleur->setActivite($this->travailleur_db->getActivite($activite));
             }
-
+            
             /**
              * Ajout Info Travailleur
-             */ 
-            $travailleur->setPersonne($personne);
-           
+             */  
             if ($personne->getNom() == '' || $personne->getPrenom() == '' || $personne->getAdresse() == '' || $personne->getNationalite() == '' || $personne->getSexe() == '' || $personne->getTelephone() == '' )
             {
                 $this->data['vide'] = 1;
@@ -113,7 +117,9 @@ class TravailleurController extends Controller
         } 
         else 
         {
+            
             $this->data['title'] = "Ajout d'un Travailleur ";
+            $this->data['travailleur'] = $travailleur;
             $this->view->load('pages/travailleur/add', $this->data);
         }
     }
@@ -122,10 +128,6 @@ class TravailleurController extends Controller
     public function edit($id)
     {
         $travailleur  = $this->travailleur_db->getTravailleur($id);
-        foreach($travailleur->getActivites() as $a)
-        {
-            var_dump($a->getNom());
-        } die;
 
         $this->data['nationalites'] = $this->travailleur_db->listeNationalites();
         $this->data['activites'] = $this->travailleur_db->listeActivites();
@@ -153,12 +155,12 @@ class TravailleurController extends Controller
                     $upload->load($title, $folder);
                     $personne->setPhoto($_FILES[$title]['name']);
                 }
-                $n = $this->travailleur_db->getNationalite($nationalite);
+                $n = $this->travailleur_db->getNationalite($nationalite ?? '');
                 if ($n != null)
                     $personne->setNationalite($n);
 
                 $travailleur->setPersonne($personne ?? '');
-               
+                $travailleur->setActivite($this->travailleur_db->getActivite($activite));
                 if ($personne->getNom() == '' || $personne->getPrenom() == '' || $personne->getAdresse() == '' || $personne->getNationalite() == '' || $personne->getSexe() == '' || $personne->getTelephone() == '' )
                 {
                     $this->data['vide'] = 1;
@@ -166,15 +168,6 @@ class TravailleurController extends Controller
                     $this->data['travailleur'] = $travailleur;
                     $this->view->load('pages/travailleur/edit', $this->data);
                 } 
-
-                // Modofie les infos de la table  travailleurs_activites
-                if (isset($activite)) {
-                    $tabActivites = [];
-                    foreach ($activite as $a) {
-                        $tabActivites[] =  $this->travailleur_db->getActivite($a);  
-                        $travailleur->setActivites($tabActivites);
-                    } 
-                }
 
                 $this->travailleur_db->updateTravailleur($travailleur);
                 $this->view->redirect('Travailleur/liste/1');
@@ -186,9 +179,7 @@ class TravailleurController extends Controller
             }
         } else {
             $this->data['title'] = "Modification d'un travailleur";
-            $this->data['travailleur'] = $travailleur;
-            $this->data["listeActivites"] = $travailleur->getActivites();
-            
+            $this->data['travailleur'] = $travailleur;            
             $this->view->load('pages/travailleur/edit', $this->data);
         }
     }

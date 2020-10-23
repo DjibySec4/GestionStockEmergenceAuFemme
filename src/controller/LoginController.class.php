@@ -1,5 +1,4 @@
 <?php
-session_start();
 use libs\system\Controller;
 use src\model\UserRepository;
 

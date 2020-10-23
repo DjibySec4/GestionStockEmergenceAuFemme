@@ -38,7 +38,7 @@
                                         <th class="text-center">Date Naissance</th>
                                         <th class="text-center">Téléphone</th>
                                         <th class="text-center">sexe</th>
-                                        <th class="text-center">Activité</th>
+                                        <!-- <th class="text-center">Activité</th> -->
                                         <th class="text-center">Potentil</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -54,7 +54,7 @@
                                         <td class="text-center">{$fournisseur->getPersonne()->getDateNaissance()}</td>
                                         <td class="text-center">{$fournisseur->getPersonne()->getTelephone()}</td>
                                         <td class="text-center">{$fournisseur->getPersonne()->getSexe()}</td>
-                                        <td class="text-center">{$fournisseur->getNomActivite()}</td>
+                                        <!-- <td class="text-center">{$fournisseur->getNomActivite()}</td> -->
                                         <td class="text-center">{if $fournisseur->getPotentiel() == 1} Grossiste {else} Detaillant {/if}</td>
                                         <td class="text-center"><a href="{$url_base}Fournisseur/edit/{$fournisseur->getId()}">Editer</a></td>
                                     </tr>
@@ -67,6 +67,7 @@
                         <div class="d-block text-center card-footer">
                            <!-- Pagination -->
                             {if isset($page)}
+                            <span class="badge badge-pill badge-primary mx-auto">{$page}</span>
                             <div class="d-flex justify-content-between my-4">
                                 {if $page > 1}
                                     <a href="{$url_base}Fournisseur/liste/{$page-1}" class="btn btn-primary">&laquo; Precedent</a>

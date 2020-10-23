@@ -1,6 +1,6 @@
 $(document).ready(function() {
     idActivite = $("#idActivite");
-    $("#idActivite").chosen({ max_selected_options: 2 });
+    $("#idActivite").chosen({ max_selected_options: 1 });
     $("#idActivite").change(function(e) {
         e.preventDefault();
     });
@@ -10,14 +10,14 @@ $(document).ready(function() {
     });
 
     idActivite.change(function(e) {
-        if (idActivite.val().length >= 2)
+        if (idActivite.val().length >= 1)
             $(".activite-invalid").slideUp();
     });
 
     $("#new").submit(function(e) {
         resultat = true;
         v = idActivite.val().length;
-        if (v < 2) {
+        if (v < 1) {
             $(".activite-invalid").slideDown();
         }
         return resultat;

@@ -66,7 +66,7 @@
                                 <!-- Activités -->
                                 <div class="form-row">
                                     <div class="form-group col-lg-12 mx-auto">
-                                        <label class="control-label">Activités (maximum 2)</label>
+                                        <label class="control-label">Activités (maximum 1)</label>
                                         <select name="activite[]" id="idActivite" class="chosen_select  form-control" multiple data-placeholder="Veuiller choisir les activités " required>
                                             {foreach from=$activites item=$activite}
                                                 {foreach from=$listeActivites item=$mesActivite}
@@ -76,7 +76,7 @@
                                                         <option value="{$activite->getId()}">{$activite->getNom()}</option>
                                                     {/if}
                                                 {/foreach}
-                                        {/foreach}
+                                            {/foreach}
                                         </select>
                                         <div class="activite-invalid invalid-feedback">Vous devez choisir deux activités
                                         </div>

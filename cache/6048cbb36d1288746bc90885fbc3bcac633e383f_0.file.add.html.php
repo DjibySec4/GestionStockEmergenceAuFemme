@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-19 23:19:23
+/* Smarty version 3.1.30, created on 2020-10-21 13:36:26
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\fournisseur\add.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f8e02db478c78_05885415',
+  'unifunc' => 'content_5f901d3a2b8e78_51052531',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6048cbb36d1288746bc90885fbc3bcac633e383f' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\fournisseur\\add.html',
-      1 => 1603137180,
+      1 => 1603181652,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f8e02db478c78_05885415 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f901d3a2b8e78_51052531 (Smarty_Internal_Template $_smarty_tpl) {
+if (!is_callable('smarty_modifier_date_format')) require_once 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\libs\\system\\smarty\\libs\\plugins\\modifier.date_format.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -89,8 +90,8 @@ Fournisseur/add" method="post" enctype="multipart/form-data" id="new" novalidate
                                     <!-- Date Naissance -->
                                     <div class="form-group col-md-4">
                                         <label class="control-label">Date De Naissance</label>
-                                        <input type="date" class="form-control" name="dateNaissance" id="dateNaissance" <?php if (isset($_smarty_tpl->tpl_vars['fournisseur']->value)) {?> value="<?php echo $_smarty_tpl->tpl_vars['fournisseur']->value->getPersonne()->getDateNaissance();?>
-" <?php }?>>
+                                        <input type="date" class="form-control" name="dateNaissance" id="dateNaissance" value="<?php echo smarty_modifier_date_format(time(),'%Y-%m-%d');?>
+">
                                     </div>
 
                                     <!-- Adresse -->

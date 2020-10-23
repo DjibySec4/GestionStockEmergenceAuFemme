@@ -1,4 +1,57 @@
-{include file='src/view/header.html'}
+<!doctype html>
+<html lang="en">
+    
+    <!-- On affiche cette page k si un user est authentifié (user ou admin) -->
 
-    <h1>ici le frm ajout</h1>
-{include file='src/view/footer.html'}
+    <!-- <====== Contenu du head =====> -->
+    {include file='../../partials/extract_index/head.html'} 
+    <body>
+        <!-- <====== Menu Haut =====> -->
+        {include file='../../partials/extract_index/menuHaut.html'}
+
+        <div class="app-main">
+            <!-- Menu Gauche (Dashbord) -->
+            {include file='../../partials/extract_index/menuGauche.html'}
+
+            <!-- La top Bar(Barre apres menu) -->
+            {include file='../../partials/extract_index/topBar.html'}
+
+            <div class="col-md-8 col-xs-8 offset-md-2 latest-post-area pb-120">
+                <div class="card text-center">
+                    <div class="card-header bg-primary text-white">Ajout d'une Nationalité</div>
+                    <div class="card-body text-dark">
+                        <div class="card text-center mb-4">
+                            <p><a href="{$url_base}Nationalite/liste/1" class="btn btn-primary mt-4">Liste des Nationalités</a></p>
+                        </div>
+                        <form action="{$url_base}Nationalite/add" method="post" enctype="multipart/form-data" id="new" novalidate>
+                            {if isset($vide) && $vide==1}
+                                <div class="alert alert-danger">Tous les champs sont requis</div>
+                            {/if}
+
+                            {if isset($nationalite_existe)}
+                                <div class="alert alert-danger">{$nationalite_existe}</div>
+                            {/if}
+
+                            <!-- Nom -->
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label class="control-label">Nom</label>
+                                    <input type="text" class="form-control" name="nom" id="nom" {if isset($nationalite)} value="{$nationalite->getNom()}" {/if}>
+                                </div>
+                            </div> 
+                               
+                            <div class="form-group">
+                                <input type="submit" value="Ajouter" class="btn btn-primary" name="ajouter">
+                                <input type="submit" value="Annuler" class="btn btn-danger" name="annuler">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Le footer -->
+            {include file='../../partials/extract_index/footer.html'}
+        </div>
+            <script type="text/javascript" src="{$url_base}public/templates/templateGestionStockEaf/assets/scripts/main.js"></script>
+</body>    
+</html>

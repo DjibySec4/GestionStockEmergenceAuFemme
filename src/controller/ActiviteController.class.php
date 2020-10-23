@@ -19,7 +19,7 @@ class ActiviteController extends Controller
         // } else {
         //     $this->view->redirect('Login');
         // }
-    }
+    } 
 
     // Liste des activites
     public function liste($page = 1)
@@ -30,7 +30,7 @@ class ActiviteController extends Controller
         $page = $page <= $nbPage ? $page : 1;
         $this->data['page'] = $page = (int) $page;
         $this->data['title'] = 'Liste des Activités';
-        $this->data['activites'] = $this->activite_db->listeActivites($page - 1, $nbEPage);
+        $this->data['activites'] = $this->activite_db->listeActivite($page - 1, $nbEPage);
         $this->view->load('pages/activite/liste', $this->data);
     }
 
@@ -74,7 +74,6 @@ class ActiviteController extends Controller
     }
 
     // Modifier un activite.
-    // Modifier un activite.
     public function edit($id)
     {
         $activite  = $this->activite_db->getActivite($id);
@@ -83,27 +82,19 @@ class ActiviteController extends Controller
         }
         if (isset($_POST['modifier'])) {
             extract($_POST);
-            if ($activite != null) {
-
-                $activite->setNom($activite->getNom($nom) ?? '');
-                $activite->setDescription($activite->getDescription($descriptionActivite) ?? '');
-               
-                
-                $this->activite_db->updateActivite($activite);
-                $this->view->redirect('Activite/liste/1');
-            } else {
-                $this->data['vide'] = 1;
-                $this->data['title'] = "Modification d'un activite";
-                $this->data['activite'] = $activite;
-                $this->view->load('pages/activite/edit', $this->data);
-            }
-        } else {
+            $activite->setNom($nomActivite);
+            $activite->setDescription($descriptionActivite);
+            $this->activite_db->updateActivite($activite);
+            $this->view->redirect('Activite/liste/1');
+        }
+        else 
+        {
             $this->data['title'] = "Modification d'un activite";
             $this->data['activite'] = $activite;
-            
             $this->view->load('pages/activite/edit', $this->data);
         }
     }
+
     // Recherche un activite.
     public function search()
     {

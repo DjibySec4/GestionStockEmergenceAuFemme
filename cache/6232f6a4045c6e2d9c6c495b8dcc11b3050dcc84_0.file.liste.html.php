@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-19 23:19:15
+/* Smarty version 3.1.30, created on 2020-10-22 13:04:40
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\fournisseur\liste.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f8e02d30312e3_75246554',
+  'unifunc' => 'content_5f916748682b38_99771729',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6232f6a4045c6e2d9c6c495b8dcc11b3050dcc84' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\fournisseur\\liste.html',
-      1 => 1603142350,
+      1 => 1603364677,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f8e02d30312e3_75246554 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f916748682b38_99771729 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -77,7 +77,7 @@ Fournisseur/search" id="q">
                                         <th class="text-center">Date Naissance</th>
                                         <th class="text-center">Téléphone</th>
                                         <th class="text-center">sexe</th>
-                                        <th class="text-center">Activité</th>
+                                        <!-- <th class="text-center">Activité</th> -->
                                         <th class="text-center">Potentil</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -105,8 +105,8 @@ public/images/personnes/fournisseurs/<?php echo $_smarty_tpl->tpl_vars['fourniss
 </td>
                                         <td class="text-center"><?php echo $_smarty_tpl->tpl_vars['fournisseur']->value->getPersonne()->getSexe();?>
 </td>
-                                        <td class="text-center"><?php echo $_smarty_tpl->tpl_vars['fournisseur']->value->getNomActivite();?>
-</td>
+                                        <!-- <td class="text-center"><?php echo $_smarty_tpl->tpl_vars['fournisseur']->value->getNomActivite();?>
+</td> -->
                                         <td class="text-center"><?php if ($_smarty_tpl->tpl_vars['fournisseur']->value->getPotentiel() == 1) {?> Grossiste <?php } else { ?> Detaillant <?php }?></td>
                                         <td class="text-center"><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 Fournisseur/edit/<?php echo $_smarty_tpl->tpl_vars['fournisseur']->value->getId();?>

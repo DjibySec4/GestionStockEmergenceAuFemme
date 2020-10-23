@@ -13,60 +13,92 @@ class ProduitRepository extends Model
     }
 
     // Retourne un produit spécifique.
-    public function getProduit($id)
+    public function getProduit($reference)
     {
-        return $this->db->getRepository('Produit')->find(array('id' => $id));
+        return $this->db->getRepository('Produit')->find(array('reference' => $reference));
     }
 
     // Ajoute un produit dans la BD    
     public function addProduit($produit)
     {
-        $this->db->persist($produit);
+        $ok = $this->db->persist($produit);
         $this->db->flush();
-
-        return $produit->getId();
+        return $produit->getReference();
     }
 
     // Modifie un produit dans la BD
     public function updateProduit($produit)
     {
-        $p = $this->db->find('Produit', $produit->getId());
+        $p = $this->db->find('Produit', $produit->getReference());
         if ($p != null) {
             $p->setReference($produit->getReference());
             $p->setNom($produit->getNom());
             $p->setPhoto($produit->getPhoto());
-            $p->setUpdateAt($produit->getUpdateAt());
+            $p->getUpdatedAt($produit->getUpdatedAt());
             
             $this->db->flush();
-            return $produit->getId();
+            return $produit->getReference();
         } else {
-            die("Objet " . $produit->getId() . " does not existe!!");
+            die("Objet " . $produit->getReference() . " does not existe!!");
         }
-    }
+    } 
 
     // Supprime un produit de la BD
-    public function deleteProduit($id)
+    public function deleteProduit($reference)
     {
-        $produit = $this->db->find('Produit', $id);
+        $produit = $this->db->find('Produit', $reference);
         if ($produit != null) {
             $this->db->remove($produit);
             $this->db->flush();
         } else {
-            die("Objet " . $id . " does not existe!");
+            die("Objet " . $reference . " does not existe!");
         }
+    }
+
+    // Retourne le nombre de produits.
+    public function nbProduit(){
+        return count($this->db->createQuery("SELECT p FROM Produit p")->getResult());
+    }
+
+    public function getProduitByMotCle($mc) 
+    {
+        return $this->db->createQuery("SELECT p FROM Produit p WHERE p.reference like '%$mc%' OR p.nom like '%$mc%' ")->getResult();
     }
 
 
     // Retourne tous les Produits   
-    public function listeProduits()
+    public function liste()
     {
         return $this->db->getRepository('Produit')->findAll();
     }
+
+    // Retourne tous les Travailleurs.
+    public function listeProduits($page)
+    {
+        return $this->db->createQuery("SELECT p FROM Produit p ORDER BY p.reference desc")
+        ->setMaxResults(5)
+        ->setFirstResult($page*5)
+            ->getResult();
+    }
+
+
+     // Retourne tous les Produits   
+     public function listeUnites()
+     {
+         return $this->db->getRepository('Unite')->findAll();
+     } 
+     
 
     public function getActivite($id)
     {
         return $this->db->getRepository('Activite')->find(array('id' => $id));
     }
+
+     // Retourne tous les Activités 
+     public function listeActivites()
+     {
+         return $this->db->getRepository('Activite')->findAll();
+     }
 
     public function getUnite($id)
     {

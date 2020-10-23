@@ -70,7 +70,7 @@ class TravailleurRepository extends Model
     // Retourne tous les Travailleurs.
     public function listeTravailleurs($page)
     {
-        return $this->db->createQuery("SELECT l FROM Travailleur l ORDER BY l.id desc")
+        return $this->db->createQuery("SELECT t FROM Travailleur t ORDER BY t.id desc")
         ->setMaxResults(5)
         ->setFirstResult($page*5)
             ->getResult();

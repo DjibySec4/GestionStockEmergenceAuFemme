@@ -35,7 +35,7 @@ class Gestionnaire
         $this->activites = new ArrayCollection();
         $this->fournisseurs = new ArrayCollection();
     }
-
+ 
       /**
      * Get the value of id
      */ 

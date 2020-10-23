@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+    
+    <!-- On affiche cette page k si un user est authentifié (user ou admin) -->
+
+    <!-- <====== Contenu du head =====> -->
+    {include file='../../partials/extract_index/head.html'} 
+    <body>
+        <!-- <====== Menu Haut =====> -->
+        {include file='../../partials/extract_index/menuHaut.html'}
+
+        <div class="app-main">
+            <!-- Menu Gauche (Dashbord) -->
+            {include file='../../partials/extract_index/menuGauche.html'}
+
+            <!-- La top Bar(Barre apres menu) -->
+            {include file='../../partials/extract_index/topBar.html'}
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <center><a href="{$url_base}Unite/add" class="btn btn-primary mb-4">Ajouter une Unité</a></center>
+                    <form class="form-inline  navbar-search mb-4 mr-5 col-lg-3" method="POST" action="{$url_base}Unite/search" id="q">
+                        <input class="form-control" type="text" placeholder="Rechercher une unité" id="search" aria-label="Search" name="search">
+                    </form>
+
+                    <div class="main-card mb-3 card">
+                        <div class="card-header"><b>Liste des Unités</b>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Abréviation</th>
+                                        <th class="text-center">Nom Complet</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {foreach from=$unites item=$unite}
+                                    <tr>
+                                        <td class="text-center">{$unite->getAbreviation()}</td>
+                                        <td class="text-center">{$unite->getNomComplet()}</td>
+                                        <td class="text-center"><a href="{$url_base}Unite/edit/{$unite->getId()}">Editer</a></td>
+                                    </tr>
+                                    {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="d-block text-center card-footer">
+                            <!-- Pagination -->
+                            {if isset($page)}
+                            <span class="badge badge-pill badge-primary mx-auto">{$page}</span>
+                            <div class="d-flex justify-content-between my-4">
+                                {if $page > 1}
+                                    <a href="{$url_base}Unite/liste/{$page-1}" class="btn btn-primary">&laquo; Precedent</a>
+                                {/if} 
+                                
+                                {if $page < $nbPage}
+                                    <a href="{$url_base}Unite/liste/{$page+1}" class="btn btn-primary ml-auto">Suivant &raquo;</a>
+                                {/if}
+                                </div>
+                            {/if}
+                            <strong><p class="text-muted">Emérgence aux femmes </p></strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <script src="{$url_base}public/js/unite/unite.js"></script> -->
+            <!-- Le footer -->
+            {include file='../../partials/extract_index/footer.html'}
+        </div>
+        <script type="text/javascript" src="{$url_base}public/templates/templateGestionStockEaf/assets/scripts/main.js"></script>
+</body>    
+</html>

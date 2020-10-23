@@ -28,6 +28,10 @@
                                 <div class="alert alert-danger">Tous les champs sont requis</div>
                             {/if}
 
+                            {if isset($activite_ajouter)}
+                                <div class="alert alert-success">{$activite_ajouter}</div>
+                            {/if}
+
                             <div class="infoPersonne" id="infoPersonne">
                                 <div class="form-row">
                                     <!-- Nom -->
@@ -61,7 +65,7 @@
                                 <!-- Activités -->
                                 <div class="form-row">
                                     <div class="form-group col-lg-12 mx-auto" id="selectionnerUneActivite">
-                                        <label class="control-label">Activités (maximum 2)</label>
+                                        <label class="control-label">Activités (maximum 1)</label>
                                         <select name="activite[]" id="idActivite" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir les activités" required>
                                             {foreach from=$activites item=activite}
                                             <option value="{$activite->getId()}">{$activite->getNom()}</option>
@@ -69,11 +73,12 @@
                                         </select>
                                         <div class="activite-invalid invalid-feedback">Vous devez choisir deux activités
                                         </div>
-                                    </div>
+                                    </div> 
                                 </div>
                                 <!-- Ajouter une activité (Masqué / Afficher) -->
                                 <div class="btn btn-primary" id="newActivite">Ajouter une nouvelle activité</div>
                                 <div id="addActivite">
+                                    
                                     <!-- Nom -->
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
@@ -110,7 +115,7 @@
                                         <select name="nationalite" id="nationalite" class="form-control">
                                             {foreach from=$nationalites item=nationalite}
                                             <option value="{$nationalite->getId()}" {if $nationalite->getNom()=='Sénégalais'} selected
-                                                {/if}>{$nationalite->getNom()|utf8_encode}</option>
+                                                {/if}>{$nationalite->getNom()}</option>
                                             {/foreach}
                                         </select>
                                     </div>

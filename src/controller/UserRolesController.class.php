@@ -38,6 +38,7 @@ class UserRolesController extends Controller
         $this->data['roles'] = $rolesdb->getAll();
         $this->data['usersroles'] = $userdb->getUser($id)->getRoles();
         $this->data['idUser'] = $id;
+        
         return $this->view->load("pages/userroles/liste", $this->data);
     }
 

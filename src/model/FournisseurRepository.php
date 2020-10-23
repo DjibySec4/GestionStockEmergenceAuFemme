@@ -12,6 +12,17 @@ class FournisseurRepository extends Model
         parent::__construct();
     }
 
+    
+    // Retourne tous les fournisseurs.
+    public function listeFournisseurs($page)
+    {
+        return $this->db->createQuery("SELECT l FROM Fournisseur l ORDER BY l.id desc")
+        ->setMaxResults(10)
+        ->setFirstResult($page*10)
+            ->getResult();
+    }
+
+
     // Sélectionne un fournisseur spécifique depuis la table fournisseurs.
     public function getFournisseur($id)
     {
@@ -57,15 +68,6 @@ class FournisseurRepository extends Model
         } else {
             die("Objet " . $id . " does not existe!");
         }
-    }
-
-    // Retourne tous les fournisseurs.
-    public function listeFournisseurs($page)
-    {
-        return $this->db->createQuery("SELECT l FROM Fournisseur l ORDER BY l.id desc")
-        ->setMaxResults(10)
-        ->setFirstResult($page*10)
-            ->getResult();
     }
 
     // Retourne le nombre de fournisseur.

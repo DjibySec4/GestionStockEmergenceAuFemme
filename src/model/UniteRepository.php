@@ -30,10 +30,10 @@ class UniteRepository extends Model
     // Modifie une unite dans la BD
     public function updateUnite($unite)
     {
-        $a = $this->db->find('Unite', $unite->getId());
-        if ($a != null) {
-            $a->setAbreviation($unite->getAbreviation());
-            $a->setNomComplet($unite->getNomComplet());
+        $u = $this->db->find('Unite', $unite->getId());
+        if ($u != null) {
+            $u->setAbreviation($unite->getAbreviation());
+            $u->setNomComplet($unite->getNomComplet());
             
             $this->db->flush();
             return $unite->getId();
@@ -52,6 +52,16 @@ class UniteRepository extends Model
         } else {
             die("Objet " . $id . " does not existe!");
         }
+    }
+
+     // Retourne le nombre de produits.
+     public function nbUnite(){
+        return count($this->db->createQuery("SELECT u FROM Unite u")->getResult());
+    }
+
+    public function getUniteByMotCle($mc) 
+    {
+        return $this->db->createQuery("SELECT u FROM Unite u WHERE u.abreviation like '%$mc%' OR u.nomComplet like '%$mc%'")->getResult();
     }
 
 

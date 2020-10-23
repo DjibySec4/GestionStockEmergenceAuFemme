@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-19 23:05:52
+/* Smarty version 3.1.30, created on 2020-10-21 15:35:44
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\gestionnaire\edit.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f8dffb07878a3_42534289',
+  'unifunc' => 'content_5f903930e17dc8_48082387',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b9b9f86ecbffc3050c2006baca6b20f1263e7c14' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\gestionnaire\\edit.html',
-      1 => 1603137143,
+      1 => 1603287279,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f8dffb07878a3_42534289 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f903930e17dc8_48082387 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">

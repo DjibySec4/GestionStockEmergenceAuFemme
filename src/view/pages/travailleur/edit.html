@@ -66,16 +66,10 @@
                                 <!-- Activités -->
                                 <div class="form-row">
                                     <div class="form-group col-lg-12 mx-auto">
-                                        <label class="control-label">Activités (maximum 2)</label>
+                                        <label class="control-label">Activités (maximum 1)</label>
                                         <select name="activite[]" id="idActivite" class="chosen_select  form-control" multiple data-placeholder="Veuiller choisir les activités " required>
-                                            {foreach from=$activites item=$activite}
-                                            {foreach from=$listeActivites item=$mesActivite}
-                                                {if $activite == $mesActivite}
-                                                    <option selected value="{$activite->getId()}">{$mesActivite->getNom()}</option>
-                                                {else}
-                                                    <option value="{$activite->getId()}">{$activite->getNom()}</option>
-                                                {/if}
-                                            {/foreach}
+                                        {foreach from=$activites item=$activite}
+                                                <option value="{$activite->getId()}">{$activite->getNom()}</option>
                                         {/foreach}
                                         </select>
                                         <div class="activite-invalid invalid-feedback">Vous devez choisir deux activités
@@ -98,7 +92,7 @@
                                         <select name="nationalite" id="nationalite" class="form-control">
                                             {foreach from=$nationalites item=nationalite}
                                                 <option value="{$nationalite->getId()}" selected>
-                                                    {$nationalite->getNom()|utf8_encode}
+                                                    {$nationalite->getNom()}
                                                 </option>
                                             {/foreach}
                                         </select>
@@ -132,7 +126,7 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="submit" value="Modifier" class="btn btn-primabg-primary" name="modifier">
+                                <input type="submit" value="Modifier" class="btn btn-primary" name="modifier">
                                 <input type="submit" value="Annuler" class="btn btn-danger" name="annuler">
                             </div>
                             {/if}

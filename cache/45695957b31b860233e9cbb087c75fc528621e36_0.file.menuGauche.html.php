@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-20 11:20:39
+/* Smarty version 3.1.30, created on 2020-10-22 13:56:43
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\partials\extract_index\menuGauche.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f8eabe7e17df7_54754019',
+  'unifunc' => 'content_5f91737b03a979_73788011',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '45695957b31b860233e9cbb087c75fc528621e36' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\partials\\extract_index\\menuGauche.html',
-      1 => 1603185537,
+      1 => 1603367801,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f8eabe7e17df7_54754019 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f91737b03a979_73788011 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="app-sidebar sidebar-shadow">
     <div class="app-header__logo">
@@ -61,7 +61,7 @@ function content_5f8eabe7e17df7_54754019 (Smarty_Internal_Template $_smarty_tpl)
                 <li>
                     <a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 home" class="mm-active">
-                        <i class="metismenu-icon pe-7s-rocket"></i>
+                        <i class="metismenu-icon pe-7s-home"></i>
                         Accueil
                     </a>
                 </li>
@@ -70,7 +70,7 @@ home" class="mm-active">
                 <li class="app-sidebar__heading">Activités</li>
                 <li>
                     <a href="#">
-                        <i class="metismenu-icon pe-7s-diamond"></i>
+                        <i class="metismenu-icon pe-7s-shuffle"></i>
                         Interfaces - Activité
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
@@ -90,7 +90,7 @@ Activite/liste/1">
                 <li class="app-sidebar__heading">Personnes</li>
                 <li>
                     <a href="#">
-                        <i class="metismenu-icon pe-7s-diamond"></i>
+                        <i class="metismenu-icon pe-7s-users"></i>
                         Interfaces - Personnes
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
@@ -123,7 +123,7 @@ Fournisseur/liste/1">
                 <li class="app-sidebar__heading">Stock</li>
                 <li>
                     <a href="#">
-                        <i class="metismenu-icon pe-7s-diamond"></i>
+                        <i class="metismenu-icon pe-7s-paint-bucket"></i>
                         Interfaces - Stock
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
@@ -156,7 +156,7 @@ Composant/liste/1">
                 <li class="app-sidebar__heading">Paramétrage</li>
                 <li>
                     <a href="#">
-                        <i class="metismenu-icon pe-7s-diamond"></i>
+                        <i class="metismenu-icon pe-7s-tools"></i>
                         Interfaces - Administration
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
@@ -190,16 +190,23 @@ UserRoles/liste/1">
                 <li class="app-sidebar__heading">Autres parametres</li>
                 <li>
                     <a href="#">
-                        <i class="metismenu-icon pe-7s-diamond"></i>
+                        <i class="metismenu-icon pe-7s-folder"></i>
                         Autres
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
                     <ul>
                         <li>
                             <a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-Historique/liste/1">
+HistoriqueStock/liste/1">
                                 <i class="metismenu-icon"></i>
                                 Historique Stock
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+HistoriqueTravailleur/liste/1">
+                                <i class="metismenu-icon"></i>
+                                Historique Travailleur
                             </a>
                         </li>
                         <li>

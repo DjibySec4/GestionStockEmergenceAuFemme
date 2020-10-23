@@ -5,16 +5,16 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @Entity @Table(name="travailleurs")  
  **/
-class Travailleur
+class Travailleur 
 {
     /** @Id @Column(type="integer") @GeneratedValue **/
     private $id;
 
-     /**
-     * @ManyToMany(targetEntity="Activite", inversedBy="travailleurs")
-     * @JoinTable(name="travailleurs_activites")
+    /**
+     * @ManyToOne(targetEntity="Activite", inversedBy="travailleurs",cascade={"persist"})
+     * @JoinColumn(name="idActivite", referencedColumnName="id")
      */
-    private $activites;
+    private $activite;
 
     /**
     * @OneToOne(targetEntity="Personne",cascade={"persist"})
@@ -22,14 +22,19 @@ class Travailleur
     */
     private $personne;
 
+     /**
+    * @OneToMany(targetEntity="HistoriqueTravailleur", mappedBy="travailleur")
+    */
+    private $HistoriqueTravailleur;
 
 
     public function __construct()
     {
-        $this->activites = new ArrayCollection();
+        $this->HistoriqueTravailleur = new ArrayCollection();
     }
 
-      /**
+
+    /**
      * Get the value of id
      */ 
     public function getId()
@@ -219,25 +224,6 @@ class Travailleur
         return $this;
     }
 
-    /**
-     * Get the value of activites
-     */ 
-    public function getActivites()
-    {
-        return $this->activites;
-    }
-
-    /**
-     * Set the value of activites
-     *
-     * @return  self
-     */ 
-    public function setActivites($activites)
-    {
-        $this->activites = $activites;
-        return $this;
-    }
-
     
     /**
      * Get the value of personne
@@ -258,16 +244,52 @@ class Travailleur
         return $this;
     } 
 
-    // =========================================================================================
-
-    /**
-    * Ajoute une activité dans le tableau des activités.
-    */
-    public function addActivite(Activite $activite)
+       /**
+     * Get the value of activite
+     */ 
+    public function getActivite()
     {
-        $this->activites[] = $activite;
+        return $this->activite;
     }
 
+    /**
+     * Set the value of activite
+     *
+     * @return  self
+     */ 
+    public function setActivite($activite)
+    {
+        $this->activite = $activite;
+        return $this;
+    }
+
+      /**
+     * Get the value of HistoriqueTravailleur
+     */ 
+    public function getHistoriqueTravailleur()
+    {
+        return $this->HistoriqueTravailleur;
+    }
+
+    /**
+     * Set the value of HistoriqueTravailleur
+     *
+     * @return  self
+     */ 
+    public function setHistoriqueTravailleur($HistoriqueTravailleur)
+    {
+        $this->HistoriqueTravailleur = $HistoriqueTravailleur;
+        return $this;
+    }
+
+    // =============================================================================================
+     /**
+    * Ajoute un HistoriqueTravailleur dans le tableau des HistoriqueTravailleurs.
+    */
+    public function addHistoriqueTravailleur(HistoriqueTravailleur $historiqueTravailleur)
+    {
+        $this->historiqueTravailleurs[] = $historiqueTravailleur;
+    }
 }
 
 

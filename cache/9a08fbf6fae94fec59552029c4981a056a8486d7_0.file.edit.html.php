@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-19 22:48:56
+/* Smarty version 3.1.30, created on 2020-10-22 14:43:54
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\travailleur\edit.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f8dfbb82ffa46_88576325',
+  'unifunc' => 'content_5f917e8aeee6b3_81024611',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9a08fbf6fae94fec59552029c4981a056a8486d7' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\travailleur\\edit.html',
-      1 => 1603140529,
+      1 => 1603370618,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f8dfbb82ffa46_88576325 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f917e8aeee6b3_81024611 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -112,33 +112,16 @@ public/images/personnes/travailleurs/<?php echo $_smarty_tpl->tpl_vars['travaill
                                 <!-- Activités -->
                                 <div class="form-row">
                                     <div class="form-group col-lg-12 mx-auto">
-                                        <label class="control-label">Activités (maximum 2)</label>
+                                        <label class="control-label">Activités (maximum 1)</label>
                                         <select name="activite[]" id="idActivite" class="chosen_select  form-control" multiple data-placeholder="Veuiller choisir les activités " required>
-                                            <?php
+                                        <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['activites']->value, 'activite');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['activite']->value) {
 ?>
-                                            <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['listeActivites']->value, 'mesActivite');
-if ($_from !== null) {
-foreach ($_from as $_smarty_tpl->tpl_vars['mesActivite']->value) {
-?>
-                                                <?php if ($_smarty_tpl->tpl_vars['activite']->value == $_smarty_tpl->tpl_vars['mesActivite']->value) {?>
-                                                    <option selected value="<?php echo $_smarty_tpl->tpl_vars['activite']->value->getId();?>
-"><?php echo $_smarty_tpl->tpl_vars['mesActivite']->value->getNom();?>
-</option>
-                                                <?php } else { ?>
-                                                    <option value="<?php echo $_smarty_tpl->tpl_vars['activite']->value->getId();?>
+                                                <option value="<?php echo $_smarty_tpl->tpl_vars['activite']->value->getId();?>
 "><?php echo $_smarty_tpl->tpl_vars['activite']->value->getNom();?>
 </option>
-                                                <?php }?>
-                                            <?php
-}
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
-?>
-
                                         <?php
 }
 }
@@ -172,7 +155,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['nationalite']->value) {
 ?>
                                                 <option value="<?php echo $_smarty_tpl->tpl_vars['nationalite']->value->getId();?>
 " selected>
-                                                    <?php echo utf8_encode($_smarty_tpl->tpl_vars['nationalite']->value->getNom());?>
+                                                    <?php echo $_smarty_tpl->tpl_vars['nationalite']->value->getNom();?>
 
                                                 </option>
                                             <?php
@@ -213,7 +196,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
                             </div>
 
                             <div class="form-group">
-                                <input type="submit" value="Modifier" class="btn btn-primabg-primary" name="modifier">
+                                <input type="submit" value="Modifier" class="btn btn-primary" name="modifier">
                                 <input type="submit" value="Annuler" class="btn btn-danger" name="annuler">
                             </div>
                             <?php }?>

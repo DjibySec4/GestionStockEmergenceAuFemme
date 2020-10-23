@@ -1,7 +1,5 @@
 <?php
 
-use Doctrine\Common\Collections\ArrayCollection;
-
 /**
  * @Entity @Table(name="historiquestocks")
  **/
@@ -14,19 +12,22 @@ class HistoriqueStock
     private $dateOperation;
 
     /** @Column(type="string", nullable=true, options={"default": "depot"}) **/
-    private $operation;
+    private $nomOperation;
 
-    /**
-    * @ManyToOne(targetEntity="Produit", inversedBy="historiqueStock",cascade={"persist"})
-    * @JoinColumn(name="idProduit", referencedColumnName="reference")
-    */
+     /** @Column(type="integer", nullable=false) **/
+     private $qte;
+
+     /** @Column(type="integer", nullable=false) **/ 
+     private $prix;
+ 
+     /** @Column(type="boolean", nullable=false) **/
+     private $enPromotion;
+ 
+    /** @Column(type="integer", nullable=false) **/
+    private $unite;
+
+    /** @Column(type="string", nullable=false) **/
     private $produit;
-
-    /**
-    * @ManyToOne(targetEntity="StockProduit", inversedBy="historiqueStock",cascade={"persist"})
-    * @JoinColumn(name="idHistoriqueSrock", referencedColumnName="id")
-    */
-    private $stock;
 
     /**
      * Get the value of id
@@ -66,25 +67,105 @@ class HistoriqueStock
         return $this;
     }
 
-    
-    /**
-     * Get the value of operation
+     /**
+     * Get the value of nomOperation
      */ 
-    public function getOperation()
+    public function getNomOperation()
     {
-        return $this->operation;
+        return $this->nomOperation;
     }
 
     /**
-     * Set the value of operation
+     * Set the value of nomOperation
      *
      * @return  self
      */ 
-    public function setOperation($operation)
+    public function setNomOperation($nomOperation)
     {
-        $this->operation = $operation;
+        $this->nomOperation = $nomOperation;
         return $this;
     }
+
+    
+     /**
+      * Get the value of qte
+      */ 
+      public function getQte()
+      {
+           return $this->qte;
+      }
+ 
+      /**
+       * Set the value of qte
+       *
+       * @return  self
+       */ 
+      public function setQte($qte)
+      {
+           $this->qte = $qte;
+ 
+           return $this;
+      }
+ 
+      /**
+       * Get the value of prix
+       */ 
+      public function getPrix()
+      {
+           return $this->prix;
+      }
+ 
+      /**
+       * Set the value of prix
+       *
+       * @return  self
+       */ 
+      public function setPrix($prix)
+      {
+           $this->prix = $prix;
+ 
+           return $this;
+      }
+ 
+      /**
+       * Get the value of enPromotion
+       */ 
+      public function getEnPromotion()
+      {
+           return $this->enPromotion;
+      }
+ 
+      /**
+       * Set the value of enPromotion
+       *
+       * @return  self
+       */ 
+      public function setEnPromotion($enPromotion)
+      {
+           $this->enPromotion = $enPromotion;
+ 
+           return $this;
+      }
+ 
+     /**
+      * Get the value of unite
+      */ 
+     public function getUnite()
+     {
+         return $this->unite;
+     }
+ 
+     /**
+      * Set the value of unite
+      *
+      * @return  self
+      */ 
+     public function setUnite($unite)
+     {
+         $this->unite = $unite;
+ 
+         return $this;
+     }
 
     /**
      * Get the value of produit
@@ -102,25 +183,6 @@ class HistoriqueStock
     public function setProduit($produit)
     {
         $this->produit = $produit;
-        return $this;
-    }
-
-    /**
-     * Get the value of stock
-     */ 
-    public function getStock()
-    {
-        return $this->stock;
-    }
-
-    /**
-     * Set the value of stock
-     *
-     * @return  self
-     */ 
-    public function setStock($stock)
-    {
-        $this->stock = $stock;
         return $this;
     }
 } 

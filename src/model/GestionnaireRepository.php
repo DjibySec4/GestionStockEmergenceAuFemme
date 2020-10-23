@@ -12,6 +12,15 @@ class GestionnaireRepository extends Model
         parent::__construct();
     }
 
+     // Retourne tous les Gestionnaires.
+     public function listeGestionnaires($page)
+     {
+         return $this->db->createQuery("SELECT g FROM Gestionnaire g ORDER BY g.id desc")
+         ->setMaxResults(10)
+         ->setFirstResult($page*10)
+             ->getResult();
+     }
+
     // Sélectionne un gestionnaire spécifique depuis la table Gestionnaires.
     public function getGestionnaire($id)
     {
@@ -59,14 +68,6 @@ class GestionnaireRepository extends Model
         }
     }
 
-    // Retourne tous les Gestionnaires.
-    public function listeGestionnaires($page)
-    {
-        return $this->db->createQuery("SELECT l FROM Gestionnaire l ORDER BY l.id desc")
-        ->setMaxResults(10)
-        ->setFirstResult($page*10)
-            ->getResult();
-    }
 
     // Retourne le nombre de gestionnaire.
     public function nbGestionnaire(){

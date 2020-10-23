@@ -11,6 +11,16 @@ class ComposantRepository extends Model
     {
         parent::__construct();
     }
+    
+     // Retourne tous les composants.
+     public function listeComposants($page)
+     {
+         return $this->db->createQuery("SELECT c FROM Composant c ORDER BY c.id desc")
+         ->setMaxResults(10)
+         ->setFirstResult($page*10)
+             ->getResult();
+     }
+
 
     // Retourne un composant spécifique.
     public function getComposant($id)
@@ -56,13 +66,6 @@ class ComposantRepository extends Model
         } else {
             die("Objet " . $id . " does not existe!");
         }
-    }
-
-
-    // Retourne toutes les Composants   
-    public function listeComposants()
-    {
-        return $this->db->getRepository('Composant')->findAll();
     }
 
     public function getUnite($id)

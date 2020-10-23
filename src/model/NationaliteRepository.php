@@ -12,6 +12,16 @@ class NationaliteRepository extends Model
         parent::__construct();
     }
    
+     // Retourne tous les fournisseurs.
+     public function listeNationalites($page)
+     {
+         return $this->db->createQuery("SELECT n FROM Nationalite n ORDER BY n.id desc")
+         ->setMaxResults(10)
+         ->setFirstResult($page*10)
+         ->getResult();
+     }
+
+
     // Sélectionne une nationalite dans la BD;
     public function getNationalite($id)
     {
@@ -52,9 +62,23 @@ class NationaliteRepository extends Model
         }
     }
 
-    // Retourne toutes les nationnalités.
-    public function listeNationalites()
-    {
-        return $this->db->getRepository('Nationalite')->findAll();
+    // Retourne le nombre de fournisseur.
+    public function nbNationalite(){
+        return count($this->db->createQuery("SELECT a FROM Nationalite a")->getResult());
     }
+    
+
+    public function getNationaliteByMotCle($mc) 
+    {
+        return $this->db->createQuery("SELECT n FROM Nationalite n  WHERE n.nom like '%$mc%'")->getResult();
+    }
+
+    
+     // Retourne tous les Nationalité 
+     public function liste()
+     {
+         return $this->db->getRepository('Nationalite')->findAll();
+     }
+
+    
 }

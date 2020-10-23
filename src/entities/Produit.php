@@ -2,11 +2,11 @@
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @Entity @Table(name="produits")
+ * @Entity @Table(name="produits") 
  **/
 class Produit
-{
-    /** @Id @Column(type="string", nullable=false, unique=true) **/ 
+{ 
+    /** @Id @Column(type="string", nullable=false) **/ 
     private $reference;
 
     /** @Column(type="string", length=50, nullable=false) **/
@@ -21,11 +21,26 @@ class Produit
     /** @column(type="string", length=20, nullable=true) */
      private $updatedAt;
 
+    /** @Column(type="integer", nullable=false) **/
+    private $qte;
+
+    /** @Column(type="integer", nullable=false) **/ 
+    private $prix;
+
+    /** @Column(type="boolean", nullable=false) **/
+    private $enPromotion;
+
+     /** @Column(type="string", nullable=true, options={"default": "depot"}) **/
+     private $nomOperation;
+ 
      /**
-     * @OneToOne(targetEntity="Activite", inversedBy="produit")
-     * @JoinColumn(name="idActivite", referencedColumnName="id")
+     * @ManyToMany(targetEntity="Activite", inversedBy="produits",cascade={"persist"})
+     * @JoinTable(name="produits_activites",
+     *      joinColumns={@JoinColumn(name="ReferenceProduit", referencedColumnName="reference")},
+     *      inverseJoinColumns={@JoinColumn(name="idActivite", referencedColumnName="id")}
+     *      )
      */
-    private $activite; 
+    private $activites; 
 
      /**
      * @ManyToMany(targetEntity="Composant", inversedBy="produits",cascade={"persist"})
@@ -42,22 +57,14 @@ class Produit
      */
     private $unite;
 
-     /**
-     * @ManyToOne(targetEntity="StockProduit", inversedBy="produits",cascade={"persist"})
-     * @JoinColumn(name="idStockProduit", referencedColumnName="id")
-     */
-    private $stock;
-
-    /**
-    * @OneToMany(targetEntity="HistoriqueStock", mappedBy="produit")
-    */
-    private $historiqueStocks;
 
     public function __construct()
     {
         $this->composants = new ArrayCollection();
-        $this->historiqueStocks = new ArrayCollection();
+        // $this->historiqueStocks = new ArrayCollection();
+        $this->activites = new ArrayCollection();
     }
+
 
      /**
      * Get the value of reference
@@ -124,7 +131,7 @@ class Produit
           return $this->createdAt;
      }
 
-     /**
+     /** 
       * Set the value of createdAt
       *
       * @return  self
@@ -154,28 +161,66 @@ class Produit
           return $this;
      }
 
-    /**
-     * Get the value of activite
+     /**
+     * Get the value of qte
      */ 
-    public function getActivite()
+    public function getQte()
     {
-        return $this->activite;
+        return $this->qte;
     }
 
     /**
-     * Set the value of activite
+     * Set the value of qte
      *
      * @return  self
      */ 
-    public function setActivite($activite)
+    public function setQte($qte)
     {
-        $this->activite = $activite;
+        $this->qte = $qte;
+        return $this;
+    }
+
+    /**
+     * Get the value of prix
+     */ 
+    public function getPrix()
+    {
+        return $this->prix;
+    }
+
+    /**
+     * Set the value of prix
+     *
+     * @return  self
+     */ 
+    public function setPrix($prix)
+    {
+        $this->prix = $prix;
+        return $this;
+    }
+
+    /**
+     * Get the value of enPromotion
+     */ 
+    public function getEnPromotion()
+    {
+        return $this->enPromotion;
+    }
+
+    /**
+     * Set the value of enPromotion
+     *
+     * @return  self
+     */ 
+    public function setEnPromotion($enPromotion)
+    {
+        $this->enPromotion = $enPromotion;
         return $this;
     }
 
     /**
      * Get the value of unite
-     */ 
+     */  
     public function getUnite()
     {
         return $this->unite;
@@ -192,22 +237,42 @@ class Produit
         return $this;
     }
 
-    /**
-     * Get the value of stock
+     
+     /**
+      * Get the value of nomOperation
+      */ 
+      public function getNomOperation()
+      {
+           return $this->nomOperation;
+      }
+ 
+      /**
+       * Set the value of nomOperation
+       *
+       * @return  self
+       */ 
+      public function setNomOperation($nomOperation)
+      {
+           $this->nomOperation = $nomOperation;
+           return $this;
+      }
+
+      /**
+     * Get joinColumns={@JoinColumn(name="idProduit", referencedColumnName="reference")},
      */ 
-    public function getStock()
+    public function getActivites()
     {
-        return $this->stock;
+        return $this->activites;
     }
 
     /**
-     * Set the value of stock
+     * Set joinColumns={@JoinColumn(name="idProduit", referencedColumnName="reference")},
      *
      * @return  self
      */ 
-    public function setStock($stock)
+    public function setActivites($activite)
     {
-        $this->stock = $stock;
+        $this->activites = $activite;
         return $this;
     }
 
@@ -221,12 +286,21 @@ class Produit
         $this->composants[] = $composant;
     }
 
+    //  /**
+    //  * Ajoute un histo dans le tableau des historiques.
+    //  */
+    // public function addHistorique(HistoriqueStock $historiqueStock)
+    // {
+    //     $this->historiqueStocks[] = $historiqueStock;
+    // }
+    
      /**
-     * Ajoute un histo dans le tableau des historiques.
+     * Ajoute un activite dans le tableau des activites.
      */
-    public function addHistorique(HistoriqueStock $historiqueStock)
+    public function addActivite(Activite $activite)
     {
-        $this->historiqueStocks[] = $historiqueStock;
+        $this->activites[] = $activite;
     }
+
     
 }

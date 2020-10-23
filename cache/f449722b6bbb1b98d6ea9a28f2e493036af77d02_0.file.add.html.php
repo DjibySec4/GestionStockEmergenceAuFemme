@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-20 11:10:41
+/* Smarty version 3.1.30, created on 2020-10-22 14:24:05
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\travailleur\add.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f8ea9918493f1_21186999',
+  'unifunc' => 'content_5f9179e50dfb59_49621555',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f449722b6bbb1b98d6ea9a28f2e493036af77d02' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\travailleur\\add.html',
-      1 => 1603185015,
+      1 => 1603369414,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f8ea9918493f1_21186999 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f9179e50dfb59_49621555 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\libs\\system\\smarty\\libs\\plugins\\modifier.date_format.php';
 ?>
 <!doctype html>
@@ -68,6 +68,11 @@ Travailleur/add" method="post" enctype="multipart/form-data" id="new" novalidate
                                 <div class="alert alert-danger">Tous les champs sont requis</div>
                             <?php }?>
 
+                            <?php if (isset($_smarty_tpl->tpl_vars['activite_ajouter']->value)) {?>
+                                <div class="alert alert-success"><?php echo $_smarty_tpl->tpl_vars['activite_ajouter']->value;?>
+</div>
+                            <?php }?>
+
                             <div class="infoPersonne" id="infoPersonne">
                                 <div class="form-row">
                                     <!-- Nom -->
@@ -105,7 +110,7 @@ Travailleur/add" method="post" enctype="multipart/form-data" id="new" novalidate
                                 <!-- Activités -->
                                 <div class="form-row">
                                     <div class="form-group col-lg-12 mx-auto" id="selectionnerUneActivite">
-                                        <label class="control-label">Activités (maximum 2)</label>
+                                        <label class="control-label">Activités (maximum 1)</label>
                                         <select name="activite[]" id="idActivite" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir les activités" required>
                                             <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['activites']->value, 'activite');
@@ -124,11 +129,12 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
                                         </select>
                                         <div class="activite-invalid invalid-feedback">Vous devez choisir deux activités
                                         </div>
-                                    </div>
+                                    </div> 
                                 </div>
                                 <!-- Ajouter une activité (Masqué / Afficher) -->
                                 <div class="btn btn-primary" id="newActivite">Ajouter une nouvelle activité</div>
                                 <div id="addActivite">
+                                    
                                     <!-- Nom -->
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
@@ -171,7 +177,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['nationalite']->value) {
 ?>
                                             <option value="<?php echo $_smarty_tpl->tpl_vars['nationalite']->value->getId();?>
 " <?php if ($_smarty_tpl->tpl_vars['nationalite']->value->getNom() == 'Sénégalais') {?> selected
-                                                <?php }?>><?php echo utf8_encode($_smarty_tpl->tpl_vars['nationalite']->value->getNom());?>
+                                                <?php }?>><?php echo $_smarty_tpl->tpl_vars['nationalite']->value->getNom();?>
 </option>
                                             <?php
 }

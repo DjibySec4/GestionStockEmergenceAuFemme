@@ -8,40 +8,47 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Activite
 {
     /** @Id @Column(type="integer") @GeneratedValue **/
-    private $id;
+    private $id; 
 
     /** @Column(type="string", length=80, unique=true) **/
     private $nom;
-
+ 
     /** @column(type="text", nullable=true) **/
     private $description;
 
-    /**
-     * @ManyToMany(targetEntity="Travailleur", mappedBy="activites")
-     */
+     /**
+    * @OneToMany(targetEntity="Travailleur", mappedBy="activite")
+    */
     private $travailleurs;
-
-    /**
+ 
+    /** 
     * @ManyToMany(targetEntity="User", inversedBy="activites")
     * @JoinTable(name="administrer")
     */
     private $users;
 
     /**
-    * @OneToOne(targetEntity="Produit", mappedBy="activite")
+    * @ManyToMany(targetEntity="Produit", mappedBy="activites")
     */
-    private $produit;
+    private $produits;
 
     /**
     * @ManyToMany(targetEntity="Gestionnaire", mappedBy="activites")
     */
     private $gestionnaires;
+
+    /**
+    * @OneToMany(targetEntity="HistoriqueTravailleur", mappedBy="activite")
+    */
+    private $HistoriqueTravailleur;
         
     public function __construct()
     {
         $this->travailleurs = new ArrayCollection();
         $this->users = new ArrayCollection();
         $this->gestionnaires = new ArrayCollection();
+        $this->produits = new ArrayCollection();
+        $this->HistoriqueTravailleur = new ArrayCollection();
     }
 
     /**
@@ -140,6 +147,25 @@ class Activite
         return $this;
     }
 
+       /**
+     * Get the value of produits
+     */ 
+    public function getProduits()
+    {
+        return $this->produits;
+    }
+
+    /**
+     * Set the value of produits
+     *
+     * @return  self
+     */ 
+    public function setProduits($produits)
+    {
+        $this->produits = $produits;
+        return $this;
+    }
+
     /**
      * Get the value of produit
      */ 
@@ -156,6 +182,25 @@ class Activite
     public function setProduit($produit)
     {
         $this->produit = $produit;
+        return $this;
+    }
+
+     /**
+     * Get the value of HistoriqueTravailleur
+     */ 
+    public function getHistoriqueTravailleur()
+    {
+        return $this->HistoriqueTravailleur;
+    }
+
+    /**
+     * Set the value of HistoriqueTravailleur
+     *
+     * @return  self
+     */ 
+    public function setHistoriqueTravailleur($HistoriqueTravailleur)
+    {
+        $this->HistoriqueTravailleur = $HistoriqueTravailleur;
         return $this;
     }
 
@@ -184,6 +229,26 @@ class Activite
     {
         $this->gestionnaires[] = $gestionnaire;
     }
+
+    /**
+    * Ajoute un produit dans le tableau des produits.
+    */
+    public function addProduit(Produit $produit)
+    {
+        $this->produits[] = $produit;
+    }
+
+
+     /**
+    * Ajoute un HistoriqueTravailleur dans le tableau des HistoriqueTravailleurs.
+    */
+    public function addHistoriqueTravailleur(HistoriqueTravailleur $historiqueTravailleur)
+    {
+        $this->historiqueTravailleurs[] = $historiqueTravailleur;
+    }
+
+
+   
 }
 
 ?>

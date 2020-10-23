@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-19 18:42:48
+/* Smarty version 3.1.30, created on 2020-10-20 13:10:59
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\activite\edit.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f8dc208dfe756_15075768',
+  'unifunc' => 'content_5f8ec5c3469166_52334846',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '05714e9b7340ad23526e4725c8ae1c993795e8ee' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\activite\\edit.html',
-      1 => 1603125377,
+      1 => 1603192252,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f8dc208dfe756_15075768 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f8ec5c3469166_52334846 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -56,10 +56,10 @@ function content_5f8dc208dfe756_15075768 (Smarty_Internal_Template $_smarty_tpl)
             <?php if (isset($_smarty_tpl->tpl_vars['activite']->value)) {?>
             <div class="col-md-8 col-xs-8 offset-md-2 latest-post-area pb-120">
                 <div class="card text-center">
-                    <div class="card-header bg-primary text-white">Modification d'un Travailleur</div>
+                    <div class="card-header bg-primary text-white">Modification d'une Activité</div>
                     <div class="card-body text-dark">
                         <form action="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-Acticite/edit/<?php echo $_smarty_tpl->tpl_vars['activite']->value->getId();?>
+Activite/edit/<?php echo $_smarty_tpl->tpl_vars['activite']->value->getId();?>
 " method="post" enctype="multipart/form-data" id="edit">
                             <?php if (isset($_smarty_tpl->tpl_vars['vide']->value) && $_smarty_tpl->tpl_vars['vide']->value == 1) {?>
                                 <div class="alert alert-danger">Tous les champs sont requis</div>
@@ -86,6 +86,7 @@ Acticite/edit/<?php echo $_smarty_tpl->tpl_vars['activite']->value->getId();?>
  <?php }?>
                                 </textArea>
                             </div>
+
                             <div class="form-group">
                                 <input type="submit" value="Modifier" class="btn btn-primary" name="modifier">
                                 <input type="submit" value="Annuler" class="btn btn-danger" name="annuler">

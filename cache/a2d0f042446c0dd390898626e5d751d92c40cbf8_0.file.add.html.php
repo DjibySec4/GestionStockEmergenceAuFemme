@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-19 23:05:45
+/* Smarty version 3.1.30, created on 2020-10-22 12:59:05
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\gestionnaire\add.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f8dffa94596e8_65140274',
+  'unifunc' => 'content_5f9165f9ef8d24_68744478',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a2d0f042446c0dd390898626e5d751d92c40cbf8' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\gestionnaire\\add.html',
-      1 => 1603137123,
+      1 => 1603364267,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f8dffa94596e8_65140274 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f9165f9ef8d24_68744478 (Smarty_Internal_Template $_smarty_tpl) {
+if (!is_callable('smarty_modifier_date_format')) require_once 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\libs\\system\\smarty\\libs\\plugins\\modifier.date_format.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -89,8 +90,8 @@ Gestionnaire/add" method="post" enctype="multipart/form-data" id="new" novalidat
                                     <!-- Date Naissance -->
                                     <div class="form-group col-md-7">
                                         <label class="control-label">Date De Naissance</label>
-                                        <input type="date" class="form-control" name="dateNaissance" id="dateNaissance" <?php if (isset($_smarty_tpl->tpl_vars['gestionnaire']->value)) {?> value="<?php echo $_smarty_tpl->tpl_vars['gestionnaire']->value->getPersonne()->getDateNaissance();?>
-" <?php }?>>
+                                        <input type="date" class="form-control" name="dateNaissance" id="dateNaissance" value="<?php echo smarty_modifier_date_format(time(),'%Y-%m-%d');?>
+">
                                     </div>
 
                                     <!-- Adresse -->
@@ -104,7 +105,7 @@ Gestionnaire/add" method="post" enctype="multipart/form-data" id="new" novalidat
                                 <!-- Activités -->
                                 <div class="form-row">
                                     <div class="form-group col-lg-12 mx-auto">
-                                        <label class="control-label">Activités (maximum 2)</label>
+                                        <label class="control-label">Activités (maximum 1)</label>
                                         <select name="activite[]" id="idActivite" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir les activités" required>
                                             <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['activites']->value, 'activite');

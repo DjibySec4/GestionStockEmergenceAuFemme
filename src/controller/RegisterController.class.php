@@ -28,8 +28,8 @@ class RegisterController extends Controller
         $roles = array();
         try {
             $roles[] = $userdb->getRoleByName('ROLE_USER');
-            $roles[] = $userdb->getRoleByName('ROLE_ADMIN');
-            $roles[] = $userdb->getRoleByName('ROLE_GESTIONNAIRE');
+            // $roles[] = $userdb->getRoleByName('ROLE_ADMIN');
+            // $roles[] = $userdb->getRoleByName('ROLE_GESTIONNAIRE');
         } catch (Exception $ex) {
             //Si les roles n'existe pas, on les crée et on les recupere
 
@@ -39,17 +39,18 @@ class RegisterController extends Controller
             $roleUser->setNom('ROLE_USER');
             $roledb->add($roleUser);
             $roles[] = $userdb->getRoleByName('ROLE_USER');
+
             //Creation du role "Admin"
-            $roleAdmin = new Roles();
-            $roleAdmin->setNom('ROLE_ADMIN');
-            $roledb->add($roleAdmin);
-            $roles[] = $userdb->getRoleByName('ROLE_ADMIN');
+            // $roleAdmin = new Roles();
+            // $roleAdmin->setNom('ROLE_ADMIN');
+            // $roledb->add($roleAdmin);
+            // $roles[] = $userdb->getRoleByName('ROLE_ADMIN');
 
             //Creation du role "Gestionnaire"
-            $roleGestionnaire = new Roles();
-            $roleGestionnaire->setNom('ROLE_GESTIONNAIRE');
-            $roledb->add($roleGestionnaire);
-            $roles[] = $userdb->getRoleByName('ROLE_GESTIONNAIRE');
+            // $roleGestionnaire = new Roles();
+            // $roleGestionnaire->setNom('ROLE_GESTIONNAIRE');
+            // $roledb->add($roleGestionnaire);
+            // $roles[] = $userdb->getRoleByName('ROLE_GESTIONNAIRE');
         }
         //Affectation des role à l'utilisateur
         $user->setRoles($roles);
