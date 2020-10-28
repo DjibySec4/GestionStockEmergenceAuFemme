@@ -20,9 +20,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <center><a href="{$url_base}Activite/add" class="btn btn-primary mb-4">Ajouter une Activité</a></center>
-                    <form class="form-inline  navbar-search mb-4 mr-5 col-lg-3" method="POST" action="{$url_base}Activite/search" id="q">
-                        <input class="form-control" type="text" placeholder="Search" id="search" aria-label="Search" name="search">
-                    </form>
+                        <form class="form-inline mb-4" method="POST" action="{$url_base}Activite/search" id="q">
+                            <input class="pull-right form-control " style="background-color: white;" type="button" id="button-imprimer" value="Imprimer" />
+                            <div class="ml-2"></div>
+                            <input class="form-control" style="background-color: white;" type="text" placeholder="Rechercher une activité" id="searchActivite" aria-label="Search" name="search">
+                        </form>
 
                     <div class="main-card mb-3 card">
                         <div class="card-header"><b>Liste des Activites</b>
@@ -70,7 +72,7 @@
                 </div>
             </div>
             
-            <!-- <script src="{$url_base}public/js/activite/activite.js"></script> -->
+            <script src="{$url_base}public/js/activites/activite.js"></script>
             <!-- Le footer -->
             {include file='../../partials/extract_index/footer.html'}
         </div>

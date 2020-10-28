@@ -20,7 +20,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <center><a href="{$url_base}Composant/add" class="btn btn-primary mb-4">Ajouter un Composant</a></center>
-                    <form class="form-inline  navbar-search mb-4 mr-5 col-lg-3" method="POST" action="{$url_base}Composant/search" id="q">
+
+                    <form class="form-inline mb-4" method="POST" action="{$url_base}Composant/search" id="q">
+                        <input class="pull-right form-control " style="background-color: white;" type="button" id="button-imprimer" value="Imprimer" />
+                        <div class="ml-2"></div>
                         <input class="form-control" type="text" placeholder="Rechercher un composant" id="search" aria-label="Search" name="search">
                     </form>
 
@@ -78,7 +81,7 @@
                 </div>
             </div>
             
-            <!-- <script src="{$url_base}public/js/composant/composant.js"></script> -->
+            <script src="{$url_base}public/js/stocks/composant/composant.js"></script>
             <!-- Le footer -->
             {include file='../../partials/extract_index/footer.html'}
         </div>

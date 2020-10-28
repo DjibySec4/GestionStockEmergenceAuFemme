@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-23 18:09:23
+/* Smarty version 3.1.30, created on 2020-10-26 10:59:05
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\travailleur\add.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f9300336ca600_18374259',
+  'unifunc' => 'content_5f969de906dd94_09076456',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f449722b6bbb1b98d6ea9a28f2e493036af77d02' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\travailleur\\add.html',
-      1 => 1603469168,
+      1 => 1603706334,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f9300336ca600_18374259 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f969de906dd94_09076456 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\libs\\system\\smarty\\libs\\plugins\\modifier.date_format.php';
 ?>
 <!doctype html>
@@ -56,11 +56,11 @@ if (!is_callable('smarty_modifier_date_format')) require_once 'C:\\xampp\\htdocs
 
             <div class="col-md-8 col-xs-8 offset-md-2 latest-post-area pb-120">
                 <div class="card text-center">
-                    <div class="card-header bg-primary text-white">Ajout d'un Travailleur</div>
+                    <div class="bg-primary text-white" style="height:45px;"><h2>Ajout d'un Travailleur</h2></div>
                     <div class="card-body text-dark">
                         <div class="card text-center mb-4">
                             <p><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-Travailleur/liste/1" class="btn btn-pribg-primary mt-4">Liste des travailleurs</a></p>
+Travailleur/liste/1" class="btn btn-pribg-primary mt-4"><b><strong>Afficher la liste des travailleurs</strong></b></a></p>
                         </div>
                         <form action="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 Travailleur/add" method="post" enctype="multipart/form-data" id="new" novalidate>

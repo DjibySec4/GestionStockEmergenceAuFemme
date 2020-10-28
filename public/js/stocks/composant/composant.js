@@ -1,11 +1,18 @@
 $(document).ready(function() {
+
+
     nom = $("#nom");
     prix = $("#prix");
     quantite = $("#qte");
     idUnite = $("#idUnite");
 
-  
-
+    // Bouton d'impression
+    var bouton = document.getElementById('button-imprimer');
+    bouton.onclick = function(e) {
+      e.preventDefault();
+      print();
+    }
+    
     // Afficher / Masquer l'ajout d'une unité pendant
     //l'ajout d'un composant
     $("#addUnite").hide();
@@ -71,4 +78,7 @@ $(document).ready(function() {
     }
     
     
-})
+});
+
+
+

@@ -10,6 +10,13 @@ $(document).ready(function() {
     idActivite = $("#idActivite");
     idFournisseur = $("#idFournisseur");
     
+    // Bouton d'impression
+    var bouton = document.getElementById('button-imprimer');
+    bouton.onclick = function(e) {
+      e.preventDefault();
+      print();
+    }
+       
 
     testInput(nom);
     testInput(prenom);
@@ -63,6 +70,6 @@ $(document).ready(function() {
                 return b != -1;
             }
         });
-    }       
+    }    
 
 })

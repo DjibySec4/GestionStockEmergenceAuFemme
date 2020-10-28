@@ -2,7 +2,6 @@
 
 use libs\system\Controller;
 use src\model\ActiviteRepository;
-use src\service\upload\SamaneUpload;
 
 class ActiviteController extends Controller
 {
@@ -14,17 +13,17 @@ class ActiviteController extends Controller
     {
         parent::__construct();
         $this->activite_db = new  ActiviteRepository;
-        // if (isset($_SESSION['user_session'])) {
-        //     $this->data['user'] = $_SESSION['user_session'];
-        // } else {
-        //     $this->view->redirect('Login');
-        // }
+        if (isset($_SESSION['user_session'])) {
+            $this->data['user'] = $_SESSION['user_session'];
+        } else {
+            $this->view->redirect('Login');
+        }
     } 
 
     // Liste des activites
     public function liste($page = 1)
     {
-        $nbEPage = 3;
+        $nbEPage = 10;
         $this->data['nbActivites'] = $this->activite_db->nbActivite();
         $this->data['nbPage'] = $nbPage = ceil($this->data['nbActivites'] / $nbEPage);
         $page = $page <= $nbPage ? $page : 1;
@@ -40,13 +39,13 @@ class ActiviteController extends Controller
     public function add()
     {
         if (isset($_POST['annuler'])) {
-            $this->liste();
+            $this->view->redirect('Activite/liste/1');
         }
         if (isset($_POST['ajouter'])) 
         {
             extract($_POST);
             $activite = new Activite;
-
+ 
            
             $activite->setNom($nom ?? '');
             $activite->setDescription($descriptionActivite ?? '');
@@ -64,7 +63,7 @@ class ActiviteController extends Controller
              * Persistance  du Activite
              */ 
             $this->activite_db->addActivite($activite);
-            $this->liste();
+            $this->view->redirect('Activite/liste/1');
         } 
         else 
         {
@@ -78,7 +77,7 @@ class ActiviteController extends Controller
     {
         $activite  = $this->activite_db->getActivite($id);
         if (isset($_POST['annuler'])) {
-            $this->liste();
+            $this->view->redirect('Activite/liste/1');
         }
         if (isset($_POST['modifier'])) {
             extract($_POST);
@@ -104,4 +103,5 @@ class ActiviteController extends Controller
         $this->data['title'] = 'Liste des Activites';
         $this->view->load('pages/activite/liste', $this->data);
     }
+
 }

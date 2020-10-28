@@ -7,7 +7,13 @@ $(document).ready(function() {
     nationalite = $("#nationalite");
     photo = $("#photo");
 
-
+       
+    // Bouton d'impression
+    var bouton = document.getElementById('button-imprimer');
+    bouton.onclick = function(e) {
+      e.preventDefault();
+      print();
+    }
 
     testInput(nom);
     testInput(prenom);
@@ -60,6 +66,6 @@ $(document).ready(function() {
                 return b != -1;
             }
         });
-    }       
+    }    
 
 })

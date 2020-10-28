@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-23 17:33:46
+/* Smarty version 3.1.30, created on 2020-10-27 10:53:08
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\produit\edit.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f92f7da594de8_26792518',
+  'unifunc' => 'content_5f97ee0488c7e1_98511698',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9e83375da0929f67c40af8cafd267ed96b445da8' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\produit\\edit.html',
-      1 => 1603467198,
+      1 => 1603792359,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f92f7da594de8_26792518 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f97ee0488c7e1_98511698 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\libs\\system\\smarty\\libs\\plugins\\modifier.date_format.php';
 ?>
 <!doctype html>
@@ -122,148 +122,199 @@ public/images/stocks/produits/<?php echo $_smarty_tpl->tpl_vars['produit']->valu
         
                                     </div> 
 
-                                <!-- Photo -->
-                                <div class="form-row"></div>
-                                    <div class="form-group ">
-                                        <label class="control-label">Photo</label>
-                                        <input type="file" class="form-control col-lg-12" accept="image/png,image/jpeg,image/jpg" name="photo" id="photo">
-                                    </div>
-                                </div>
+                                    <div class="form-row">
+                                        <!-- Date de Création -->
+                                        <div class="form-group col-md-6">
+                                            <label class="control-label">Date de Fabtication</label>
+                                            <input type="text" readonly class="form-control"  value="<?php echo $_smarty_tpl->tpl_vars['produit']->value->getDateFabtication();?>
+" name="dateFabtication" id="dateFabtication">
+                                        </div>
 
-                                <!-- Activités --> 
-                                <div class="form-row">
-                                    <div class="form-group col-lg-12 mx-auto" id="selectionnerUneActivite">
-                                        <label class="control-label">Activités (maximum 10)</label>
-                                        <select name="activite[]" id="idActivite" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir une activité" required>
-                                            <?php
+                                        <!-- Date de Péremsion -->
+                                        <div class="form-group col-md-6">
+                                            <label class="control-label">Date de Péremsion</label>
+                                            <input type="text" readonly class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['produit']->value->getDateDePeremsion();?>
+" name="datePeremsion" id="datePeremsion">
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Photo -->
+                                    <div class="form-row"></div>
+                                        <div class="form-group ">
+                                            <label class="control-label">Photo</label>
+                                            <input type="file" class="form-control col-lg-12" accept="image/png,image/jpeg,image/jpg" name="photo" id="photo">
+                                        </div>
+                                    </div>
+
+                                    <!-- Activités --> 
+                                    <div class="form-row">
+                                        <div class="form-group col-lg-12 mx-auto" id="selectionnerUneActivite">
+                                            <label class="control-label">Activités (maximum 10)</label>
+                                            <select name="activite[]" id="idActivite" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir une activité" required>
+                                                <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['activites']->value, 'activite');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['activite']->value) {
 ?>
-                                                <option value="<?php echo $_smarty_tpl->tpl_vars['activite']->value->getId();?>
+                                                <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['mesActivites']->value, 'monActivite');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['monActivite']->value) {
+?>
+                                                    <?php if ($_smarty_tpl->tpl_vars['activite']->value == $_smarty_tpl->tpl_vars['monActivite']->value) {?>
+                                                        <option selected value="<?php echo $_smarty_tpl->tpl_vars['activite']->value->getId();?>
+"><?php echo $_smarty_tpl->tpl_vars['monActivite']->value->getNom();?>
+</option>
+                                                    <?php } else { ?>
+                                                        <option value="<?php echo $_smarty_tpl->tpl_vars['activite']->value->getId();?>
 "><?php echo $_smarty_tpl->tpl_vars['activite']->value->getNom();?>
 </option>
-                                            <?php
+                                                    <?php }?>
+                                                <?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 ?>
 
-                                        </select>
-                                        <div class="activite-invalid invalid-feedback">Vous devez choisir une seule activité
-                                        </div>
-                                    </div>
-                                </div>
+                                                <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
+?>
 
-                                <!-- Ajouter une activité (Masqué / Afficher) -->
-                                <div class="btn btn-primary mb-4" id="newActivite">Ajouter une nouvelle activité</div>
-                                <div id="addActivite">
-                                    <!-- Nom -->
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <label class="control-label">Nom Activité</label>
-                                            <input type="text" class="form-control" name="nomActivite" id="nom">
-                                            <div class="invalid-feedback">
-                                                Le nom de l'activité est obligatoire
+                                            </select>
+                                            <div class="activite-invalid invalid-feedback">Vous devez choisir une seule activité
                                             </div>
                                         </div>
-                                    </div> 
-                                    
-                                    <!-- Description -->
-                                    <div class="form-group">
-                                        <label class="control-label">Description Activité</label>
-                                        <textArea class="form-control" rows="4" name="descriptionActivite" id="descriptionActivite">
-                                        </textArea>
                                     </div>
-                                    <!-- Button Ajout -->
-                                    <div class="btn btn-primary mb-4" id="addActiviteButton">Ajouter Activité</div>
-                                </div>
+
+                                    <!-- Ajouter une activité (Masqué / Afficher) -->
+                                    <div class="btn btn-primary mb-4" id="newActivite">Ajouter une nouvelle activité</div>
+                                    <div id="addActivite">
+                                        <!-- Nom -->
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <label class="control-label">Nom Activité</label>
+                                                <input type="text" class="form-control" name="nomActivite" id="nom">
+                                                <div class="invalid-feedback">
+                                                    Le nom de l'activité est obligatoire
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        
+                                        <!-- Description -->
+                                        <div class="form-group">
+                                            <label class="control-label">Description Activité</label>
+                                            <textArea class="form-control" rows="4" name="descriptionActivite" id="descriptionActivite">
+                                            </textArea>
+                                        </div>
+                                        <!-- Button Ajout -->
+                                        <div class="btn btn-primary mb-4" id="addActiviteButton">Ajouter Activité</div>
+                                    </div>
 
 
-                                <!-- Composant -->
-                                <div class="form-row">
-                                    <div class="form-group col-lg-12 mx-auto" id="selectionnerUnComposant">
-                                        <label class="control-label">Composants (maximum 50)</label>
-                                        <select name="composant[]" id="idComposant" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir un composant" required>
-                                            <?php
+                                    <!-- Composant -->
+                                    <div class="form-row">
+                                        <div class="form-group col-lg-12 mx-auto" id="selectionnerUnComposant">
+                                            <label class="control-label">Composants (maximum 50)</label>
+                                            <select name="composant[]" id="idComposant" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir un composant" required>
+                                                <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['composants']->value, 'composant');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['composant']->value) {
 ?>
-                                            <option value="<?php echo $_smarty_tpl->tpl_vars['composant']->value->getId();?>
+                                                <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['mesComposants']->value, 'monComposant');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['monComposant']->value) {
+?>
+                                                    <?php if ($_smarty_tpl->tpl_vars['activite']->value == $_smarty_tpl->tpl_vars['monActivite']->value) {?>
+                                                        <option selected value="<?php echo $_smarty_tpl->tpl_vars['composant']->value->getId();?>
+"><?php echo $_smarty_tpl->tpl_vars['monComposant']->value->getNom();?>
+</option>
+                                                    <?php } else { ?>
+                                                        <option value="<?php echo $_smarty_tpl->tpl_vars['composant']->value->getId();?>
 "><?php echo $_smarty_tpl->tpl_vars['composant']->value->getNom();?>
 </option>
-                                            <?php
+                                                    <?php }?>
+                                                <?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 ?>
 
-                                        </select>
-                                        <div class="composant-invalid invalid-feedback">Vous devez choisir un seul composant
+                                                <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
+?>
+
+                                            </select>
+                                            <div class="composant-invalid invalid-feedback">Vous devez choisir un seul composant
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
 
-                                 <!-- Unité -->
-                                 <div class="form-row">
-                                    <div class="form-group col-lg-12 mx-auto" id="selectionnerUneUnite">
-                                        <label class="control-label">Unité (maximum 1)</label>
-                                        <select name="unite[]" id="idUnite" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir une unité" required>
-                                            <?php
+                                    <!-- Unité -->
+                                    <div class="form-row">
+                                        <div class="form-group col-lg-12 mx-auto" id="selectionnerUneUnite">
+                                            <label class="control-label">Unité (maximum 1)</label>
+                                            <select name="unite[]" id="idUnite" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir une unité" required>
+                                                <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['unites']->value, 'unite');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['unite']->value) {
 ?>
-                                            <option value="<?php echo $_smarty_tpl->tpl_vars['unite']->value->getId();?>
+                                                <option selected value="<?php echo $_smarty_tpl->tpl_vars['unite']->value->getId();?>
 "><?php echo $_smarty_tpl->tpl_vars['unite']->value->getNomComplet();?>
  (<?php echo $_smarty_tpl->tpl_vars['unite']->value->getAbreviation();?>
 )</option>
-                                            <?php
+                                                <?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 ?>
 
-                                        </select>
-                                        <div class="unite-invalid invalid-feedback">Vous devez choisir une seule unité
+                                            </select>
+                                            <div class="unite-invalid invalid-feedback">Vous devez choisir une seule unité
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <!-- Ajouter une unité (Masqué / Afficher) -->
-                                <div class="btn btn-primary mb-4" id="newUnite">Ajouter une nouvelle unité</div>
-                                <div id="addUnite">
-                                   <!-- Abréviation -->
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <label class="control-label">Abreviation</label>
-                                            <input type="text" class="form-control" name="abreviation" id="abreviation">
-                                        </div>
-                                    </div> 
-                                    
-                                    <!-- Nom complet -->
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <label class="control-label">Nom Complet</label>
-                                            <input type="text" class="form-control" name="nomComplet" id="nomComplet">
-                                        </div>
-                                    </div> 
-                                    <!-- Button Ajout -->
-                                    <div class="btn btn-primary mb-4" id="addUniteButton">Ajouter Unité</div>
-                                </div>
+                                    <!-- Ajouter une unité (Masqué / Afficher) -->
+                                    <div class="btn btn-primary mb-4" id="newUnite">Ajouter une nouvelle unité</div>
+                                    <div id="addUnite">
+                                    <!-- Abréviation -->
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <label class="control-label">Abreviation</label>
+                                                <input type="text" class="form-control" name="abreviation" id="abreviation">
+                                            </div>
+                                        </div> 
+                                        
+                                        <!-- Nom complet -->
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <label class="control-label">Nom Complet</label>
+                                                <input type="text" class="form-control" name="nomComplet" id="nomComplet">
+                                            </div>
+                                        </div> 
+                                        <!-- Button Ajout -->
+                                        <div class="btn btn-primary mb-4" id="addUniteButton">Ajouter Unité</div>
+                                    </div>
 
-                                <div class="form-row">
-                                    <!-- UpdatedAt -->
-                                    <input type="hidden" class="form-control" value="<?php echo smarty_modifier_date_format(time(),'%d-%m-%Y %H:%M:%S');?>
+                                    <div class="form-row">
+                                        <!-- UpdatedAt -->
+                                        <input type="hidden" class="form-control" value="<?php echo smarty_modifier_date_format(time(),'%d-%m-%Y %H:%M:%S');?>
 " name="updatedAt" id="updatedAt">
-                                </div>
+                                    </div>
 
-                                <!-- NomOpération -->
-                                <input type="hidden" class="form-control" value="vente" name="nomOperation" id="nomOperation">
+                                    <!-- NomOpération -->
+                                    <input type="hidden" class="form-control" value="vente" name="nomOperation" id="nomOperation">
                                 
-                            </div>
+                                </div>
 
                             <div class="form-group">
                                 <input type="submit" value="Modifier" class="btn btn-primary" name="modifier">

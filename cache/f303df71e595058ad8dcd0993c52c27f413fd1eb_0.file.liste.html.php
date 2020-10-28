@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-23 17:03:00
+/* Smarty version 3.1.30, created on 2020-10-28 10:30:21
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\produit\liste.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f92f0a4c419e6_98122242',
+  'unifunc' => 'content_5f993a2d8417e4_04288825',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f303df71e595058ad8dcd0993c52c27f413fd1eb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\produit\\liste.html',
-      1 => 1603450944,
+      1 => 1603877421,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f92f0a4c419e6_98122242 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f993a2d8417e4_04288825 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -58,8 +58,10 @@ function content_5f92f0a4c419e6_98122242 (Smarty_Internal_Template $_smarty_tpl)
                 <div class="col-md-12">
                     <center><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 Produit/add" class="btn btn-primary mb-4">Ajouter un Produit</a></center>
-                    <form class="form-inline  navbar-search mb-4 mr-5 col-lg-3" method="POST" action="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+                    <form class="form-inline mb-4" method="POST" action="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 Produit/search" id="q">
+                        <input class="pull-right form-control " style="background-color: white;" type="button" id="button-imprimer" value="Imprimer" />
+                        <div class="ml-2"></div>
                         <input class="form-control" type="text" placeholder="Rechercher un produit" id="search" aria-label="Search" name="search">
                     </form>
 
@@ -148,10 +150,20 @@ Produit/liste/<?php echo $_smarty_tpl->tpl_vars['page']->value+1;?>
                 </div>
             </div>
             
-            <!-- <?php echo '<script'; ?>
+            <?php echo '<script'; ?>
  src="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-public/js/produit/produit.js"><?php echo '</script'; ?>
-> -->
+public/js/stocks/produit/produit.js"><?php echo '</script'; ?>
+>
+            <?php echo '<script'; ?>
+>
+                  // Bouton d'impression
+                var bouton = document.getElementById('button-imprimer');
+                bouton.onclick = function(e) {
+                  e.preventDefault();
+                  print();
+                }
+            <?php echo '</script'; ?>
+>
             <!-- Le footer -->
             <?php $_smarty_tpl->_subTemplateRender("file:../../partials/extract_index/footer.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>

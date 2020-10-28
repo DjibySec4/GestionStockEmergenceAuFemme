@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-23 18:31:02
+/* Smarty version 3.1.30, created on 2020-10-27 16:24:21
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\travailleur\edit.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f930546d18ea5_81693664',
+  'unifunc' => 'content_5f983ba5274bc7_50440444',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9a08fbf6fae94fec59552029c4981a056a8486d7' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\travailleur\\edit.html',
-      1 => 1603470634,
+      1 => 1603812242,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f930546d18ea5_81693664 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f983ba5274bc7_50440444 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\libs\\system\\smarty\\libs\\plugins\\modifier.date_format.php';
 ?>
 <!doctype html>
@@ -114,7 +114,7 @@ public/images/personnes/travailleurs/<?php echo $_smarty_tpl->tpl_vars['travaill
                                 <div class="form-row">
                                     <div class="form-group col-lg-12 mx-auto">
                                         <label class="control-label">Activités (maximum 1)</label>
-                                        <select name="activite[]" id="idActivite" class="chosen_select  form-control" multiple data-placeholder="Veuiller choisir les activités " required>
+                                        <select name="activite" id="idActivite" class="chosen_select  form-control" multiple data-placeholder="Veuiller choisir les activités " required>
                                         <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['activites']->value, 'activite');
 if ($_from !== null) {

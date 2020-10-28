@@ -13,10 +13,10 @@ class HistoriqueTravailleur
     /** @Column(type="string", nullable=false) **/
     private $dateAdhesion;
 
-    /** @Column(type="integer", nullable=false) **/
+    /** @Column(type="string", nullable=false) **/
     private $activite;
 
-    /** @Column(type="integer", nullable=false) **/
+    /** @Column(type="string", nullable=false) **/
     private $travailleur;
  
     /**

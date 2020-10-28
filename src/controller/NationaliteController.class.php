@@ -41,7 +41,7 @@ class NationaliteController extends Controller
     public function add()
     {
         if (isset($_POST['annuler'])) {
-            $this->liste();
+            $this->view->redirect('Nationalite/liste/1');
         }
         if (isset($_POST['ajouter'])) 
         {
@@ -77,7 +77,7 @@ class NationaliteController extends Controller
             else
             {
                 $this->nationalite_db->addNationalite($nationalite);
-                $this->liste();
+                $this->view->redirect('Nationalite/liste/1');
             }
         } 
         else 
@@ -92,7 +92,7 @@ class NationaliteController extends Controller
     {
         $nationalite  = $this->nationalite_db->getNationalite($id);
         if (isset($_POST['annuler'])) {
-            $this->liste();
+            $this->view->redirect('Nationalite/liste/1');
         }
         if (isset($_POST['modifier'])) {
             extract($_POST);

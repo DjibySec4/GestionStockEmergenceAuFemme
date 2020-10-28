@@ -34,7 +34,7 @@ class ProduitController extends Controller
     // Liste des produits
     public function liste($page = 1)
     {
-        $nbEPage = 5;
+        $nbEPage = 10;
         $this->data['nbProduits'] = $this->produit_db->nbProduit();
         $this->data['nbPage'] = $nbPage = ceil($this->data['nbProduits'] / $nbEPage);
         $page = $page <= $nbPage ? $page : 1;
@@ -44,10 +44,28 @@ class ProduitController extends Controller
         $this->view->load('pages/produit/liste', $this->data);
     }
 
+      // Liste des stocks
+      public function listeStock($page = 1)
+      {
+          $nbEPage = 5;
+          $this->data['nbProduits'] = $this->produit_db->nbProduit();
+          $this->data['stockActuel'] = $this->produit_db->stockActuel();
+          $this->data['nbProduitsPerime'] = $this->produit_db->nbProduitPerime();
+          $this->data['revenus'] = $this->produit_db->revenu();
+          $this->data['nbPage'] = $nbPage = ceil($this->data['nbProduits'] / $nbEPage);
+          $page = $page <= $nbPage ? $page : 1;
+          $this->data['page'] = $page = (int) $page;
+          $this->data['title'] = 'Etat Srock Produit';
+          $this->data['produits'] = $this->produit_db->listeProduits($page - 1, $nbEPage);
+          $this->data["dateActuelle"] = date('Y-m-d');
+          $this->view->load('pages/produit/stock', $this->data);
+      }
+  
+
 
     // Ajoute un produit    
     public function add()
-    {
+    { 
         $activite = [];
         $unite = [];
         $this->data['unites'] = $this->produit_db->listeUnites();
@@ -55,7 +73,7 @@ class ProduitController extends Controller
         $this->data['composants'] = $this->composant_db->liste();
 
         if (isset($_POST['annuler'])) {
-            $this->liste();
+            $this->view->redirect('Produit/liste/1');
         }
         if (isset($_POST['ajouter'])) 
         {
@@ -70,9 +88,11 @@ class ProduitController extends Controller
             $produit->setNom($nom ?? '');
             $produit->setQte($qte ?? '');
             $produit->setPrix($prix ?? '');
-            $produit->setEnPromotion($promotion ?? '');
+            $produit->setEnPromotion($promotion ?? ''); 
             $produit->setCreatedAt($createdAt ?? '');
             $produit->setUpdatedAt($updatedAt ?? '');
+            $produit->setDateFabtication($dateFabtication ?? '');
+            $produit->setDateDePeremsion($datePeremsion ?? '');
             $produit->setNomOperation($nomOperation ?? '');
             $upload = new SamaneUpload;
             $title = 'photo';
@@ -177,7 +197,7 @@ class ProduitController extends Controller
             $historiqueStock->setUnite($unite ?? '');
             $this->historiqueStock_db->addHistoriqueStock($historiqueStock);
 
-            $this->liste();
+            $this->view->redirect('Produit/liste/1');
         } 
         else 
         {
@@ -196,17 +216,18 @@ class ProduitController extends Controller
         $this->data['composants'] = $this->composant_db->liste();
 
         if (isset($_POST['annuler'])) {
-            $this->liste();
+            $this->view->redirect('Produit/liste/1');
         }
         if (isset($_POST['modifier'])) {
             extract($_POST);
             if ($produit != null) {
+                
                 $produit->setNom($nom ?? '');
                 $produit->setQte($qte ?? '');
                 $produit->setPrix($prix ?? '');
                 $produit->setEnPromotion($promotion ?? '');
                 $produit->setUpdatedAt($updatedAt ?? '');
-                $produit->setNomOperation($nomOperation ?? '');
+                $produit->setUpdatedAt($updatedAt ?? '');
                 $produit->setUnite($this->produit_db->getUnite($unite) ?? '');
                 // Modification des infos de la table produits_activites
                 if (isset($activite)) {
@@ -240,6 +261,94 @@ class ProduitController extends Controller
                     $this->view->load('pages/produit/add', $this->data);
                 } 
 
+                $this->produit_db->updateProduit($produit);
+
+                $this->view->redirect('Produit/liste/1');
+            } else {
+                $this->data['vide'] = 1;
+                $this->data['title'] = "Modification d'un produit";
+                $this->data['produit'] = $produit;
+                
+                $this->view->redirect('pages/produit/edit', $this->data);
+            }
+        } else {
+            $this->data['title'] = "Modification d'un produit";
+            $this->data['produit'] = $produit;
+            $this->data["mesActivites"]  = $this->data['produit']->getActivites();
+            $this->data["mesComposants"]  = $this->data['produit']->getComposants();
+       
+            $this->view->load('pages/produit/edit', $this->data);
+        }
+    }
+
+
+
+    // Modifier le stock d'un produit spécifique.
+    public function updateStock($reference)
+    {
+        $produit  = $this->produit_db->getProduit($reference);
+       
+        $this->data['unites'] = $this->produit_db->listeUnites();
+        $this->data['activites'] = $this->produit_db->listeActivites();
+        $this->data['composants'] = $this->composant_db->liste();
+
+        if (isset($_POST['annuler'])) {
+            return $this->view->redirect('Produit/listeStock/1');
+        }
+        if (isset($_POST['updateStock'])) {
+            extract($_POST);
+ 
+            if(intval($nbProduitVendus) > intval($produit->getQte()))
+                {
+                    $this->data['vide'] = 0;
+                    $this->data['erreur1'] = "Le nombre de produits vendus ne pas être supérieur au stock actuel ! ";
+                    $this->data['title'] = "Gestion de Stock Produit";
+                    $this->data['produit'] = $produit;
+                    return  $this->view->load('pages/produit/editStock', $this->data);
+                }
+                if($nbProduitVendus == 0)
+                {
+                    $this->data['vide'] = 0;
+                    $this->data['erreur2'] = "La quantité saisie est invalide ! ";
+                    $this->data['title'] = "Gestion de Stock Produit";
+                    $this->data['produit'] = $produit;
+                    return  $this->view->load('pages/produit/editStock', $this->data);
+                }
+
+            if ($produit != null) {
+                $produit->setNom($nom ?? '');
+                $produit->setQte(intval($qte) - intval($nbProduitVendus)  ?? '');
+                $produit->setPrix($prix ?? '');
+                $produit->setEnPromotion($promotion ?? '');
+                $produit->setUpdatedAt($updatedAt ?? '');
+                $produit->setUpdatedAt($updatedAt ?? '');
+                $produit->setUnite($this->produit_db->getUnite($unite) ?? '');
+                // Modification des infos de la table produits_activites
+                if (isset($activite)) {
+                    $tabActivites = [];
+                    foreach ($activite as $a) {
+                        $tabActivites[] =  $this->produit_db->getActivite($a);  
+                        $produit->setActivites($tabActivites);
+                    } 
+                }
+                // Modification des infos de la table produits_composants
+                if (isset($composant)) {
+                    $tabComposants = [];
+                    foreach ($composant as $c) {
+                        $tabComposants[] =  $this->produit_db->getComposant($c);  
+                        $produit->setComposants($tabComposants);
+                    } 
+                }
+                $title = 'photo';
+                if ($_FILES[$title]['name'] != '') {
+                    $upload = new SamaneUpload;
+                    $folder = 'public/images/personnes/produits';
+                    $upload->load($title, $folder);
+                    $produit->setPhoto($_FILES[$title]['name']);
+                }
+
+                
+               
                 $pro =  $this->produit_db->updateProduit($produit);
                 
                 /**
@@ -249,26 +358,47 @@ class ProduitController extends Controller
                 $historiqueStock->setDateOperation($updatedAt ?? '');
                 $historiqueStock->setNomOperation($nomOperation ?? '');
                 $historiqueStock->setProduit($pro ?? '');
-                $historiqueStock->setQte($qte ?? '');
+                $historiqueStock->setQte(intval($qte) - intval($nbProduitVendus) ?? '');
                 $historiqueStock->setPrix($prix ?? '');
                 $historiqueStock->setEnPromotion($promotion ?? '');
                 $historiqueStock->setUnite($unite ?? '');
                 $this->historiqueStock_db->addHistoriqueStock($historiqueStock);
 
-                $this->view->redirect('Produit/liste/1');
+                $this->view->redirect('Produit/listeStock/1');
             } else {
                 $this->data['vide'] = 1;
-                $this->data['title'] = "Modification d'un produit";
+                $this->data['title'] = "Gestion de Stock Produit";
                 $this->data['produit'] = $produit;
-                $this->view->load('pages/produit/edit', $this->data);
+                $this->view->load('pages/produit/editStock', $this->data);
             }
         } else {
-            $this->data['title'] = "Modification d'un produit";
+            $this->data['titleProduit'] = "Gestion de Stock Produit";
             $this->data['produit'] = $produit;
-            $this->view->load('pages/produit/edit', $this->data);
+            $this->data["mesActivites"]  = $this->data['produit']->getActivites();
+            $this->data["mesComposants"]  = $this->data['produit']->getComposants();
+            $this->view->load('pages/produit/editStock', $this->data);
         }
     }
-    
+
+
+    public function listeHistoriqueStocks($page = 1)
+    {
+        $nbEPage = 10;
+        $this->data["nbHistoriqueStocks"] = $this->historiqueStock_db->nbHistoriqueStock();
+        $this->data['nbPage'] = $nbPage = ceil($this->data['nbHistoriqueStocks'] / $nbEPage);
+        $page = $page <= $nbPage ? $page : 1;
+        $this->data['page'] = $page = (int) $page;
+        $this->data['title'] = 'Historique de tous les Stocks';
+        $this->data['historiqueStocks'] = $this->historiqueStock_db->listeHistoriqueStock($page - 1, $nbEPage);
+        $this->view->load('pages/historique/historiqueStock/liste', $this->data);
+    }
+
+    public function histoProduit($reference)
+    {
+        $this->data["historiqueStocks"] = $this->historiqueStock_db->getProduitByReference($reference);
+        $this->view->load('pages/historique/historiqueStock/liste', $this->data);
+    }
+ 
     
     // Recherche un produit.
     public function search()

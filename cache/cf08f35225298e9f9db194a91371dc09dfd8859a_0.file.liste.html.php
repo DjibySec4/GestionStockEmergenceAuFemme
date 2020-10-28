@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-23 17:45:06
+/* Smarty version 3.1.30, created on 2020-10-28 10:09:04
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\unite\liste.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f92fa824b9b05_68398954',
+  'unifunc' => 'content_5f9935306f7c80_10424417',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cf08f35225298e9f9db194a91371dc09dfd8859a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\unite\\liste.html',
-      1 => 1603444651,
+      1 => 1603876128,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f92fa824b9b05_68398954 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f9935306f7c80_10424417 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -56,10 +56,13 @@ function content_5f92fa824b9b05_68398954 (Smarty_Internal_Template $_smarty_tpl)
 
             <div class="row">
                 <div class="col-md-12">
+
                     <center><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 Unite/add" class="btn btn-primary mb-4">Ajouter une Unité</a></center>
-                    <form class="form-inline  navbar-search mb-4 mr-5 col-lg-3" method="POST" action="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+                    <form class="form-inline mb-4" method="POST" action="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 Unite/search" id="q">
+                        <input class="pull-right form-control " style="background-color: white;" type="button" id="button-imprimer" value="Imprimer" />
+                        <div class="ml-2"></div>
                         <input class="form-control" type="text" placeholder="Rechercher une unité" id="search" aria-label="Search" name="search">
                     </form>
 
@@ -127,10 +130,10 @@ Unite/liste/<?php echo $_smarty_tpl->tpl_vars['page']->value+1;?>
                 </div>
             </div>
             
-            <!-- <?php echo '<script'; ?>
+            <?php echo '<script'; ?>
  src="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-public/js/unite/unite.js"><?php echo '</script'; ?>
-> -->
+public/js/autre/unite.js"><?php echo '</script'; ?>
+>
             <!-- Le footer -->
             <?php $_smarty_tpl->_subTemplateRender("file:../../partials/extract_index/footer.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>

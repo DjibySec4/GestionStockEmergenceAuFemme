@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-19 22:08:49
+/* Smarty version 3.1.30, created on 2020-10-26 11:06:24
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\user\register.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f8df251b4a446_41051730',
+  'unifunc' => 'content_5f969fa063fae2_06406577',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fb919f1c35f7bd89d3c4cd58e670ed878027aa98' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\user\\register.html',
-      1 => 1603136901,
+      1 => 1603706782,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f8df251b4a446_41051730 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f969fa063fae2_06406577 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -80,7 +80,7 @@ Register/registe">
                                             <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Password">
                                         </div>
                                         <div class="form-group">
-                                            <input type="submit" class="btn btn-info btn-user btn-block" name="valider" value="Register Account"/>
+                                            <input type="submit" class="btn btn-primary btn-user btn-block" name="valider" value="Register Account"/>
                                             <input type="reset" class="btn btn-danger btn-user btn-block" name="annuler" value="Annuler"/>
                                         </div>
                                     </form>

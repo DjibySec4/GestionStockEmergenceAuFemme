@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-23 12:19:21
+/* Smarty version 3.1.30, created on 2020-10-28 10:05:03
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\gestionnaire\liste.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f92ae29615b78_36636642',
+  'unifunc' => 'content_5f99343f8196b0_74105083',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2ca7173da70f1ad3061ce2794133818cdf7ba8a1' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\gestionnaire\\liste.html',
-      1 => 1603444610,
+      1 => 1603875903,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f92ae29615b78_36636642 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f99343f8196b0_74105083 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -58,10 +58,13 @@ function content_5f92ae29615b78_36636642 (Smarty_Internal_Template $_smarty_tpl)
                 <div class="col-md-12">
                     <center><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 Gestionnaire/add" class="btn btn-primary mb-4">Ajouter un Gestionnaire</a></center>
-                    <form class="form-inline ml-auto navbar-search mb-4 mr-5" method="POST" action="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+                    <form class="form-inline mb-4" method="POST" action="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 Gestionnaire/search" id="q">
-                        <input class="form-control col-lg-3 col-xs-1" type="text" placeholder="Rechercher un gestionnaire" id="search" aria-label="Search" name="search">
+                        <input class="pull-right form-control " style="background-color: white;" type="button" id="button-imprimer" value="Imprimer" />
+                        <div class="ml-2"></div>
+                        <input class="form-control col-lg-2 col-xs-1" type="text" placeholder="Rechercher un gestionnaire" id="search" aria-label="Search" name="search">
                     </form>
+
                     <div class="main-card mb-3 card">
                         <div class="card-header"><b>Liste des Gestionnaires</b>
                         </div>
@@ -147,7 +150,7 @@ Gestionnaire/liste/<?php echo $_smarty_tpl->tpl_vars['page']->value+1;?>
            
             <?php echo '<script'; ?>
  src="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-public/js/personnes/gestionnaire.js"><?php echo '</script'; ?>
+public/js/personnes/gestionnaire/gestionnaire.js"><?php echo '</script'; ?>
 >
             <!-- Le footer -->
             <?php $_smarty_tpl->_subTemplateRender("file:../../partials/extract_index/footer.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);

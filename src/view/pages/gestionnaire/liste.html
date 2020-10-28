@@ -20,9 +20,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <center><a href="{$url_base}Gestionnaire/add" class="btn btn-primary mb-4">Ajouter un Gestionnaire</a></center>
-                    <form class="form-inline ml-auto navbar-search mb-4 mr-5" method="POST" action="{$url_base}Gestionnaire/search" id="q">
-                        <input class="form-control col-lg-3 col-xs-1" type="text" placeholder="Rechercher un gestionnaire" id="search" aria-label="Search" name="search">
+                    <form class="form-inline mb-4" method="POST" action="{$url_base}Gestionnaire/search" id="q">
+                        <input class="pull-right form-control " style="background-color: white;" type="button" id="button-imprimer" value="Imprimer" />
+                        <div class="ml-2"></div>
+                        <input class="form-control col-lg-2 col-xs-1" type="text" placeholder="Rechercher un gestionnaire" id="search" aria-label="Search" name="search">
                     </form>
+
                     <div class="main-card mb-3 card">
                         <div class="card-header"><b>Liste des Gestionnaires</b>
                         </div>
@@ -82,7 +85,7 @@
                 </div>
             </div>
            
-            <script src="{$url_base}public/js/personnes/gestionnaire.js"></script>
+            <script src="{$url_base}public/js/personnes/gestionnaire/gestionnaire.js"></script>
             <!-- Le footer -->
             {include file='../../partials/extract_index/footer.html'}
         </div>

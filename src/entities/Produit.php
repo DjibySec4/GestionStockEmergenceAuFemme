@@ -30,8 +30,14 @@ class Produit
     /** @Column(type="boolean", nullable=false) **/
     private $enPromotion;
 
-     /** @Column(type="string", nullable=true, options={"default": "depot"}) **/
-     private $nomOperation;
+    /** @Column(type="string", nullable=true, options={"default": "depot"}) **/
+    private $nomOperation;
+
+    /** @column(type="string", length=20, nullable=true) */
+    private $dateFabtication;
+    
+    /** @column(type="string", length=20, nullable=true) */
+    private $dateDePeremsion; 
  
      /**
      * @ManyToMany(targetEntity="Activite", inversedBy="produits",cascade={"persist"})
@@ -257,6 +263,45 @@ class Produit
            return $this;
       }
 
+      
+    /**
+     * Get the value of dateFabtication
+     */ 
+    public function getDateFabtication()
+    {
+        return $this->dateFabtication;
+    }
+
+    /**
+     * Set the value of dateFabtication
+     *
+     * @return  self
+     */ 
+    public function setDateFabtication($dateFabtication)
+    {
+        $this->dateFabtication = $dateFabtication;
+        return $this;
+    }
+
+    /**
+     * Get the value of dateDePeremsion
+     */ 
+    public function getDateDePeremsion()
+    {
+        return $this->dateDePeremsion;
+    }
+
+    /**
+     * Set the value of dateDePeremsion
+     *
+     * @return  self
+     */ 
+    public function setDateDePeremsion($dateDePeremsion)
+    {
+        $this->dateDePeremsion = $dateDePeremsion;
+        return $this;
+    }
+
       /**
      * Get joinColumns={@JoinColumn(name="idProduit", referencedColumnName="reference")},
      */ 
@@ -320,5 +365,5 @@ class Produit
     {
         $this->activites[] = $activite;
     }
-   
+
 }

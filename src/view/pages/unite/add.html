@@ -18,10 +18,10 @@
  
             <div class="col-md-8 col-xs-8 offset-md-2 latest-post-area pb-120">
                 <div class="card text-center">
-                    <div class="card-header bg-primary text-white">Ajout d'une Unitée</div>
+                    <div class="bg-primary text-white" style="height:45px;"><h2>Ajout d'une Unitée</h2></div>
                     <div class="card-body text-dark">
                         <div class="card text-center mb-4">
-                            <p><a href="{$url_base}Unite/liste/1" class="btn btn-primary mt-4">Liste des Unités</a></p>
+                            <p><a href="{$url_base}Unite/liste/1" class="btn mt-4"><b><strong>Afficher la liste des Unités</strong></b></a></p>
                         </div>
                         <form action="{$url_base}Unite/add" method="post" enctype="multipart/form-data" id="new" novalidate>
                             {if isset($vide) && $vide==1}

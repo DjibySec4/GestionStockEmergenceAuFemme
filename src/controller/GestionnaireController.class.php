@@ -24,7 +24,7 @@ class GestionnaireController extends Controller
     // Liste des gestionnaires
     public function liste($page = 1)
     {
-        $nbEPage = 5;
+        $nbEPage = 10;
         $this->data['nbGestionnaires'] = $this->gestionnaire_db->nbGestionnaire();
         $this->data['nbPage'] = $nbPage = ceil($this->data['nbGestionnaires'] / $nbEPage);
         $page = $page <= $nbPage ? $page : 1;
@@ -45,7 +45,8 @@ class GestionnaireController extends Controller
         $this->data['fournisseurs'] = $this->gestionnaire_db->listeFournisseurs();
 
         if (isset($_POST['annulerGestionnaire'])) {
-            $this->liste();
+            $this->view->redirect('Gestionnaire/liste/1');
+
         }
         if (isset($_POST['ajouter'])) 
         {
@@ -107,7 +108,7 @@ class GestionnaireController extends Controller
 
             // Persistance du gestionnaire. 
             $this->gestionnaire_db->addGestionnaire($gestionnaire);
-            $this->liste();
+            $this->view->redirect('Gestionnaire/liste/1');
         } 
         else 
         {
@@ -125,7 +126,7 @@ class GestionnaireController extends Controller
 
         $gestionnaire  = $this->gestionnaire_db->getGestionnaire($id);
         if (isset($_POST['annulerGestionnaire'])) {
-            $this->liste();
+            $this->view->redirect('Gestionnaire/liste/1');
         }
         if (isset($_POST['modifier'])) {
             extract($_POST);

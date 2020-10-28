@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-23 17:30:01
+/* Smarty version 3.1.30, created on 2020-10-26 16:21:03
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\produit\add.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f92f6f9dcef70_36053815',
+  'unifunc' => 'content_5f96e95fc26c87_04024988',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '33a120c3df99658e2e685121da4e008fc81588fc' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\produit\\add.html',
-      1 => 1603466826,
+      1 => 1603725281,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f92f6f9dcef70_36053815 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f96e95fc26c87_04024988 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\libs\\system\\smarty\\libs\\plugins\\modifier.date_format.php';
 ?>
 <!doctype html>
@@ -57,11 +57,11 @@ if (!is_callable('smarty_modifier_date_format')) require_once 'C:\\xampp\\htdocs
 
             <div class="col-md-8 col-xs-8 offset-md-2 latest-post-area pb-120">
                 <div class="card text-center">
-                    <div class="card-header bg-primary text-white">Ajout d'un Produit</div>
+                    <div class="bg-primary text-white" style="height:45px;"><h2>Ajout d'un Produit</h2></div>
                     <div class="card-body text-dark">
                         <div class="card text-center mb-4">
                             <p><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-Produit/liste/1" class="btn btn-pribg-primary mt-4">Liste des Produits</a></p>
+Produit/liste/1" class="btn mt-4"><b><strong>Afficher la liste des Produits</strong></b></a></p>
                         </div>
                         <form action="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 Produit/add" method="post" enctype="multipart/form-data" id="new" novalidate>
@@ -119,6 +119,22 @@ Produit/add" method="post" enctype="multipart/form-data" id="new" novalidate>
                                             </select>
                                         </div>
                                     </div> 
+
+
+                                    <div class="form-row">
+                                        <!-- Date de Création -->
+                                        <div class="form-group col-md-6">
+                                            <label class="control-label">Date de Fabtication</label>
+                                            <input type="date" class="form-control" name="dateFabtication" id="dateFabtication">
+                                        </div>
+
+                                        <!-- Date de Péremsion -->
+                                        <div class="form-group col-md-6">
+                                            <label class="control-label">Date de Péremsion</label>
+                                            <input type="date" class="form-control" name="datePeremsion" id="datePeremsion">
+                                        </div>
+
+                                    </div>
 
                                     <!-- Photo -->
                                     <div class="form-row"></div>

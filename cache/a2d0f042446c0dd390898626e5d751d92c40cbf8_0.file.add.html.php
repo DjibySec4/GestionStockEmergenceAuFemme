@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-22 12:59:05
+/* Smarty version 3.1.30, created on 2020-10-26 11:00:33
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\gestionnaire\add.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f9165f9ef8d24_68744478',
+  'unifunc' => 'content_5f969e4111c852_23514107',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a2d0f042446c0dd390898626e5d751d92c40cbf8' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\gestionnaire\\add.html',
-      1 => 1603364267,
+      1 => 1603706412,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f9165f9ef8d24_68744478 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f969e4111c852_23514107 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\libs\\system\\smarty\\libs\\plugins\\modifier.date_format.php';
 ?>
 <!doctype html>
@@ -56,11 +56,11 @@ if (!is_callable('smarty_modifier_date_format')) require_once 'C:\\xampp\\htdocs
 
             <div class="col-md-8 col-xs-8 offset-md-2 latest-post-area pb-120">
                 <div class="card text-center">
-                    <div class="card-header bg-primary text-white">Ajout d'un Géstionnaire</div>
+                    <div class="bg-primary text-white" style="height:45px;"><h2>Ajout d'un Géstionnaire</h2></div>
                     <div class="card-body text-dark">
                         <div class="card text-center mb-4">
                             <p><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-Gestionnaire/liste/1" class="btn btn-primary mt-4">Liste des Gestionnaires</a></p>
+Gestionnaire/liste/1" class="btn mt-4"><b><strong>Afficher la liste des Gestionnaires</strong></b></a></p>
                         </div>
                         <form action="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 Gestionnaire/add" method="post" enctype="multipart/form-data" id="new" novalidate>

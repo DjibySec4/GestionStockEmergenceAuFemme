@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+    
+    <!-- On affiche cette page k si un user est authentifié (user ou admin) -->
+
+    <!-- <====== Contenu du head =====> -->
+    {include file='../../partials/extract_index/head.html'} 
+    <body>
+        <!-- <====== Menu Haut =====> -->
+        {include file='../../partials/extract_index/menuHaut.html'}
+
+        <div class="app-main">
+            <!-- Menu Gauche (Dashbord) -->
+            {include file='../../partials/extract_index/menuGauche.html'}
+
+            <!-- La top Bar(Barre apres menu) -->
+            {include file='../../partials/extract_index/topBar.html'}
+
+            {if isset($produit) }
+            <div class="col-md-8 col-xs-8 offset-md-2 latest-post-area pb-120">
+                <div class="card text-center">
+                    <div class="bg-primary text-white mx-auto col-lg-12"><h2>Gestion de Stock Produit</h2></div>
+                    <div class="card-body text-dark">
+                        <form action="{$url_base}Produit/updateStock/{$produit->getReference()}" method="post" enctype="multipart/form-data" id="edit">
+                            {if isset($vide) && $vide==1}
+                                <div class="alert alert-danger">Tous les champs sont requis</div>
+                            {/if}
+
+                            {if isset($erreur1)}
+                                <div class="alert alert-danger">{$erreur1}</div>
+                            {/if}
+
+                            {if isset($erreur2)}
+                                <div class="alert alert-danger">{$erreur2}</div>
+                            {/if}
+
+                            {if !isset($produit)}
+                                <div class="alert alert-danger">Ce Produit n'existe pas dans la base données</div>
+                            {else}
+
+                                <!-- Stock Actuel -->
+                                <div class="form-group col-lg-12">
+                                  <label class="control-label">Stock Actuel</label>
+                                  <input type="number" readonly class="form-control" name="qte" id="qte" {if isset($produit)} value="{$produit->getQte()}" {/if} >
+                              </div>
+  
+                              <div class="form-row">
+                                  <!-- nbProduitVendus -->
+                                  <div class="form-group col-lg-12">
+                                      <label class="control-label">Nombre de produit vendus</label>
+                                      <input type="number" min="1" class="form-control" name="nbProduitVendus" id="nbProduitVendus">
+                                  </div>
+                              </div> 
+
+                            <div class="infoProduit" id="infoProduit">
+                                <div class="form-group">
+                                    <img src="{$url_base}public/images/stocks/produits/{$produit->getPhoto()}" alt="Produit">
+                                </div>
+
+                                <div class="form-row">
+                                    <!-- Référence -->
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">Référence</label>
+                                        <input type="text" readonly class="form-control" name="reference" id="reference" {if isset($produit)} value="{$produit->getReference()}" {/if}>
+                                    </div>
+
+                                    <!-- Nom -->
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">Nom</label>
+                                        <input type="text" class="form-control" name="nom" id="nom" {if isset($produit)} value="{$produit->getNom()}" {/if}>
+                                    </div>
+                                </div> 
+
+                                <div class="infoStock" id="infoStock">
+                                    <div class="form-row">
+    
+                                        <!-- Prix -->
+                                        <div class="form-group col-md-6">
+                                            <label class="control-label">Prix Unitaire</label>
+                                            <div class="input-group">
+                                                <input type="number" class="form-control" name="prix" id="prix" {if isset($produit)} value="{$produit->getPrix()}" {/if}>
+                                                <span class="input-group-text">FCFA</span>
+                                            </div>
+                                        </div>
+
+                                          <!-- En promotion -->
+                                        <div class="form-group col-md-6">
+                                            <label class="control-label">En Promotion ?</label>
+                                            <select name="promotion" id="promotion" class="form-control custom-select" required>
+                                                <option value="1" {if $produit->getEnPromotion() == 1} selected {/if}>Oui</option>
+                                                <option value="0" {if $produit->getEnPromotion() == 0} selected {/if}>Non</option>
+                                            </select>
+                                        </div>
+                                    </div> 
+
+                                    <div class="form-row">
+                                        <!-- Date de Création -->
+                                        <div class="form-group col-md-6">
+                                            <label class="control-label">Date de Fabtication</label>
+                                            <input type="text" readonly class="form-control"  value="{$produit->getDateFabtication()}" name="dateFabtication" id="dateFabtication">
+                                        </div>
+
+                                        <!-- Date de Péremsion -->
+                                        <div class="form-group col-md-6">
+                                            <label class="control-label">Date de Péremsion</label>
+                                            <input type="text" readonly class="form-control" value="{$produit->getDateDePeremsion()}" name="datePeremsion" id="datePeremsion">
+                                        </div>
+                                    </div>
+
+                                    <!-- Photo -->
+                                    <div class="form-row"></div>
+                                        <div class="form-group ">
+                                            <label class="control-label">Photo</label>
+                                            <input type="file" class="form-control col-lg-12" accept="image/png,image/jpeg,image/jpg" name="photo" id="photo">
+                                        </div>
+                                    </div>
+
+                                    <!-- Activités --> 
+                                    <div class="form-row">
+                                        <div class="form-group col-lg-12 mx-auto" id="selectionnerUneActivite">
+                                            <label class="control-label">Activités (maximum 10)</label>
+                                            <select name="activite[]" id="idActivite" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir une activité" required>
+                                                {foreach from=$activites item=$activite}
+                                                {foreach from=$mesActivites item=$monActivite}
+                                                    {if $activite == $monActivite}
+                                                        <option selected value="{$activite->getId()}">{$monActivite->getNom()}</option>
+                                                    {else}
+                                                        <option value="{$activite->getId()}">{$activite->getNom()}</option>
+                                                    {/if}
+                                                {/foreach}
+                                                {/foreach}
+                                            </select>
+                                            <div class="activite-invalid invalid-feedback">Vous devez choisir une seule activité
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Ajouter une activité (Masqué / Afficher) -->
+                                    <div class="btn btn-primary mb-4" id="newActivite">Ajouter une nouvelle activité</div>
+                                    <div id="addActivite">
+                                        <!-- Nom -->
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <label class="control-label">Nom Activité</label>
+                                                <input type="text" class="form-control" name="nomActivite" id="nom">
+                                                <div class="invalid-feedback">
+                                                    Le nom de l'activité est obligatoire
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        
+                                        <!-- Description -->
+                                        <div class="form-group">
+                                            <label class="control-label">Description Activité</label>
+                                            <textArea class="form-control" rows="4" name="descriptionActivite" id="descriptionActivite">
+                                            </textArea>
+                                        </div>
+                                        <!-- Button Ajout -->
+                                        <div class="btn btn-primary mb-4" id="addActiviteButton">Ajouter Activité</div>
+                                    </div>
+
+
+                                    <!-- Composant -->
+                                    <div class="form-row">
+                                        <div class="form-group col-lg-12 mx-auto" id="selectionnerUnComposant">
+                                            <label class="control-label">Composants (maximum 50)</label>
+                                            <select name="composant[]" id="idComposant" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir un composant" required>
+                                                {foreach from=$composants item=$composant}
+                                                {foreach from=$mesComposants item=$monComposant}
+                                                    {if $activite == $monActivite}
+                                                        <option selected value="{$composant->getId()}">{$monComposant->getNom()}</option>
+                                                    {else}
+                                                        <option value="{$composant->getId()}">{$composant->getNom()}</option>
+                                                    {/if}
+                                                {/foreach}
+                                                {/foreach}
+                                            </select>
+                                            <div class="composant-invalid invalid-feedback">Vous devez choisir un seul composant
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Unité -->
+                                    <div class="form-row">
+                                        <div class="form-group col-lg-12 mx-auto" id="selectionnerUneUnite">
+                                            <label class="control-label">Unité (maximum 1)</label>
+                                            <select name="unite[]" id="idUnite" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir une unité" required>
+                                                {foreach from=$unites item=$unite}
+                                                <option selected value="{$unite->getId()}">{$unite->getNomComplet()} ({$unite->getAbreviation()})</option>
+                                                {/foreach}
+                                            </select>
+                                            <div class="unite-invalid invalid-feedback">Vous devez choisir une seule unité
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Ajouter une unité (Masqué / Afficher) -->
+                                    <div class="btn btn-primary mb-4" id="newUnite">Ajouter une nouvelle unité</div>
+                                    <div id="addUnite">
+                                    <!-- Abréviation -->
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <label class="control-label">Abreviation</label>
+                                                <input type="text" class="form-control" name="abreviation" id="abreviation">
+                                            </div>
+                                        </div> 
+                                        
+                                        <!-- Nom complet -->
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <label class="control-label">Nom Complet</label>
+                                                <input type="text" class="form-control" name="nomComplet" id="nomComplet">
+                                            </div>
+                                        </div> 
+                                        <!-- Button Ajout -->
+                                        <div class="btn btn-primary mb-4" id="addUniteButton">Ajouter Unité</div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <!-- UpdatedAt -->
+                                        <input type="hidden" class="form-control" value="{$smarty.now|date_format:'%d-%m-%Y %H:%M:%S'}" name="updatedAt" id="updatedAt">
+                                    </div>
+
+                                    <!-- NomOpération -->
+                                    <input type="hidden" class="form-control" value="vente" name="nomOperation" id="nomOperation">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="submit" value="Modifier" class="btn btn-primary" name="updateStock">
+                                    <input type="submit" value="Annuler" class="btn btn-danger" name="annuler">
+                                </div>
+                            {/if}
+                        </form>
+                    </div>
+                </div>
+            </div>
+{else}
+<div class="alert alert-danger">Ce produit n'est pas dans la base de données</div>
+{/if}
+<literal>
+    <script src="{$url_base}public/js/chosen.jquery.min.js" id="src"></script>
+    <script src="{$url_base}public/js/stocks/produit/produit_choosen.js"></script>
+    <script src="{$url_base}public/js/stocks/produit/produit.js"></script>
+    <!-- <script src="{$url_base}public/js/stocks/produit/stock.js" id="src"></script> -->
+</literal>
+  <!-- Le footer -->
+  {include file='../../partials/extract_index/footer.html'}
+</div>
+<script type="text/javascript" src="{$url_base}public/templates/templateGestionStockEaf/assets/scripts/main.js"></script>
+</body>    
+</html>

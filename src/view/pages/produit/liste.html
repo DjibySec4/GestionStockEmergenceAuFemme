@@ -20,7 +20,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <center><a href="{$url_base}Produit/add" class="btn btn-primary mb-4">Ajouter un Produit</a></center>
-                    <form class="form-inline  navbar-search mb-4 mr-5 col-lg-3" method="POST" action="{$url_base}Produit/search" id="q">
+                    <form class="form-inline mb-4" method="POST" action="{$url_base}Produit/search" id="q">
+                        <input class="pull-right form-control " style="background-color: white;" type="button" id="button-imprimer" value="Imprimer" />
+                        <div class="ml-2"></div>
                         <input class="form-control" type="text" placeholder="Rechercher un produit" id="search" aria-label="Search" name="search">
                     </form>
 
@@ -84,7 +86,15 @@
                 </div>
             </div>
             
-            <!-- <script src="{$url_base}public/js/produit/produit.js"></script> -->
+            <script src="{$url_base}public/js/stocks/produit/produit.js"></script>
+            <script>
+                  // Bouton d'impression
+                var bouton = document.getElementById('button-imprimer');
+                bouton.onclick = function(e) {
+                  e.preventDefault();
+                  print();
+                }
+            </script>
             <!-- Le footer -->
             {include file='../../partials/extract_index/footer.html'}
         </div>

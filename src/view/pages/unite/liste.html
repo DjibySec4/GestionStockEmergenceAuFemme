@@ -19,8 +19,11 @@
 
             <div class="row">
                 <div class="col-md-12">
+
                     <center><a href="{$url_base}Unite/add" class="btn btn-primary mb-4">Ajouter une Unité</a></center>
-                    <form class="form-inline  navbar-search mb-4 mr-5 col-lg-3" method="POST" action="{$url_base}Unite/search" id="q">
+                    <form class="form-inline mb-4" method="POST" action="{$url_base}Unite/search" id="q">
+                        <input class="pull-right form-control " style="background-color: white;" type="button" id="button-imprimer" value="Imprimer" />
+                        <div class="ml-2"></div>
                         <input class="form-control" type="text" placeholder="Rechercher une unité" id="search" aria-label="Search" name="search">
                     </form>
 
@@ -70,7 +73,7 @@
                 </div>
             </div>
             
-            <!-- <script src="{$url_base}public/js/unite/unite.js"></script> -->
+            <script src="{$url_base}public/js/autre/unite.js"></script>
             <!-- Le footer -->
             {include file='../../partials/extract_index/footer.html'}
         </div>

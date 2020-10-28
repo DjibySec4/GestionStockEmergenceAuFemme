@@ -29,7 +29,7 @@ class TravailleurController extends Controller
     // Liste des travailleurs
     public function liste($page = 1)
     {
-        $nbEPage = 5;
+        $nbEPage = 10;
         $this->data['nbTravailleurs'] = $this->travailleur_db->nbTravailleur();
         $this->data['nbPage'] = $nbPage = ceil($this->data['nbTravailleurs'] / $nbEPage);
         $page = $page <= $nbPage ? $page : 1;
@@ -49,7 +49,7 @@ class TravailleurController extends Controller
         $this->data['nationalites'] = $this->travailleur_db->listeNationalites();
         $this->data['activites'] = $this->travailleur_db->listeActivites();
         if (isset($_POST['annuler'])) {
-            $this->liste();
+            $this->view->redirect('Travailleur/liste/1');
         }
         if (isset($_POST['ajouter'])) 
         {
@@ -137,7 +137,7 @@ class TravailleurController extends Controller
         }
     }
 
-    // Modifier un travailleur.
+    // Modifier un travailleur. 
     public function edit($id)
     {
         $travailleur  = $this->travailleur_db->getTravailleur($id);
@@ -147,7 +147,7 @@ class TravailleurController extends Controller
 
         $travailleur  = $this->travailleur_db->getTravailleur($id);
         if (isset($_POST['annuler'])) {
-            $this->liste();
+            $this->view->redirect('Travailleur/liste/1');
         }
         if (isset($_POST['modifier'])) {
             extract($_POST);
@@ -189,8 +189,8 @@ class TravailleurController extends Controller
                 */
                 $historiqueTravailleur= new HistoriqueTravailleur;
                 $historiqueTravailleur->setDateAdhesion($dateAdhesion ?? '');
-                $historiqueTravailleur->setActivite($activite);
-                $historiqueTravailleur->setTravailleur($idTravailleur);
+                $historiqueTravailleur->setActivite($this->travailleur_db->getActivite($activite)->getNom());
+                $historiqueTravailleur->setTravailleur($this->travailleur_db->getTravailleur($idTravailleur)->getPersonne()->getPrenom() . ' ' . $this->travailleur_db->getTravailleur($idTravailleur)->getPersonne()->getNom());
                 $this->historiqueTravail_db->addHistoriqueTravailleur($historiqueTravailleur);
 
                 $this->view->redirect('Travailleur/liste/1');
@@ -206,6 +206,28 @@ class TravailleurController extends Controller
             $this->view->load('pages/travailleur/edit', $this->data);
         }
     }
+
+    public function listeHistoriqueTravailleurs($page = 1)
+    {
+        $nbEPage = 10;
+        $this->data["nbHistoriqueTravailleurs"] = $this->travailleur_db->nbHistoriqueTravailleur();
+
+        $this->data['nbPage'] = $nbPage = ceil($this->data['nbHistoriqueTravailleurs'] / $nbEPage);
+        $page = $page <= $nbPage ? $page : 1;
+        $this->data['page'] = $page = (int) $page;
+        $this->data['title'] = 'Historique des Travailleurs';
+        $this->data['historiqueTravailleurs'] = $this->historiqueTravail_db->listeHistoriqueTravailleurs($page - 1, $nbEPage);
+        $this->view->load('pages/historique/historiqueTravailleur/liste', $this->data);
+    }
+
+    // Affiche l'historique des travailleur
+    public function histoTravailleur($nomTravailleur)
+    {
+       
+        $this->data["historiqueTravailleurs"] = $this->travailleur_db->getHistoTravailleurById($nomTravailleur);
+        $this->view->load('pages/historique/historiqueTravailleur/liste', $this->data);
+    }
+ 
     
     // Recherche un travailleur.
     public function search()

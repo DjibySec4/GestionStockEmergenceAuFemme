@@ -41,7 +41,7 @@ class UniteController extends Controller
     public function add()
     {
         if (isset($_POST['annuler'])) {
-            $this->liste();
+            $this->view->redirect('Unite/liste/1');
         }
         if (isset($_POST['ajouter']))  
         {
@@ -67,7 +67,7 @@ class UniteController extends Controller
             else
             {
                 $this->unite_db->addUnite($unite);
-                $this->liste();
+                $this->view->redirect('Unite/liste/1');
             } 
         } 
         else 
@@ -82,7 +82,7 @@ class UniteController extends Controller
     {
         $unite  = $this->unite_db->getUnite($id);
         if (isset($_POST['annuler'])) {
-            $this->liste();
+            $this->view->redirect('Unite/liste/1');
         }
         if (isset($_POST['modifier'])) {
             extract($_POST);

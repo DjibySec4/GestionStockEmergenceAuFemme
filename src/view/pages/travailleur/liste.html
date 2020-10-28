@@ -9,7 +9,7 @@
         <!-- <====== Menu Haut =====> -->
         {include file='../../partials/extract_index/menuHaut.html'}
 
-        <div class="app-main">
+        <div class="app-main"> 
             <!-- Menu Gauche (Dashbord) -->
             {include file='../../partials/extract_index/menuGauche.html'}
 
@@ -19,9 +19,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <center><a href="{$url_base}Travailleur/add" class="btn btn-primary mb-4">Ajouter un nouveau Travailleur</a></center>
-                    <form class="form-inline ml-auto navbar-search mb-4 mr-5" method="POST" action="{$url_base}Travailleur/search" id="q">
-                        <input class="form-control col-lg-3 col-xs-1" type="text" placeholder="Rechercher un travailleur" id="search" aria-label="Search" name="search">
-                    </form>
+                        <form class="form-inline mb-4" method="POST" action="{$url_base}Travailleur/search" id="q">
+                            <input class="pull-right form-control " style="background-color: white;" type="button" id="button-imprimer" value="Imprimer" />
+                            <div class="ml-2"></div>
+                            <input class="form-control col-lg-2 col-xs-1" type="text" placeholder="Rechercher un travailleur" id="search" aria-label="Search" name="search">
+                        </form>
+                    
                     <div class="main-card mb-3 card">
                         <div class="card-header"><b>Liste des Travailleurs</b>
                         </div>
@@ -37,6 +40,7 @@
                                         <th class="text-center">Date Naissance</th>
                                         <th class="text-center">Téléphone</th>
                                         <th class="text-center">sexe</th>
+                                        <th class="text-center ">Historique</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -51,6 +55,7 @@
                                         <td class="text-center">{$travailleur->getPersonne()->getDateNaissance()}</td>
                                         <td class="text-center">{$travailleur->getPersonne()->getTelephone()}</td>
                                         <td class="text-center">{$travailleur->getPersonne()->getSexe()}</td>
+                                        <td class="text-center"><a href="{$url_base}Travailleur/histoTravailleur/{$travailleur->getPersonne()->getNom()}"><span class="badge badge-danger btn-lg"><b><font size="2px">Afficher Historique</font></b></span></a></td>
                                         <td class="text-center"><a href="{$url_base}Travailleur/edit/{$travailleur->getId()}">Editer</a></td>
                                     </tr>
                                     {/foreach}

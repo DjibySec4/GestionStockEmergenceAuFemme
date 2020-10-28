@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-23 12:09:59
+/* Smarty version 3.1.30, created on 2020-10-28 09:55:36
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\activite\liste.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f92abf7073aa9_10139118',
+  'unifunc' => 'content_5f99320868b025_94025013',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9851f321b3ef49460b42b8d03b17c3e79d260ac5' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\activite\\liste.html',
-      1 => 1603447743,
+      1 => 1603874898,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f92abf7073aa9_10139118 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f99320868b025_94025013 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -58,10 +58,12 @@ function content_5f92abf7073aa9_10139118 (Smarty_Internal_Template $_smarty_tpl)
                 <div class="col-md-12">
                     <center><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 Activite/add" class="btn btn-primary mb-4">Ajouter une Activité</a></center>
-                    <form class="form-inline  navbar-search mb-4 mr-5 col-lg-3" method="POST" action="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+                        <form class="form-inline mb-4" method="POST" action="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 Activite/search" id="q">
-                        <input class="form-control" type="text" placeholder="Search" id="search" aria-label="Search" name="search">
-                    </form>
+                            <input class="pull-right form-control " style="background-color: white;" type="button" id="button-imprimer" value="Imprimer" />
+                            <div class="ml-2"></div>
+                            <input class="form-control" style="background-color: white;" type="text" placeholder="Rechercher une activité" id="searchActivite" aria-label="Search" name="search">
+                        </form>
 
                     <div class="main-card mb-3 card">
                         <div class="card-header"><b>Liste des Activites</b>
@@ -127,10 +129,10 @@ Activite/liste/<?php echo $_smarty_tpl->tpl_vars['page']->value+1;?>
                 </div>
             </div>
             
-            <!-- <?php echo '<script'; ?>
+            <?php echo '<script'; ?>
  src="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-public/js/activite/activite.js"><?php echo '</script'; ?>
-> -->
+public/js/activites/activite.js"><?php echo '</script'; ?>
+>
             <!-- Le footer -->
             <?php $_smarty_tpl->_subTemplateRender("file:../../partials/extract_index/footer.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>

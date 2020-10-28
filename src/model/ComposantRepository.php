@@ -16,8 +16,8 @@ class ComposantRepository extends Model
      public function listeComposants($page)
      {
          return $this->db->createQuery("SELECT c FROM Composant c ORDER BY c.id desc")
-         ->setMaxResults(5)
-         ->setFirstResult($page*5)
+         ->setMaxResults(10)
+         ->setFirstResult($page*10)
              ->getResult();
      }
 

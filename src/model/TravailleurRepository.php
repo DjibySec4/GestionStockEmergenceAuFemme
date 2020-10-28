@@ -5,7 +5,7 @@ namespace src\model;
 use libs\system\Model;
 
 class TravailleurRepository extends Model
-{
+{ 
 
     public function __construct()
     {
@@ -59,6 +59,18 @@ class TravailleurRepository extends Model
         }
     }
 
+     // Retourne le nombre d'elements dans la table historiqueTravailleur.
+     public function nbHistoriqueTravailleur(){
+        return count($this->db->createQuery("SELECT h FROM HistoriqueTravailleur h")->getResult());
+    }
+
+    public function getHistoTravailleurById($nomTravailleur) 
+    {
+        return $this->db->createQuery("SELECT t FROM HistoriqueTravailleur t WHERE t.travailleur like '%$nomTravailleur%'")->getResult();
+    }
+
+
+
     
     public function getTravailleurByMotCle($mc) 
     {
@@ -71,8 +83,8 @@ class TravailleurRepository extends Model
     public function listeTravailleurs($page)
     {
         return $this->db->createQuery("SELECT t FROM Travailleur t ORDER BY t.id desc")
-        ->setMaxResults(5)
-        ->setFirstResult($page*5)
+        ->setMaxResults(10)
+        ->setFirstResult($page*10)
             ->getResult();
     }
 

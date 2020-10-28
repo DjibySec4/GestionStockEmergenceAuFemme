@@ -24,7 +24,7 @@ class FournisseurController extends Controller
     // Liste des fournisseurs
     public function liste($page = 1)
     {
-        $nbEPage = 5;
+        $nbEPage = 10;
         $this->data['nbFournisseurs'] = $this->fournisseur_db->nbFournisseur();
         $this->data['nbPage'] = $nbPage = ceil($this->data['nbFournisseurs'] / $nbEPage);
         $page = $page <= $nbPage ? $page : 1;
@@ -42,7 +42,7 @@ class FournisseurController extends Controller
         $activite = [];
         $this->data['nationalites'] = $this->fournisseur_db->listeNationalites();
         if (isset($_POST['annuler'])) {
-            $this->liste();
+            $this->view->redirect('Fournisseur/liste/1');
         }
         if (isset($_POST['ajouter'])) 
         {
@@ -91,7 +91,8 @@ class FournisseurController extends Controller
              * Persistance  du Fournisseur
              */ 
             $this->fournisseur_db->addFournisseur($fournisseur);
-            $this->liste();
+            $this->view->redirect('Fournisseur/liste/1');
+
         } 
         else 
         {
@@ -107,7 +108,7 @@ class FournisseurController extends Controller
 
         $fournisseur  = $this->fournisseur_db->getFournisseur($id);
         if (isset($_POST['annuler'])) {
-            $this->liste();
+            $this->view->redirect('Fournisseur/liste/1');
         }
         if (isset($_POST['modifier'])) {
             extract($_POST);

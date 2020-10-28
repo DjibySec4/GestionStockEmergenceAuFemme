@@ -34,6 +34,7 @@ class ProduitRepository extends Model
             $p->setReference($produit->getReference());
             $p->setNom($produit->getNom());
             $p->setPhoto($produit->getPhoto());
+            $p->setQte($produit->getQte());
             $p->getUpdatedAt($produit->getUpdatedAt());
             
             $this->db->flush();
@@ -60,11 +61,39 @@ class ProduitRepository extends Model
         return count($this->db->createQuery("SELECT p FROM Produit p")->getResult());
     }
 
+    // Retourne le stock actuel.
+    public function stockActuel(){
+        $stockActuel = 0;
+        $produits = $this->db->createQuery("SELECT p FROM Produit p")->getResult();
+        foreach($produits as $produit)
+        {
+            $stockActuel += $produit->getQte();
+        }
+        return $stockActuel;
+    }
+
+     // Retourne le nombre de produits périmé.
+     public function nbProduitPerime(){
+        $dateActuelle = date('Y-m-d');
+        // var_dump($dateActuelle); die;
+        return count($this->db->createQuery("SELECT p FROM Produit p WHERE $dateActuelle >= p.dateDePeremsion ")->getResult());
+    }
+
+    // Retourne le revenu total.
+    public function revenu(){
+        $tabRevenu = 0;
+        $produits = $this->db->createQuery("SELECT p FROM Produit p")->getResult();
+        foreach( $produits as $produit)
+        {
+            $tabRevenu += $produit->getPrix()*$produit->getQte();
+        }
+        return $tabRevenu;
+    }
+
     public function getProduitByMotCle($mc) 
     {
         return $this->db->createQuery("SELECT p FROM Produit p WHERE p.reference like '%$mc%' OR p.nom like '%$mc%' ")->getResult();
     }
-
 
     // Retourne tous les Produits   
     public function liste()
@@ -76,8 +105,8 @@ class ProduitRepository extends Model
     public function listeProduits($page)
     {
         return $this->db->createQuery("SELECT p FROM Produit p ORDER BY p.reference desc")
-        ->setMaxResults(5)
-        ->setFirstResult($page*5)
+        ->setMaxResults(10)
+        ->setFirstResult($page*10)
             ->getResult();
     }
 

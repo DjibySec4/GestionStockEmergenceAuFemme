@@ -57,10 +57,20 @@ class HistoriqueTravailleurRepository extends Model
     }
 
     // Retourne tous les histos
-    public function listeHistoriqueTravailleurs()
+    public function liste()
     {
         return $this->db->getRepository('HistoriqueTravailleur')->findAll();
     }
+
+     // Retourne tous les Travailleurs.
+     public function listeHistoriqueTravailleurs($page)
+     {
+         return $this->db->createQuery("SELECT h FROM HistoriqueTravailleur h ORDER BY h.activite desc")
+         ->setMaxResults(15)
+         ->setFirstResult($page*15)
+             ->getResult();
+     }
+ 
 
     // Retourne un objet activite    
     public function getActivite($id)

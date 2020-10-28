@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-22 13:25:37
+/* Smarty version 3.1.30, created on 2020-10-26 16:40:58
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\nationalite\edit.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f916c3114f9d5_62240698',
+  'unifunc' => 'content_5f96ee0a0e7862_71334756',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3214bc06b123604945f3befaed001aee8c252bbf' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\nationalite\\edit.html',
-      1 => 1603365867,
+      1 => 1603726852,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f916c3114f9d5_62240698 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f96ee0a0e7862_71334756 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">

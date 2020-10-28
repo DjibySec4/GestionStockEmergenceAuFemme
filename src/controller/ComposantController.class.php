@@ -30,7 +30,7 @@ class ComposantController extends Controller
     // Liste des produits
     public function liste($page = 1) 
     {
-        $nbEPage = 5; 
+        $nbEPage = 10; 
         $this->data['nbComposants'] = $this->composant_db->nbComposant();
         $this->data['nbPage'] = $nbPage = ceil($this->data['nbComposants'] / $nbEPage);
         $page = $page <= $nbPage ? $page : 1;
@@ -46,7 +46,7 @@ class ComposantController extends Controller
     {
         $this->data['unites'] = $this->composant_db->listeUnites();
         if (isset($_POST['annuler'])) {
-            $this->liste();
+            $this->view->redirect('Composant/liste/1');
         }
         if (isset($_POST['ajouter'])) 
         {
@@ -111,7 +111,7 @@ class ComposantController extends Controller
             * Persistance  du Composant
             */ 
             $this->composant_db->addComposant($composant);
-            $this->liste();
+            $this->view->redirect('Composant/liste/1');
         } 
         else 
         {
@@ -128,7 +128,7 @@ class ComposantController extends Controller
         $this->data['unites'] = $this->composant_db->listeUnites();
 
         if (isset($_POST['annuler'])) {
-            $this->liste();
+            $this->view->redirect('Composant/liste/1');
         }
         if (isset($_POST['modifier'])) {
             extract($_POST);

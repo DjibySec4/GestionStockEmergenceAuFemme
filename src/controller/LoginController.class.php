@@ -1,4 +1,5 @@
 <?php
+
 use libs\system\Controller;
 use src\model\UserRepository;
 
@@ -18,6 +19,7 @@ class LoginController extends Controller
     // Authentifie l'utilisateur
     public function logon()
     {
+    
         if(isset($_POST['login'])){
             $user = null;
             try {
@@ -29,9 +31,9 @@ class LoginController extends Controller
                         $roles[] = $role;
                     }
                     $user->setRoles($roles);
+                 
                     $_SESSION['user_session'] = $user;
                     return $this->view->redirect('Welcome'); //controller
-                    // return $this->view->load('welcome/index'); //controller
                 } else {
                     $data['login_error'] = 'Email ou mot de passe incorrect !'; 
                     return $this->view->load("login", $data); //view

@@ -56,11 +56,31 @@ class HistoriqueStockRepository extends Model
         }
     }
 
+    // Retourne le nombre de produits.
+    public function nbHistoriqueStock(){
+        return count($this->db->createQuery("SELECT h FROM HistoriqueStock h")->getResult());
+    }
+
     // Retourne tous les histos
-    public function listeHistoriqueStocks()
+    public function liste()
     {
         return $this->db->getRepository('HistoriqueStock')->findAll();
     }
+
+    // Retourne tous les Travailleurs.
+    public function listeHistoriqueStock($page)
+    {
+        return $this->db->createQuery("SELECT h FROM HistoriqueStock h ORDER BY h.produit desc")
+        ->setMaxResults(15)
+        ->setFirstResult($page*15)
+            ->getResult();
+    }
+
+    public function getProduitByReference($reference) 
+    {
+        return $this->db->createQuery("SELECT h FROM HistoriqueStock h WHERE h.produit like '%$reference%'")->getResult();
+    }
+
 
     // Retourne un objet produit    
     public function getProduit($id)

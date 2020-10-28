@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-22 13:56:43
+/* Smarty version 3.1.30, created on 2020-10-27 16:59:20
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\partials\extract_index\menuGauche.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f91737b03a979_73788011',
+  'unifunc' => 'content_5f9843d8231ee7_00201302',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '45695957b31b860233e9cbb087c75fc528621e36' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\partials\\extract_index\\menuGauche.html',
-      1 => 1603367801,
+      1 => 1603814359,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f91737b03a979_73788011 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f9843d8231ee7_00201302 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="app-sidebar sidebar-shadow">
     <div class="app-header__logo">
@@ -137,9 +137,16 @@ Produit/liste/1">
                         </li>
                         <li>
                             <a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-Stock/liste/1">
+Produit/listeStock/1">
                                 <i class="metismenu-icon"></i>
                                 Stock Produits
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+Produit/listeHistoriqueStocks/1">
+                                <i class="metismenu-icon"></i>
+                                Historique Stock
                             </a>
                         </li>
                         <li>
@@ -197,14 +204,7 @@ UserRoles/liste/1">
                     <ul>
                         <li>
                             <a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-HistoriqueStock/liste/1">
-                                <i class="metismenu-icon"></i>
-                                Historique Stock
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-HistoriqueTravailleur/liste/1">
+Travailleur/listeHistoriqueTravailleurs/1">
                                 <i class="metismenu-icon"></i>
                                 Historique Travailleur
                             </a>

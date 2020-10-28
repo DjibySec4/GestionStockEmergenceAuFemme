@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-22 14:10:31
+/* Smarty version 3.1.30, created on 2020-10-26 11:10:07
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\unite\add.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f9176b748a977_77410084',
+  'unifunc' => 'content_5f96a07fb02ef4_31510805',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8eb262f11e23edf7345cc02a4b2554433e876843' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\unite\\add.html',
-      1 => 1603368629,
+      1 => 1603707007,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f9176b748a977_77410084 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f96a07fb02ef4_31510805 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -55,11 +55,11 @@ function content_5f9176b748a977_77410084 (Smarty_Internal_Template $_smarty_tpl)
  
             <div class="col-md-8 col-xs-8 offset-md-2 latest-post-area pb-120">
                 <div class="card text-center">
-                    <div class="card-header bg-primary text-white">Ajout d'une Unitée</div>
+                    <div class="bg-primary text-white" style="height:45px;"><h2>Ajout d'une Unitée</h2></div>
                     <div class="card-body text-dark">
                         <div class="card text-center mb-4">
                             <p><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-Unite/liste/1" class="btn btn-primary mt-4">Liste des Unités</a></p>
+Unite/liste/1" class="btn mt-4"><b><strong>Afficher la liste des Unités</strong></b></a></p>
                         </div>
                         <form action="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 Unite/add" method="post" enctype="multipart/form-data" id="new" novalidate>

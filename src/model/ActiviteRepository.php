@@ -64,8 +64,8 @@ class ActiviteRepository extends Model
     public function listeActivite($page)
     {
         return $this->db->createQuery("SELECT a FROM Activite a ORDER BY a.id desc")
-        ->setMaxResults(5)
-        ->setFirstResult($page*5)
+        ->setMaxResults(10)
+        ->setFirstResult($page*10)
             ->getResult();
     }
 
@@ -84,5 +84,6 @@ class ActiviteRepository extends Model
     {
         return $this->db->createQuery("SELECT a FROM Activite a  WHERE a.nom like '%$mc%' OR a.description like '%$mc%'")->getResult();
     }
+
 
 }
