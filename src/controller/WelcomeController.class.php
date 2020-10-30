@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 use libs\system\Controller;
 use src\model\ActiviteRepository;
@@ -20,13 +21,13 @@ class WelcomeController extends Controller{
         $this->travailleur_db = new TravailleurRepository();
 
         if(isset($_SESSION['user_session'])) {
-            $this->data['user'] = $_SESSION['user_session'];    
+            $this->data['user'] = $_SESSION['user_session'];     
         } 
-        // else {
-        //     echo "La session user_session n'existe pas car sa valeur est : ";
-        //     var_dump($this->data['user']); die;
-        //     return $this->view->redirect('Login');
-        // }
+        else {
+            echo "La session user_session n'existe pas car sa valeur est : ";
+            var_dump($this->data['user']); die;
+            return $this->view->redirect('Login');
+        }
     }
    
     public function index(){

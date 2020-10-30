@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 use libs\system\Controller;
 use src\model\ActiviteRepository;
 
@@ -50,20 +50,40 @@ class ActiviteController extends Controller
             $activite->setNom($nom ?? '');
             $activite->setDescription($descriptionActivite ?? '');
 
-           
-            if ($activite->getNom() == '' || $activite->getDescription() == '')
+            if ($activite->getNom() == '')
             {
                 $this->data['vide'] = 1;
                 $this->data['activite'] = $activite;
                 $this->data['title'] = "Ajout d'une Activite";
-                $this->view->load('pages/activite/add', $this->data);
+                return $this->view->load('pages/activite/add', $this->data);
             } 
 
              /**
              * Persistance  du Activite
              */ 
-            $this->activite_db->addActivite($activite);
-            $this->view->redirect('Activite/liste/1');
+            $listeActivites = $this->activite_db->liste();
+            $tab = []; 
+            foreach($listeActivites as $a)
+            {
+                $tab[] = $a->getNom();
+            }
+            if(in_array($nom, $tab))
+            {
+                $this->data['vide'] = 0;
+                $this->data['activite'] = $activite;
+                $this->data['title'] = "Ajout d'une Activite";
+                $this->data['activiteExiste'] = "L'activite " . $nom . " existe déjà dans la base de données ! ";
+                return $this->view->load('pages/activite/add', $this->data);
+            }
+            else
+            {
+                try {
+                    $this->activite_db->addActivite($activite);
+                } catch (PDOException $ex) {
+                    // On affiche rien
+                }
+            }
+            return $this->view->redirect('Activite/liste/1');
         } 
         else 
         {

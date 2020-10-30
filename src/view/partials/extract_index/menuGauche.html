@@ -33,8 +33,7 @@
         <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu">
                 <!-- Connexion -->
-                <li class="app-sidebar__heading"> Gestion Stock App</li>
-                <li>
+                <li class="mt-4  mb-4">
                     <a href="{$url_base}home" class="mm-active">
                         <i class="metismenu-icon pe-7s-home"></i>
                         Accueil
@@ -42,18 +41,17 @@
                 </li>
 
                 <!-- Gestion des activités -->
-                <li class="app-sidebar__heading">Activités</li>
-                <li>
-                    <a href="#">
-                        <i class="metismenu-icon pe-7s-shuffle"></i>
-                        Interfaces - Activité
+                <li class="mb-4">
+                    <a href="#" class="lienMenuGuauche">
+                        <i class="metismenu-icon pe-7s-shopbag"></i>
+                        Activités
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
                     <ul>
                         <li>
                             <a href="{$url_base}Activite/liste/1">
-                                <i class="metismenu-icon"></i>
-                                Activités
+                                <i class="pe-7s-menu mr-2"></i>
+                                Registre Activités
                             </a>
                         </li>
                     </ul>
@@ -61,95 +59,98 @@
                
 
                   <!-- Gestion des Personnes -->
-                <li class="app-sidebar__heading">Personnes</li>
-                <li>
+                <li class="mb-4">
                     <a href="#">
-                        <i class="metismenu-icon pe-7s-users"></i>
-                        Interfaces - Personnes
+                        <i class="metismenu-icon pe-7s-id"></i>
+                        Personnels
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
                     <ul>
                         <li>
                             <a href="{$url_base}Travailleur/liste/1">
-                                <i class="metismenu-icon"></i>
-                                Travailleurs
+                                <i class="pe-7s-menu mr-2"></i>
+                                Registre Travailleurs
                             </a>
                         </li>
                         <li>
                             <a href="{$url_base}Gestionnaire/liste/1">
-                                <i class="metismenu-icon"></i>
-                                Géstionnaires
+                                <i class="pe-7s-menu mr-2"></i>
+                                Registre Géstionnaires
                             </a>
                         </li>
                         <li>
                             <a href="{$url_base}Fournisseur/liste/1">
-                                <i class="metismenu-icon"></i>
-                                Fournisseurs
+                                <i class="pe-7s-menu mr-2"></i>
+                                Registre Fournisseurs
                             </a>
                         </li>
                         </ul>
                 </li>
 
                   <!-- Gestion des stocks -->
-                <li class="app-sidebar__heading">Stock</li>
-                <li>
+                <li class="mb-4">
                     <a href="#">
                         <i class="metismenu-icon pe-7s-paint-bucket"></i>
-                        Interfaces - Stock
+                        Stock
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
                     <ul>
                         <li>
                             <a href="{$url_base}Produit/liste/1">
-                                <i class="metismenu-icon"></i>
-                                Produits
+                                <i class="pe-7s-menu mr-2"></i>
+                                Registre Produits
                             </a>
                         </li>
                         <li>
                             <a href="{$url_base}Produit/listeStock/1">
-                                <i class="metismenu-icon"></i>
+                                <i class="pe-7s-plugin mr-2"></i>
                                 Stock Produits
                             </a>
                         </li>
                         <li>
                             <a href="{$url_base}Produit/listeHistoriqueStocks/1">
-                                <i class="metismenu-icon"></i>
+                                <i class="pe-7s-graph3 mr-2"></i>
                                 Historique Stock
                             </a>
                         </li>
                         <li>
+                            <a href="{$url_base}Produit/venteProduit/1">
+                                <i class="pe-7s-cart mr-2"></i>
+                                Vente de Produit
+                            </a>
+                        </li>
+                        <li>
                             <a href="{$url_base}Composant/liste/1">
-                                <i class="metismenu-icon"></i>
-                                Composants
+                                <i class="pe-7s-menu mr-2"></i>
+                                Registre Composants
                             </a>
                         </li>
                         </ul>
                 </li>
 
                  <!-- Gestion des paramettres -->
-                <li class="app-sidebar__heading">Paramétrage</li>
-                <li>
+                <li class="mb-4">
                     <a href="#">
-                        <i class="metismenu-icon pe-7s-tools"></i>
-                        Interfaces - Administration
+                        <i class="metismenu-icon pe-7s-settings"></i>
+                        Administration
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
                     <ul>
                         <li>
                             <a href="{$url_base}User/liste/1">
-                                <i class="metismenu-icon"></i>
+                                <i class="pe-7s-add-user mr-2"></i>
                                 Utilisateurs
                             </a>
                         </li>
                         <li>
                             <a href="{$url_base}Roles/liste/1">
-                                <i class="metismenu-icon"></i>
+                                <i class="pe-7s-medal mr-2"></i>
                                 Roles
                             </a>
                         </li>
                         <li>
                             <a href="{$url_base}UserRoles/liste/1">
-                                <i class="metismenu-icon"></i>
+                                <i class="pe-7s-pin mr-2"></i>
                                 Afféctation de roles
                             </a>
                         </li>
@@ -158,8 +159,7 @@
 
 
                 <!-- Autres -->
-                <li class="app-sidebar__heading">Autres parametres</li>
-                <li>
+                <li class="mb-4">
                     <a href="#">
                         <i class="metismenu-icon pe-7s-folder"></i>
                         Autres
@@ -168,20 +168,20 @@
                     <ul>
                         <li>
                             <a href="{$url_base}Travailleur/listeHistoriqueTravailleurs/1">
-                                <i class="metismenu-icon"></i>
+                                <i class="pe-7s-graph3 mr-2"></i>
                                 Historique Travailleur
                             </a>
                         </li>
                         <li>
                             <a href="{$url_base}Unite/liste/1">
-                                <i class="metismenu-icon"></i>
-                                Unité
+                                  <i class="pe-7s-plus mr-2"></i>
+                                Ajout d'Unité
                             </a>
                         </li>
                         <li>
                             <a href="{$url_base}Nationalite/liste/1">
-                                <i class="metismenu-icon"></i>
-                                Nationnalité
+                                  <i class="pe-7s-plus mr-2"></i>
+                                Ajout de Nationnalité
                             </a>
                         </li>
                        

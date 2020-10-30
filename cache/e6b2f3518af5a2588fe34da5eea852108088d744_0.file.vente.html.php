@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-29 16:38:52
-  from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\produit\liste.html" */
+/* Smarty version 3.1.30, created on 2020-10-29 18:43:32
+  from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\produit\vente.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f9ae20c072603_33380032',
+  'unifunc' => 'content_5f9aff444585d8_20657551',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'f303df71e595058ad8dcd0993c52c27f413fd1eb' => 
+    'e6b2f3518af5a2588fe34da5eea852108088d744' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\produit\\liste.html',
-      1 => 1603985928,
+      0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\produit\\vente.html',
+      1 => 1603993407,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f9ae20c072603_33380032 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f9aff444585d8_20657551 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -111,17 +111,15 @@ function content_5f9ae20c072603_33380032 (Smarty_Internal_Template $_smarty_tpl)
                         </div>
                     </div>
 
-                    <center><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-Produit/add" class="btn btn-primary mb-4">Ajouter un Produit</a></center>
                     <form class="form-inline mb-4" method="POST" action="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-Produit/search" id="q">
+Produit/searchProduitAVendre" id="q">
                         <input class="pull-right form-control " style="background-color: white;" type="button" id="button-imprimer" value="Imprimer" />
                         <div class="ml-2"></div>
                         <input class="form-control" type="text" placeholder="Rechercher un produit" id="search" aria-label="Search" name="search">
                     </form>
 
                     <div class="main-card mb-3 card">
-                        <div class="card-header"><b>Liste des Produits</b>
+                        <div class="card-header"><b>Vente de produit</b>
                         </div>
 
                         <div class="table-responsive">
@@ -130,15 +128,12 @@ Produit/search" id="q">
                                     <tr>
                                         <th class="text-center">Photo</th>
                                         <th class="text-center">Reference</th>
-                                        <th class="text-center">Nom</th>
+                                        <th class="text-center">Désignation</th>
                                         <th class="text-center">Quantité</th>
                                         <th class="text-center">Prix</th>
-                                        <th class="text-center">Total</th>
-                                        <th class="text-center">En Promotion</th>
-                                        <th class="text-center">Date Dépot</th>
-                                        <th class="text-center">Date de Dérniere Modification</th>
-                                        <th class="text-center">Activités</th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center">Commander</th>
+                                        <th class="text-center">Argent</th>
+                                        <th class="text-center">Ajouter au Panier</th>
                                     </tr>
                                 </thead>
 
@@ -149,7 +144,7 @@ if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['produit']->value) {
 ?>
                                     <tr>
-                                        <td><img width="60px" height="60px" src="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+                                        <td class="text-center"><img width="60px" height="60px" src="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 public/images/stocks/produits/<?php echo $_smarty_tpl->tpl_vars['produit']->value->getPhoto();?>
 " alt=""></td>
                                         <td class="text-center"><?php echo $_smarty_tpl->tpl_vars['produit']->value->getReference();?>
@@ -160,19 +155,21 @@ public/images/stocks/produits/<?php echo $_smarty_tpl->tpl_vars['produit']->valu
 </td>
                                         <td class="text-center"><?php echo $_smarty_tpl->tpl_vars['produit']->value->getPrix();?>
 </td>
-                                        <td class="text-center"><?php echo intval($_smarty_tpl->tpl_vars['produit']->value->getPrix())*intval($_smarty_tpl->tpl_vars['produit']->value->getQte());?>
- FCFA</td>
-                                        <td class="text-center"> <?php if ($_smarty_tpl->tpl_vars['produit']->value->getEnPromotion() == 1) {?> <font color="green">Oui</font> <?php } else { ?> <font color="red">Non</font> <?php }?> </td>
-                                        <td class="text-center"><?php echo $_smarty_tpl->tpl_vars['produit']->value->getCreatedAt();?>
-</td>
-                                        <td class="text-center"><?php echo $_smarty_tpl->tpl_vars['produit']->value->getUpdatedAt();?>
-</td>
-                                        <td class="text-center"><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-Produit/listeActivite/<?php echo $_smarty_tpl->tpl_vars['produit']->value->getReference();?>
-"><span class="badge badge-success btn-lg"><b><font size="2px"><b>Afficher Activités</b></font></b></span></a></td>
-                                        <td class="text-center"><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-Produit/edit/<?php echo $_smarty_tpl->tpl_vars['produit']->value->getReference();?>
-"><span class="badge badge-warning btn-lg"><font size="2px" color="white"><b>Editer</b></font></span></a></td>
+                                        
+                                        <form action="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+Produit/ajouterAuPanier" method="POST">
+                                            <input type="hidden" name="reference" value="<?php echo $_smarty_tpl->tpl_vars['produit']->value->getReference();?>
+">
+                                            <input type="hidden" name="designation" value="<?php echo $_smarty_tpl->tpl_vars['produit']->value->getNom();?>
+">
+                                            <input type="hidden" name="prix" value="<?php echo $_smarty_tpl->tpl_vars['produit']->value->getPrix();?>
+">
+                                            <td class="text-center"><input type="number" name="qte" min="1" max="<?php echo $_smarty_tpl->tpl_vars['produit']->value->getQte();?>
+" value="1"></td>
+                                            <td class="text-center"><input type="number" name="argent" min="1" value="0"></td>
+                                            <td class="text-center"><input height="30px" type="image" src="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+public/images/produits/panier.jpg" value="submit" ></td>
+                                       </form>
                                     </tr>
                                     <?php
 }

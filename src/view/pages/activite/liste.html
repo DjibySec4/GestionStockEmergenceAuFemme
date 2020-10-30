@@ -45,7 +45,7 @@
                                     <tr>
                                         <td class="text-center">{$activite->getNom()}</td>
                                         <td class="text-center">{$activite->getDescription()}</td>
-                                        <td class="text-center"><a href="{$url_base}Activite/edit/{$activite->getId()}">Editer</a></td>
+                                        <td class="text-center"><a href="{$url_base}Activite/edit/{$activite->getId()}"><span class="badge badge-warning btn-lg"><font size="2px" color="white"><b>Editer</b></font></span></a></td>
                                     </tr>
                                     {/foreach}
                                 </tbody>
@@ -75,6 +75,7 @@
             <script src="{$url_base}public/js/activites/activite.js"></script>
             <!-- Le footer -->
             {include file='../../partials/extract_index/footer.html'}
+            
         </div>
         <script type="text/javascript" src="{$url_base}public/templates/templateGestionStockEaf/assets/scripts/main.js"></script>
 </body>    

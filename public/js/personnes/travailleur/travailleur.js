@@ -7,13 +7,6 @@ $(document).ready(function() {
         nationalite = $("#nationalite");
         photo = $("#photo");
         idActivite = $("#idActivite");
-        
-        // Bouton d'impression
-        var bouton = document.getElementById('button-imprimer');
-        bouton.onclick = function(e) {
-          e.preventDefault();
-          print();
-        }
              
         // Afficher / Masquer l'ajout d'une activité pendant
         //l'ajout d'un travailleur

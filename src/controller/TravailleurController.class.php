@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 use libs\system\Controller;
 use src\model\ActiviteRepository;
 use src\model\HistoriqueTravailleurRepository;
@@ -19,11 +19,11 @@ class TravailleurController extends Controller
         $this->travailleur_db = new TravailleurRepository;
         $this->activite_db = new  ActiviteRepository;
         $this->historiqueTravail_db = new  HistoriqueTravailleurRepository;
-        // if (isset($_SESSION['user_session'])) {
-        //     $this->data['user'] = $_SESSION['user_session'];
-        // } else {
-        //     $this->view->redirect('Login');
-        // }
+        if (isset($_SESSION['user_session'])) {
+            $this->data['user'] = $_SESSION['user_session'];
+        } else {
+            $this->view->redirect('Login');
+        }
     }
 
     // Liste des travailleurs
@@ -129,8 +129,7 @@ class TravailleurController extends Controller
             $this->liste();
         } 
         else 
-        {
-            
+        {  
             $this->data['title'] = "Ajout d'un Travailleur ";
             $this->data['travailleur'] = $travailleur;
             $this->view->load('pages/travailleur/add', $this->data);

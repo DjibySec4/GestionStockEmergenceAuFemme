@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 use libs\system\Controller;
 use src\model\UserRepository;
 
@@ -11,14 +13,14 @@ class UserController extends Controller
     {
         parent::__construct();
         $this->userdb = new UserRepository;
-        // if(isset($_SESSION['user_session'])) {
-        //     $this->data['user'] = $_SESSION['user_session'];      
-        // } else {
-        //     $this->view->redirect('Login');
-        // }
-        // if (!$this->isAdmin()) {
-        //     return $this->view->redirect('Welcome');
-        // }
+        if(isset($_SESSION['user_session'])) {
+            $this->data['user'] = $_SESSION['user_session'];      
+        } else {
+            $this->view->redirect('Login');
+        }
+        if (!$this->isAdmin()) {
+            return $this->view->redirect('Welcome');
+        }
     }
 
     public function affichePageLogin()

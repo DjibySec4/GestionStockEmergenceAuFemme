@@ -52,6 +52,21 @@
                                   </div>
                               </div> 
 
+                               <!-- Composant -->
+                               <div class="form-row">
+                                <div class="form-group col-lg-12 mx-auto">
+                                    <label class="control-label">Composants (maximum 50)</label>
+                                    <select name="composant[]" id="idComposant" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir un / des composant()" >
+                                        {foreach from=$composants item=$composant}
+                                            <option selected value="{$composant->getId()}">{$composant->getNom()}</option>
+                                        {/foreach}
+                                    </select>
+                                    <div class="composant-invalid invalid-feedback">Vous devez choisir un seul composant
+                                    </div>
+                                </div>
+                            </div>
+
+
                             <div class="infoProduit" id="infoProduit">
                                 <div class="form-group">
                                     <img src="{$url_base}public/images/stocks/produits/{$produit->getPhoto()}" alt="Produit">
@@ -160,27 +175,6 @@
                                     </div>
 
 
-                                    <!-- Composant -->
-                                    <div class="form-row">
-                                        <div class="form-group col-lg-12 mx-auto" id="selectionnerUnComposant">
-                                            <label class="control-label">Composants (maximum 50)</label>
-                                            <select name="composant[]" id="idComposant" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir un composant" required>
-                                                {foreach from=$composants item=$composant}
-                                                {foreach from=$mesComposants item=$monComposant}
-                                                    {if $activite == $monActivite}
-                                                        <option selected value="{$composant->getId()}">{$monComposant->getNom()}</option>
-                                                    {else}
-                                                        <option value="{$composant->getId()}">{$composant->getNom()}</option>
-                                                    {/if}
-                                                {/foreach}
-                                                {/foreach}
-                                            </select>
-                                            <div class="composant-invalid invalid-feedback">Vous devez choisir un seul composant
-                                            </div>
-                                        </div>
-                                    </div>
-
-
                                     <!-- Unité -->
                                     <div class="form-row">
                                         <div class="form-group col-lg-12 mx-auto" id="selectionnerUneUnite">
@@ -228,7 +222,7 @@
 
                                 <div class="form-group">
                                     <input type="submit" value="Modifier" class="btn btn-primary" name="updateStock">
-                                    <input type="submit" value="Annuler" class="btn btn-danger" name="annuler">
+                                    <a href="{$url_base}Produit/listeStock/1" class="btn btn-danger">Annuler</a>
                                 </div>
                             {/if}
                         </form>
@@ -242,7 +236,7 @@
     <script src="{$url_base}public/js/chosen.jquery.min.js" id="src"></script>
     <script src="{$url_base}public/js/stocks/produit/produit_choosen.js"></script>
     <script src="{$url_base}public/js/stocks/produit/produit.js"></script>
-    <!-- <script src="{$url_base}public/js/stocks/produit/stock.js" id="src"></script> -->
+    <script src="{$url_base}public/js/stocks/produit/stock.js" id="src"></script>
 </literal>
   <!-- Le footer -->
   {include file='../../partials/extract_index/footer.html'}

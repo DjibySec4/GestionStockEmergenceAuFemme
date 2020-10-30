@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-22 14:04:26
+/* Smarty version 3.1.30, created on 2020-10-28 13:57:09
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\partials\extract_index\menuHaut.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f91754a385186_32138114',
+  'unifunc' => 'content_5f996aa553be88_77368150',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '56793d0d6c5c549e01b7b91d3cacac9995dbc139' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\partials\\extract_index\\menuHaut.html',
-      1 => 1603368253,
+      1 => 1603889820,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f91754a385186_32138114 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f996aa553be88_77368150 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
     <div class="app-header header-shadow">
@@ -61,7 +61,7 @@ public/images/logo/logo.png" alt="" class="mb-3 logo-src" style="width: 160px; h
             <div class="app-header-left">
                 <div class="search-wrapper">
                     <div class="input-holder">
-                        <input type="text" class="search-input" placeholder="Type to search">
+                        <input type="text" class="search-input" placeholder="Rechercher une activité">
                         <button class="search-icon"><span></span></button>
                     </div>
                     <button class="close"></button>
@@ -80,7 +80,8 @@ public/images/logo/logo.png" alt="" class="mb-3 logo-src" style="width: 160px; h
                         </a>
                     </li>
                     <li class="dropdown nav-item">
-                        <a href="javascript:void(0);" class="nav-link">
+                        <a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+UserRoles/liste/1" class="nav-link">
                             <i class="nav-link-icon fa fa-cog"></i>
                             Paramètres
                         </a>

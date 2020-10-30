@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-28 10:02:25
+/* Smarty version 3.1.30, created on 2020-10-28 13:49:53
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\composant\liste.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f9933a16a3fe2_47601925',
+  'unifunc' => 'content_5f9968f1312c50_56954521',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ddbbbbc1ae055281c3be03de423b037db55c2003' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\composant\\liste.html',
-      1 => 1603875743,
+      1 => 1603889387,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f9933a16a3fe2_47601925 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f9968f1312c50_56954521 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -56,6 +56,43 @@ function content_5f9933a16a3fe2_47601925 (Smarty_Internal_Template $_smarty_tpl)
 
             <div class="row">
                 <div class="col-md-12">
+
+                    <div class="row">
+
+                        <div class="col-md-6 col-xl-6">
+                            <div class="card mb-3 widget-content">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Total composant acheté</div>
+                                            <div class="widget-subheading">Le nombre de composant acheté </div>
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-success"><?php echo $_smarty_tpl->tpl_vars['nbComposants']->value;?>
+</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="col-md-6 col-xl-6">
+                            <div class="card mb-3 widget-content">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Dépense Total</div>
+                                            <div class="widget-subheading">Les depenses totals des achats</div>
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-warning"><?php echo $_smarty_tpl->tpl_vars['depenseTotal']->value;?>
+</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <center><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 Composant/add" class="btn btn-primary mb-4">Ajouter un Composant</a></center>
 

@@ -1,9 +1,7 @@
 <?php
-
+session_start();
 use libs\system\Controller;
-use src\model\ActiviteRepository;
 use src\model\NationaliteRepository;
-use src\service\upload\SamaneUpload;
 
 class NationaliteController extends Controller
 {
@@ -15,11 +13,11 @@ class NationaliteController extends Controller
     {
         parent::__construct();
         $this->nationalite_db = new  NationaliteRepository;
-        // if (isset($_SESSION['user_session'])) {
-        //     $this->data['user'] = $_SESSION['user_session'];
-        // } else {
-        //     $this->view->redirect('Login');
-        // }
+        if (isset($_SESSION['user_session'])) {
+            $this->data['user'] = $_SESSION['user_session'];
+        } else {
+            $this->view->redirect('Login');
+        }
     }
 
     // Liste des activites

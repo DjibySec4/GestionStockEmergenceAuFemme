@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-26 10:55:43
+/* Smarty version 3.1.30, created on 2020-10-28 13:18:39
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\activite\add.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f969d1f79f637_56947812',
+  'unifunc' => 'content_5f99619f772754_59544217',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3bbf0a21625fa7604624f515fccbbadb0a521c15' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\activite\\add.html',
-      1 => 1603706140,
+      1 => 1603886787,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f969d1f79f637_56947812 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f99619f772754_59544217 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -67,11 +67,16 @@ Activite/add" method="post" enctype="multipart/form-data" id="new" novalidate>
                                 <div class="alert alert-danger">Tous les champs sont requis</div>
                             <?php }?>
 
+                            <?php if (isset($_smarty_tpl->tpl_vars['activiteExiste']->value)) {?>
+                                <div class="alert alert-danger"><?php echo $_smarty_tpl->tpl_vars['activiteExiste']->value;?>
+</div>
+                            <?php }?>
+
                             <!-- Nom -->
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Nom</label>
-                                    <input type="text" class="form-control" name="nom" id="nom" <?php if (isset($_smarty_tpl->tpl_vars['activite']->value)) {?> value="<?php echo $_smarty_tpl->tpl_vars['activite']->value->getPersonne()->getNom();?>
+                                    <input type="text" class="form-control" name="nom" id="nom" <?php if (isset($_smarty_tpl->tpl_vars['activite']->value)) {?> value="<?php echo $_smarty_tpl->tpl_vars['activite']->value->getNom();?>
 " <?php }?>>
                                 </div>
                             </div> 

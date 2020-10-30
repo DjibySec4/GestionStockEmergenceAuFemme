@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 use libs\system\Controller;
 use src\model\ActiviteRepository;
 use src\model\ComposantRepository;
@@ -24,18 +24,21 @@ class ProduitController extends Controller
         $this->activite_db = new  ActiviteRepository;
         $this->historiqueStock_db = new  HistoriqueStockRepository;
         $this->composant_db = new   ComposantRepository;
-        // if (isset($_SESSION['user_session'])) {
-        //     $this->data['user'] = $_SESSION['user_session'];
-        // } else {
-        //     $this->view->redirect('Login');
-        // }
+        if (isset($_SESSION['user_session'])) {
+            $this->data['user'] = $_SESSION['user_session'];
+        } else {
+            $this->view->redirect('Login');
+        }
     }
 
     // Liste des produits
     public function liste($page = 1)
     {
-        $nbEPage = 10;
+        $nbEPage = 10; 
         $this->data['nbProduits'] = $this->produit_db->nbProduit();
+        $this->data['stockActuel'] = $this->produit_db->stockActuel();
+        $this->data['revenus'] = $this->produit_db->revenu();
+        $this->data['nbProduitsPerime'] = $this->produit_db->nbProduitPerime();
         $this->data['nbPage'] = $nbPage = ceil($this->data['nbProduits'] / $nbEPage);
         $page = $page <= $nbPage ? $page : 1;
         $this->data['page'] = $page = (int) $page;
@@ -59,6 +62,87 @@ class ProduitController extends Controller
           $this->data['produits'] = $this->produit_db->listeProduits($page - 1, $nbEPage);
           $this->data["dateActuelle"] = date('Y-m-d');
           $this->view->load('pages/produit/stock', $this->data);
+      }
+ 
+      //Affiche la liste d'activité d'un produit spécifique.   
+      public function listeActivite($reference)
+      {
+            $this->data['nbProduits'] = $this->produit_db->nbProduit();
+            $this->data['stockActuel'] = $this->produit_db->stockActuel();
+            $this->data['nbProduitsPerime'] = $this->produit_db->nbProduitPerime();
+            $this->data['revenus'] = $this->produit_db->revenu();
+
+            $this->data["produit"] = $produit = $this->produit_db->getProduit($reference);
+            $this->data["activites"] = $produit->getActivites();
+
+            $this->view->load('pages/produit/listeActivite', $this->data);
+      }
+
+     //Affiche la page d'achat d'un produit   
+      public function venteProduit($page = 1)
+      {
+        $nbEPage = 10; 
+        $this->data['nbProduits'] = $this->produit_db->nbProduit();
+        $this->data['stockActuel'] = $this->produit_db->stockActuel();
+        $this->data['revenus'] = $this->produit_db->revenu();
+        $this->data['nbProduitsPerime'] = $this->produit_db->nbProduitPerime();
+        $this->data['nbPage'] = $nbPage = ceil($this->data['nbProduits'] / $nbEPage);
+        $page = $page <= $nbPage ? $page : 1;
+        $this->data['page'] = $page = (int) $page;
+        $this->data['produits'] = $this->produit_db->listeProduits($page - 1, $nbEPage);
+        $this->data['title'] = 'Vente de produit';
+        $this->view->load('pages/produit/vente', $this->data);
+      }
+
+     //Affiche le nouveau panier   
+      public function ajouterAuPanier()
+      {
+        extract($_POST);
+        session_start();
+
+        // Si le panier existe déjà, on le sauve
+        // dans $panier sinon on crée un nouveau panier.
+        if(isset($_SESSION['panier']))
+        {
+            $panier  =  $_SESSION['panier'];
+        }
+        else
+        {
+            $panier = array();
+        } 
+        // Si le panier n'existe pas, $index = 0.
+        $index = count($panier);
+        $this->data['reference']   = $panier[$index]["ref"] = $reference;
+        $this->data['designation'] = $panier[$index]["designation"] = $designation;
+        $this->data['prix'] = $panier[$index]["prix"] = $prix;
+        $this->data['quantite'] = $panier[$index]["quantite"] = $qte;
+        $this->data['argent'] = $panier[$index]["argent"] = $argent;
+        if( ($prix * $qte) > $this->data['argent'] )
+        {
+            $this->data['money'] = "Vous me devez " . ($this->data['argent'] - ($prix * $qte));
+        }
+        else
+        {
+            $this->data['money'] = ($prix * $qte) - ($this->data['argent']);
+
+        }
+    
+        $_SESSION["panier"] = $panier;
+    
+        $this->data['nbProduits'] = $this->produit_db->nbProduit();
+        $this->data['stockActuel'] = $this->produit_db->stockActuel();
+        $this->data['revenus'] = $this->produit_db->revenu();
+        $this->data['nbProduitsPerime'] = $this->produit_db->nbProduitPerime();
+
+       
+        $total = 0;
+        for($i =0; $i< count($panier);$i++)
+        {
+            $total = $total + $prix * $qte;
+        }
+        $this->data["total"] = $total;
+
+        $this->view->load('pages/produit/panier', $this->data);
       }
   
 
@@ -292,9 +376,6 @@ class ProduitController extends Controller
         $this->data['activites'] = $this->produit_db->listeActivites();
         $this->data['composants'] = $this->composant_db->liste();
 
-        if (isset($_POST['annuler'])) {
-            return $this->view->redirect('Produit/listeStock/1');
-        }
         if (isset($_POST['updateStock'])) {
             extract($_POST);
  
@@ -347,8 +428,6 @@ class ProduitController extends Controller
                     $produit->setPhoto($_FILES[$title]['name']);
                 }
 
-                
-               
                 $pro =  $this->produit_db->updateProduit($produit);
                 
                 /**
@@ -366,20 +445,23 @@ class ProduitController extends Controller
 
                 $this->view->redirect('Produit/listeStock/1');
             } else {
-                $this->data['vide'] = 1;
-                $this->data['title'] = "Gestion de Stock Produit";
+                $this->data['titleProduit'] = "Gestion de Stock Produit";
                 $this->data['produit'] = $produit;
+                $this->data["mesActivites"]  = $this->data['produit']->getActivites();
+                $this->data["composants"]  = $this->composant_db->liste();
+                $this->data["mesComposants"]  = $this->data['produit']->getComposants();
                 $this->view->load('pages/produit/editStock', $this->data);
             }
         } else {
             $this->data['titleProduit'] = "Gestion de Stock Produit";
             $this->data['produit'] = $produit;
             $this->data["mesActivites"]  = $this->data['produit']->getActivites();
+            $this->data["composants"]  = $this->composant_db->liste();
             $this->data["mesComposants"]  = $this->data['produit']->getComposants();
             $this->view->load('pages/produit/editStock', $this->data);
         }
     }
-
+ 
 
     public function listeHistoriqueStocks($page = 1)
     {
@@ -407,6 +489,22 @@ class ProduitController extends Controller
             $this->data['produits'] = $this->produit_db->getProduitByMotCle(ucfirst($_POST['search']));
         }
         $this->data['title'] = 'Liste des Produits';
+        
         $this->view->load('pages/produit/liste', $this->data);
+    }
+
+    public function searchProduitAVendre()
+    {
+        if (isset($_POST['search']) && $_POST['search'] != "") {
+            $this->data['produits'] = $this->produit_db->getProduitByMotCle(ucfirst($_POST['search']));
+        }
+        $this->data['title'] = 'Liste des Produits';
+        $this->data['nbProduits'] = $this->produit_db->nbProduit();
+        $this->data['stockActuel'] = $this->produit_db->stockActuel();
+        $this->data['revenus'] = $this->produit_db->revenu();
+        $this->data['nbProduitsPerime'] = $this->produit_db->nbProduitPerime();
+
+        
+        $this->view->load('pages/produit/vente', $this->data);
     }
 }

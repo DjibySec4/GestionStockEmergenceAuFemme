@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-28 09:49:09
+/* Smarty version 3.1.30, created on 2020-10-29 16:43:20
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\travailleur\liste.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f9930850f1434_54306702',
+  'unifunc' => 'content_5f9ae318663c24_45345808',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9a06013da5d2eb100b2f5172c716057d26608679' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\travailleur\\liste.html',
-      1 => 1603874945,
+      1 => 1603986200,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f9930850f1434_54306702 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f9ae318663c24_45345808 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -111,7 +111,7 @@ Travailleur/histoTravailleur/<?php echo $_smarty_tpl->tpl_vars['travailleur']->v
 "><span class="badge badge-danger btn-lg"><b><font size="2px">Afficher Historique</font></b></span></a></td>
                                         <td class="text-center"><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 Travailleur/edit/<?php echo $_smarty_tpl->tpl_vars['travailleur']->value->getId();?>
-">Editer</a></td>
+"><span class="badge badge-warning btn-lg"><font size="2px" color="white"><b>Editer</b></font></span></a></td>
                                     </tr>
                                     <?php
 }
@@ -148,11 +148,23 @@ Travailleur/liste/<?php echo $_smarty_tpl->tpl_vars['page']->value+1;?>
                     </div>
                 </div>
             </div>
+
+            <?php echo '<script'; ?>
+>          
+                // Bouton d'impression
+                var bouton = document.getElementById('button-imprimer');
+                bouton.onclick = function(e) {
+                  e.preventDefault();
+                  print();
+                }
+            <?php echo '</script'; ?>
+>
            
             <?php echo '<script'; ?>
  src="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 public/js/personnes/travailleur/travailleur.js"><?php echo '</script'; ?>
 >
+            
             <!-- Le footer -->
             <?php $_smarty_tpl->_subTemplateRender("file:../../partials/extract_index/footer.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>

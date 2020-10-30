@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 use libs\system\Controller;
 use src\model\ActiviteRepository;
 use src\model\ComposantRepository;
@@ -20,18 +20,19 @@ class ComposantController extends Controller
         parent::__construct();
         $this->composant_db = new ComposantRepository;
         $this->unite_db = new  UniteRepository;
-        // if (isset($_SESSION['user_session'])) {
-        //     $this->data['user'] = $_SESSION['user_session'];
-        // } else {
-        //     $this->view->redirect('Login');
-        // }
+        if (isset($_SESSION['user_session'])) {
+            $this->data['user'] = $_SESSION['user_session'];
+        } else {
+            $this->view->redirect('Login');
+        }
     }
 
-    // Liste des produits
+    // Liste des composants
     public function liste($page = 1) 
     {
         $nbEPage = 10; 
         $this->data['nbComposants'] = $this->composant_db->nbComposant();
+        $this->data['depenseTotal'] = $this->composant_db->totalDepense();
         $this->data['nbPage'] = $nbPage = ceil($this->data['nbComposants'] / $nbEPage);
         $page = $page <= $nbPage ? $page : 1;
         $this->data['page'] = $page = (int) $page;

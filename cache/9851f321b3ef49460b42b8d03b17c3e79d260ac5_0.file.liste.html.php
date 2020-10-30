@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-28 09:55:36
+/* Smarty version 3.1.30, created on 2020-10-29 16:41:03
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\activite\liste.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f99320868b025_94025013',
+  'unifunc' => 'content_5f9ae28f435567_56846308',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9851f321b3ef49460b42b8d03b17c3e79d260ac5' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\activite\\liste.html',
-      1 => 1603874898,
+      1 => 1603986062,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f99320868b025_94025013 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f9ae28f435567_56846308 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -92,7 +92,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['activite']->value) {
 </td>
                                         <td class="text-center"><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 Activite/edit/<?php echo $_smarty_tpl->tpl_vars['activite']->value->getId();?>
-">Editer</a></td>
+"><span class="badge badge-warning btn-lg"><font size="2px" color="white"><b>Editer</b></font></span></a></td>
                                     </tr>
                                     <?php
 }
@@ -137,6 +137,7 @@ public/js/activites/activite.js"><?php echo '</script'; ?>
             <?php $_smarty_tpl->_subTemplateRender("file:../../partials/extract_index/footer.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
+            
         </div>
         <?php echo '<script'; ?>
  type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>

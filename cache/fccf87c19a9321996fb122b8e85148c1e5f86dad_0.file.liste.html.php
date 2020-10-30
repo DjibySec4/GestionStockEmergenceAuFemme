@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-28 10:06:22
+/* Smarty version 3.1.30, created on 2020-10-28 13:53:24
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\historique\historiqueTravailleur\liste.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f99348ee85f32_35112443',
+  'unifunc' => 'content_5f9969c46f64a9_37323335',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fccf87c19a9321996fb122b8e85148c1e5f86dad' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\historique\\historiqueTravailleur\\liste.html',
-      1 => 1603875982,
+      1 => 1603889604,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f99348ee85f32_35112443 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f9969c46f64a9_37323335 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -54,8 +54,11 @@ function content_5f99348ee85f32_35112443 (Smarty_Internal_Template $_smarty_tpl)
 
 
             <div class="row">
+                <div class="mx-auto"> 
+                    <a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+Travailleur/liste/1" class="btn btn-primary mb-4">Afficher la liste des travailleurs</a>
+                </div>
                 <div class="col-md-12">
-
                     <form class="form-inline mb-4" method="POST" action="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 Travailleur/search" id="q">
                         <input class="pull-right form-control " style="background-color: white;" type="button" id="button-imprimer" value="Imprimer" />

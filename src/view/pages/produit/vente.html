@@ -19,6 +19,7 @@
 
             <div class="row">
                 <div class="col-md-12">
+
                     <div class="row">
 
                         <div class="col-md-6 col-xl-4">
@@ -70,55 +71,49 @@
                         </div>
                     </div>
 
-                    <div class="row form-inline" >
-                        <p class="text-muted" style="margin-left:auto; margin-right: auto;">
-                            <a href="{$url_base}Produit/add" class="btn btn-primary">Ajouter un Produit</a>
-                            <a href="" id="vendreUnProduit" class="btn btn-primary">Gerer Stock</a>
-                        </p>
-                    </div>
-
-                    <form class="form-inline mb-4" method="POST" action="{$url_base}Produit/search" id="q">
+                    <form class="form-inline mb-4" method="POST" action="{$url_base}Produit/searchProduitAVendre" id="q">
                         <input class="pull-right form-control " style="background-color: white;" type="button" id="button-imprimer" value="Imprimer" />
                         <div class="ml-2"></div>
                         <input class="form-control" type="text" placeholder="Rechercher un produit" id="search" aria-label="Search" name="search">
                     </form>
 
                     <div class="main-card mb-3 card">
-                        <div class="card-header"><b>Liste des Produits</b>
+                        <div class="card-header"><b>Vente de produit</b>
                         </div>
 
                         <div class="table-responsive">
                             <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">Nom</th>
-                                        <th class="text-center">Date Fabrication</th> 
-                                        <th class="text-center">Date de Péremsion</th>
-                                        <th class="text-center">Etat (Périmé ou pas ?)</th>
-                                        <th class="text-center">Stock</th>
-                                        <th class="text-center ">Historique</th>
-                                        <th class="text-center selectionnerProduit">Selection</th>
+                                        <th class="text-center">Photo</th>
+                                        <th class="text-center">Reference</th>
+                                        <th class="text-center">Désignation</th>
+                                        <th class="text-center">Quantité</th>
+                                        <th class="text-center">Prix</th>
+                                        <th class="text-center">Commander</th>
+                                        <th class="text-center">Argent</th>
+                                        <th class="text-center">Ajouter au Panier</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     {foreach from=$produits item=$produit}
-                                        {assign var="jourCreation" value=date('d',  strtotime($produit->getDateFabtication()))}
-                                        {assign var="moisCreation" value=date('m',  strtotime($produit->getDateFabtication()))}
-                                        {assign var="anneeCreation" value=date('Y',  strtotime($produit->getDateFabtication()))}
-
-                                        {assign var="jourPeremsion" value=date('d',  strtotime($produit->getDateDePeremsion()))}
-                                        {assign var="moisPeremsion" value=date('m',  strtotime($produit->getDateDePeremsion()))}
-                                        {assign var="anneePeremsion" value=date('Y',  strtotime($produit->getDateDePeremsion()))}
-                                        <tr>
-                                            <td class="text-center">{$produit->getNom()}</td>
-                                            <td class="text-center">{$jourCreation}/{$moisCreation}/{$anneeCreation}</td>
-                                            <td class="text-center">{$jourPeremsion}/{$moisPeremsion}/{$anneePeremsion}</td>
-                                            <td class="text-center">{if $dateActuelle >= $produit->getDateDePeremsion() } <font color="red">Pénrimé</font> {else} Bon état {/if}</td>
-                                            <td class="text-center"><span class="badge badge-success"><h6><b>{$produit->getQte()}</b></h6></span></td>
-                                            <td class="text-center"><a href="{$url_base}Produit/histoProduit/{$produit->getReference()}"><span class="badge badge-danger btn-lg"><b><font size="2px">Afficher Historique</font></b></span></a></td>
-                                            <td class="text-center selectionnerProduit"><a href="{$url_base}Produit/updateStock/{$produit->getReference()}">Séléctionner</a></td>
-                                        </tr>
+                                    <tr>
+                                        <td class="text-center"><img width="60px" height="60px" src="{$url_base}public/images/stocks/produits/{$produit->getPhoto()}" alt=""></td>
+                                        <td class="text-center">{$produit->getReference()}</td>
+                                        <td class="text-center">{$produit->getNom()}</td>
+                                        <td class="text-center">{$produit->getQte()}</td>
+                                        <td class="text-center">{$produit->getPrix()}</td>
+                                        
+                                        <form action="{$url_base}Produit/ajouterAuPanier" method="POST">
+                                            <input type="hidden" name="reference" value="{$produit->getReference()}">
+                                            <input type="hidden" name="designation" value="{$produit->getNom()}">
+                                            <input type="hidden" name="prix" value="{$produit->getPrix()}">
+                                            <td class="text-center"><input type="number" name="qte" min="1" max="{$produit->getQte()}" value="1"></td>
+                                            <td class="text-center"><input type="number" name="argent" min="1" value="0"></td>
+                                            <td class="text-center"><input height="30px" type="image" src="{$url_base}public/images/produits/panier.jpg" value="submit" ></td>
+                                       </form>
+                                    </tr>
                                     {/foreach}
                                 </tbody>
                             </table>
@@ -130,21 +125,29 @@
                             <span class="badge badge-pill badge-primary mx-auto">{$page}</span>
                             <div class="d-flex justify-content-between my-4">
                                 {if $page > 1}
-                                    <a href="{$url_base}Produit/listeStock/{$page-1}" class="btn btn-primary">&laquo; Precedent</a>
+                                    <a href="{$url_base}Produit/liste/{$page-1}" class="btn btn-primary">&laquo; Precedent</a>
                                 {/if} 
                                 
                                 {if $page < $nbPage}
-                                    <a href="{$url_base}Produit/listeStock/{$page+1}" class="btn btn-primary ml-auto">Suivant &raquo;</a>
+                                    <a href="{$url_base}Produit/liste/{$page+1}" class="btn btn-primary ml-auto">Suivant &raquo;</a>
                                 {/if}
                                 </div>
                             {/if}
-                            
+                            <strong><p class="text-muted">Emérgence aux femmes </p></strong>
                         </div>
                     </div>
                 </div>
             </div>
-            <script src="{$url_base}public/js/stocks/produit/stock.js" id="src"></script>
-            <!-- <script src="{$url_base}public/js/stocks/produit/produit.js" id="src"></script> -->
+            
+            <script src="{$url_base}public/js/stocks/produit/produit.js"></script>
+            <script>
+                  // Bouton d'impression
+                var bouton = document.getElementById('button-imprimer');
+                bouton.onclick = function(e) {
+                  e.preventDefault();
+                  print();
+                }
+            </script>
             <!-- Le footer -->
             {include file='../../partials/extract_index/footer.html'}
         </div>

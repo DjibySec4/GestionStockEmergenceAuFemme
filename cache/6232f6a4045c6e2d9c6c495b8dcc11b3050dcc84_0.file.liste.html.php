@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-28 09:59:18
+/* Smarty version 3.1.30, created on 2020-10-29 16:48:07
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\fournisseur\liste.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f9932e62adf43_55347373',
+  'unifunc' => 'content_5f9ae43727a647_58055968',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6232f6a4045c6e2d9c6c495b8dcc11b3050dcc84' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\fournisseur\\liste.html',
-      1 => 1603875005,
+      1 => 1603986459,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f9932e62adf43_55347373 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f9ae43727a647_58055968 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -113,7 +113,8 @@ public/images/personnes/fournisseurs/<?php echo $_smarty_tpl->tpl_vars['fourniss
                                         <td class="text-center"><?php if ($_smarty_tpl->tpl_vars['fournisseur']->value->getPotentiel() == 1) {?> Grossiste <?php } else { ?> Detaillant <?php }?></td>
                                         <td class="text-center"><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 Fournisseur/edit/<?php echo $_smarty_tpl->tpl_vars['fournisseur']->value->getId();?>
-">Editer</a></td>
+"><span class="badge badge-warning btn-lg"><font size="2px" color="white"><b>Editer</b></font></span></a></td>
+
                                     </tr>
                                     <?php
 }

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-26 15:20:09
+/* Smarty version 3.1.30, created on 2020-10-29 14:12:27
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\partials\extract_index\topBar.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f96db19dba1e0_60072866',
+  'unifunc' => 'content_5f9abfbbb60819_16831629',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2bea653593a21f4e9214c249d08aa4d977778caa' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\partials\\extract_index\\topBar.html',
-      1 => 1603722009,
+      1 => 1603975118,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f96db19dba1e0_60072866 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f9abfbbb60819_16831629 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="app-main__outer">
     <div class="app-main__inner">
@@ -28,7 +28,7 @@ function content_5f96db19dba1e0_60072866 (Smarty_Internal_Template $_smarty_tpl)
         <div class="app-page-title">
             <div class="page-title-wrapper">
                 <div class="page-title-heading mx-auto">
-                    <div class="col-lg-12 col-xs-1 mx-auto">
+                    <div class="col-lg-12 col-xs-1   mx-auto">
                         <div class="news-tracker-wrap">
                             <h1 class="mx-auto">Application de gestion des Activités des Femmes - AGAF </h1>
                         </div>

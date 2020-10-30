@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-28 09:51:59
+/* Smarty version 3.1.30, created on 2020-10-29 16:45:45
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\produit\stock.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f99312f5e0209_84172419',
+  'unifunc' => 'content_5f9ae3a94f5608_18692385',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '21e84d08b2afbd3b18fa6b98c5c69ff3f96c655a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\produit\\stock.html',
-      1 => 1603875114,
+      1 => 1603986344,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f99312f5e0209_84172419 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f9ae3a94f5608_18692385 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -102,7 +102,7 @@ function content_5f99312f5e0209_84172419 (Smarty_Internal_Template $_smarty_tpl)
                                         </div>
                                         <div class="widget-content-right">
                                             <div class="widget-numbers text-danger"><?php echo $_smarty_tpl->tpl_vars['revenus']->value;?>
- FCFA</div>
+</div>
                                         </div>
                                     </div>
                                 </div>

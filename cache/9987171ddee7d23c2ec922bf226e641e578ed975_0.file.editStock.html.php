@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-28 10:33:32
+/* Smarty version 3.1.30, created on 2020-10-29 12:10:19
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\produit\editStock.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f993aecc1a6b6_42274211',
+  'unifunc' => 'content_5f9aa31b9cc6f5_36215412',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9987171ddee7d23c2ec922bf226e641e578ed975' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\produit\\editStock.html',
-      1 => 1603877586,
+      1 => 1603969817,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f993aecc1a6b6_42274211 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f9aa31b9cc6f5_36215412 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\libs\\system\\smarty\\libs\\plugins\\modifier.date_format.php';
 ?>
 <!doctype html>
@@ -94,6 +94,32 @@ Produit/updateStock/<?php echo $_smarty_tpl->tpl_vars['produit']->value->getRefe
                                       <input type="number" min="1" class="form-control" name="nbProduitVendus" id="nbProduitVendus">
                                   </div>
                               </div> 
+
+                               <!-- Composant -->
+                               <div class="form-row">
+                                <div class="form-group col-lg-12 mx-auto">
+                                    <label class="control-label">Composants (maximum 50)</label>
+                                    <select name="composant[]" id="idComposant" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir un / des composant()" >
+                                        <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['composants']->value, 'composant');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['composant']->value) {
+?>
+                                            <option selected value="<?php echo $_smarty_tpl->tpl_vars['composant']->value->getId();?>
+"><?php echo $_smarty_tpl->tpl_vars['composant']->value->getNom();?>
+</option>
+                                        <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
+?>
+
+                                    </select>
+                                    <div class="composant-invalid invalid-feedback">Vous devez choisir un seul composant
+                                    </div>
+                                </div>
+                            </div>
+
 
                             <div class="infoProduit" id="infoProduit">
                                 <div class="form-group">
@@ -232,49 +258,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
                                     </div>
 
 
-                                    <!-- Composant -->
-                                    <div class="form-row">
-                                        <div class="form-group col-lg-12 mx-auto" id="selectionnerUnComposant">
-                                            <label class="control-label">Composants (maximum 50)</label>
-                                            <select name="composant[]" id="idComposant" class="chosen_select form-control" multiple data-placeholder="Veuiller choisir un composant" required>
-                                                <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['composants']->value, 'composant');
-if ($_from !== null) {
-foreach ($_from as $_smarty_tpl->tpl_vars['composant']->value) {
-?>
-                                                <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['mesComposants']->value, 'monComposant');
-if ($_from !== null) {
-foreach ($_from as $_smarty_tpl->tpl_vars['monComposant']->value) {
-?>
-                                                    <?php if ($_smarty_tpl->tpl_vars['activite']->value == $_smarty_tpl->tpl_vars['monActivite']->value) {?>
-                                                        <option selected value="<?php echo $_smarty_tpl->tpl_vars['composant']->value->getId();?>
-"><?php echo $_smarty_tpl->tpl_vars['monComposant']->value->getNom();?>
-</option>
-                                                    <?php } else { ?>
-                                                        <option value="<?php echo $_smarty_tpl->tpl_vars['composant']->value->getId();?>
-"><?php echo $_smarty_tpl->tpl_vars['composant']->value->getNom();?>
-</option>
-                                                    <?php }?>
-                                                <?php
-}
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
-?>
-
-                                                <?php
-}
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
-?>
-
-                                            </select>
-                                            <div class="composant-invalid invalid-feedback">Vous devez choisir un seul composant
-                                            </div>
-                                        </div>
-                                    </div>
-
-
                                     <!-- Unité -->
                                     <div class="form-row">
                                         <div class="form-group col-lg-12 mx-auto" id="selectionnerUneUnite">
@@ -335,7 +318,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 
                                 <div class="form-group">
                                     <input type="submit" value="Modifier" class="btn btn-primary" name="updateStock">
-                                    <input type="submit" value="Annuler" class="btn btn-danger" name="annuler">
+                                    <a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+Produit/listeStock/1" class="btn btn-danger">Annuler</a>
                                 </div>
                             <?php }?>
                         </form>
@@ -358,10 +342,10 @@ public/js/stocks/produit/produit_choosen.js"><?php echo '</script'; ?>
  src="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 public/js/stocks/produit/produit.js"><?php echo '</script'; ?>
 >
-    <!-- <?php echo '<script'; ?>
+    <?php echo '<script'; ?>
  src="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 public/js/stocks/produit/stock.js" id="src"><?php echo '</script'; ?>
-> -->
+>
 </literal>
   <!-- Le footer -->
   <?php $_smarty_tpl->_subTemplateRender("file:../../partials/extract_index/footer.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);

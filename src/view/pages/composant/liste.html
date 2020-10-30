@@ -19,6 +19,41 @@
 
             <div class="row">
                 <div class="col-md-12">
+
+                    <div class="row">
+
+                        <div class="col-md-6 col-xl-6">
+                            <div class="card mb-3 widget-content">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Total composant acheté</div>
+                                            <div class="widget-subheading">Le nombre de composant acheté </div>
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-success">{$nbComposants}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="col-md-6 col-xl-6">
+                            <div class="card mb-3 widget-content">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Dépense Total</div>
+                                            <div class="widget-subheading">Les depenses totals des achats</div>
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-warning">{$depenseTotal}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <center><a href="{$url_base}Composant/add" class="btn btn-primary mb-4">Ajouter un Composant</a></center>
 
                     <form class="form-inline mb-4" method="POST" action="{$url_base}Composant/search" id="q">

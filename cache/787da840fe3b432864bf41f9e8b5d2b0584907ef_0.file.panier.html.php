@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-29 16:38:52
-  from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\produit\liste.html" */
+/* Smarty version 3.1.30, created on 2020-10-29 18:49:13
+  from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\pages\produit\panier.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f9ae20c072603_33380032',
+  'unifunc' => 'content_5f9b0099f32157_56747478',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'f303df71e595058ad8dcd0993c52c27f413fd1eb' => 
+    '787da840fe3b432864bf41f9e8b5d2b0584907ef' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\produit\\liste.html',
-      1 => 1603985928,
+      0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\pages\\produit\\panier.html',
+      1 => 1603993752,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../partials/extract_index/footer.html' => 1,
   ),
 ),false)) {
-function content_5f9ae20c072603_33380032 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f9b0099f32157_56747478 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -111,8 +111,6 @@ function content_5f9ae20c072603_33380032 (Smarty_Internal_Template $_smarty_tpl)
                         </div>
                     </div>
 
-                    <center><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-Produit/add" class="btn btn-primary mb-4">Ajouter un Produit</a></center>
                     <form class="form-inline mb-4" method="POST" action="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 Produit/search" id="q">
                         <input class="pull-right form-control " style="background-color: white;" type="button" id="button-imprimer" value="Imprimer" />
@@ -121,69 +119,48 @@ Produit/search" id="q">
                     </form>
 
                     <div class="main-card mb-3 card">
-                        <div class="card-header"><b>Liste des Produits</b>
+                        <div class="card-header"><b>Vente de produit</b>
                         </div>
 
                         <div class="table-responsive">
                             <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">Photo</th>
                                         <th class="text-center">Reference</th>
-                                        <th class="text-center">Nom</th>
-                                        <th class="text-center">Quantité</th>
+                                        <th class="text-center">Désignation</th>
                                         <th class="text-center">Prix</th>
-                                        <th class="text-center">Total</th>
-                                        <th class="text-center">En Promotion</th>
-                                        <th class="text-center">Date Dépot</th>
-                                        <th class="text-center">Date de Dérniere Modification</th>
-                                        <th class="text-center">Activités</th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center">Quantité</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['produits']->value, 'produit');
-if ($_from !== null) {
-foreach ($_from as $_smarty_tpl->tpl_vars['produit']->value) {
-?>
                                     <tr>
-                                        <td><img width="60px" height="60px" src="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-public/images/stocks/produits/<?php echo $_smarty_tpl->tpl_vars['produit']->value->getPhoto();?>
-" alt=""></td>
-                                        <td class="text-center"><?php echo $_smarty_tpl->tpl_vars['produit']->value->getReference();?>
+                                        <td class="text-center"><?php echo $_smarty_tpl->tpl_vars['reference']->value;?>
 </td>
-                                        <td class="text-center"><?php echo $_smarty_tpl->tpl_vars['produit']->value->getNom();?>
+                                        <td class="text-center"><?php echo $_smarty_tpl->tpl_vars['designation']->value;?>
 </td>
-                                        <td class="text-center"><?php echo $_smarty_tpl->tpl_vars['produit']->value->getQte();?>
+                                        <td class="text-center"><?php echo $_smarty_tpl->tpl_vars['prix']->value;?>
 </td>
-                                        <td class="text-center"><?php echo $_smarty_tpl->tpl_vars['produit']->value->getPrix();?>
+                                        <td class="text-center"><?php echo $_smarty_tpl->tpl_vars['quantite']->value;?>
 </td>
-                                        <td class="text-center"><?php echo intval($_smarty_tpl->tpl_vars['produit']->value->getPrix())*intval($_smarty_tpl->tpl_vars['produit']->value->getQte());?>
- FCFA</td>
-                                        <td class="text-center"> <?php if ($_smarty_tpl->tpl_vars['produit']->value->getEnPromotion() == 1) {?> <font color="green">Oui</font> <?php } else { ?> <font color="red">Non</font> <?php }?> </td>
-                                        <td class="text-center"><?php echo $_smarty_tpl->tpl_vars['produit']->value->getCreatedAt();?>
-</td>
-                                        <td class="text-center"><?php echo $_smarty_tpl->tpl_vars['produit']->value->getUpdatedAt();?>
-</td>
-                                        <td class="text-center"><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-Produit/listeActivite/<?php echo $_smarty_tpl->tpl_vars['produit']->value->getReference();?>
-"><span class="badge badge-success btn-lg"><b><font size="2px"><b>Afficher Activités</b></font></b></span></a></td>
-                                        <td class="text-center"><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-Produit/edit/<?php echo $_smarty_tpl->tpl_vars['produit']->value->getReference();?>
-"><span class="badge badge-warning btn-lg"><font size="2px" color="white"><b>Editer</b></font></span></a></td>
                                     </tr>
-                                    <?php
-}
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
-?>
 
+                                    <tr>
+                                        <td colspan="1"></td>
+                                        <td class="text-center"> Total : <span class="badge badge-success btn-lg"><font size="3px"><b><?php echo $_smarty_tpl->tpl_vars['total']->value;?>
+ FCFA</b></font></span> </td>
+                                        <td class="text-center"> Argent : <span class="badge badge-warning btn-lg"><font size="3px" color="white"><b><?php echo $_smarty_tpl->tpl_vars['argent']->value;?>
+ FCFA</b></font></span> </td>
+                                        <td class="text-center"> Money : <span class="badge badge-danger btn-lg"><font size="3px"><b><?php echo $_smarty_tpl->tpl_vars['money']->value;?>
+ FCFA</b></font></span> </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                         
+                        <form action="" class="mx-auto">
+                            <input type="text" class="btn btn-primary mt-4 mb-4" value="Valider la commande">
+                        </form>
                         <div class="d-block text-center card-footer">
                             <!-- Pagination -->
                             <?php if (isset($_smarty_tpl->tpl_vars['page']->value)) {?>

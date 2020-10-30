@@ -22,10 +22,21 @@ class ComposantRepository extends Model
      }
 
        // Retourne tous les Unités   
-       public function liste()
-       {
-           return $this->db->getRepository('Composant')->findAll();
-       } 
+    public function liste()
+    {
+        return $this->db->getRepository('Composant')->findAll();
+    } 
+
+    // Retourne le les dépenses totals.
+    public function totalDepense(){
+        $depense = 0;
+        $composants = $this->db->createQuery("SELECT c FROM Composant c")->getResult();
+        foreach( $composants as $composant)
+        {
+            $depense += $composant->getPrix()*$composant->getQte();
+        }
+        return $depense;
+    }
 
 
     // Retourne un composant spécifique.

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 use libs\system\Controller;
 use src\model\FournisseurRepository;
 use src\service\upload\SamaneUpload;
@@ -14,11 +14,11 @@ class FournisseurController extends Controller
     {
         parent::__construct();
         $this->fournisseur_db = new  FournisseurRepository;
-        // if (isset($_SESSION['user_session'])) {
-        //     $this->data['user'] = $_SESSION['user_session'];
-        // } else {
-        //     $this->view->redirect('Login');
-        // }
+        if (isset($_SESSION['user_session'])) {
+            $this->data['user'] = $_SESSION['user_session'];
+        } else {
+            $this->view->redirect('Login');
+        }
     }
 
     // Liste des fournisseurs

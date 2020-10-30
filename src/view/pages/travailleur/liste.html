@@ -56,7 +56,7 @@
                                         <td class="text-center">{$travailleur->getPersonne()->getTelephone()}</td>
                                         <td class="text-center">{$travailleur->getPersonne()->getSexe()}</td>
                                         <td class="text-center"><a href="{$url_base}Travailleur/histoTravailleur/{$travailleur->getPersonne()->getNom()}"><span class="badge badge-danger btn-lg"><b><font size="2px">Afficher Historique</font></b></span></a></td>
-                                        <td class="text-center"><a href="{$url_base}Travailleur/edit/{$travailleur->getId()}">Editer</a></td>
+                                        <td class="text-center"><a href="{$url_base}Travailleur/edit/{$travailleur->getId()}"><span class="badge badge-warning btn-lg"><font size="2px" color="white"><b>Editer</b></font></span></a></td>
                                     </tr>
                                     {/foreach}
                                 </tbody>
@@ -83,8 +83,18 @@
                     </div>
                 </div>
             </div>
+
+            <script>          
+                // Bouton d'impression
+                var bouton = document.getElementById('button-imprimer');
+                bouton.onclick = function(e) {
+                  e.preventDefault();
+                  print();
+                }
+            </script>
            
             <script src="{$url_base}public/js/personnes/travailleur/travailleur.js"></script>
+            
             <!-- Le footer -->
             {include file='../../partials/extract_index/footer.html'}
         </div>

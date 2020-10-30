@@ -1,4 +1,5 @@
 <?php
+session_start();
 use libs\system\Controller;
 use src\model\RolesRepository;
 class RolesController extends Controller
@@ -7,11 +8,11 @@ class RolesController extends Controller
     public function __construct()
     {
         parent::__construct();
-        // if(isset($_SESSION['user_session'])) {
-        //     $this->data['user'] = $_SESSION['user_session'];
-        // } else {
-        //     $this->view->redirect('Login');
-        // }
+        if(isset($_SESSION['user_session'])) {
+            $this->data['user'] = $_SESSION['user_session'];
+        } else {
+            $this->view->redirect('Login');
+        }
     }
 
     public function liste()

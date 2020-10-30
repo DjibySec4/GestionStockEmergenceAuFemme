@@ -80,7 +80,7 @@ $(document).ready(function() {
 
         resultat = true;
 
-        if (nom.val() == '' || reference.val() == '' || photo.val() == '') {
+        if (nom.val() == '' || reference.val() == '') {
             $("#new").addClass("was-validated");
             resultat = false;
         }
@@ -90,7 +90,7 @@ $(document).ready(function() {
     $("#edit").submit(function(e) {
 
         resultat = true;
-        if (nom.val() == '' || reference.val() == '' || photo.val() == '') {
+        if (nom.val() == '' || reference.val() == '') {
             $("#edit").addClass("was-validated");
             resultat = false;
         }
@@ -107,14 +107,4 @@ $(document).ready(function() {
 
         });
     }
-
-     // Bouton d'impression
-     var bouton = document.getElementById('button-imprimer');
-     bouton.onclick = function(e) {
-       e.preventDefault();
-       print();
-     }
- 
-    
-    
 })

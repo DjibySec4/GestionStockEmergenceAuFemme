@@ -1,10 +1,7 @@
 <?php
-
+session_start();
 use libs\system\Controller;
-use src\model\ActiviteRepository;
 use src\model\UniteRepository;
-use src\service\upload\SamaneUpload;
-
 class UniteController extends Controller
 {
 
@@ -15,11 +12,11 @@ class UniteController extends Controller
     {
         parent::__construct();
         $this->unite_db = new UniteRepository;
-        // if (isset($_SESSION['user_session'])) {
-        //     $this->data['user'] = $_SESSION['user_session'];
-        // } else {
-        //     $this->view->redirect('Login');
-        // }
+        if (isset($_SESSION['user_session'])) {
+            $this->data['user'] = $_SESSION['user_session'];
+        } else {
+            $this->view->redirect('Login');
+        }
     }
 
     // Liste des unites

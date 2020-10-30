@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 use libs\system\Controller;
 use src\model\UserRepository;
@@ -8,12 +9,17 @@ class LoginController extends Controller
     public function __construct()
     {
         parent::__construct();
-    }
+    } 
 
     // Affiche le formulaire de connexion
     public function index()
     {
-        return $this->view->load("login");
+        if(isset($_SESSION['user_session'])) {
+           return $this->view->redirect("Welcome");
+        } else
+        {
+            return $this->view->load("login");
+        }
     }
 
     // Authentifie l'utilisateur
@@ -31,7 +37,6 @@ class LoginController extends Controller
                         $roles[] = $role;
                     }
                     $user->setRoles($roles);
-                 
                     $_SESSION['user_session'] = $user;
                     return $this->view->redirect('Welcome'); //controller
                 } else {

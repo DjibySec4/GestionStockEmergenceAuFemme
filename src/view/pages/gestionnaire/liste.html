@@ -55,7 +55,8 @@
                                         <td class="text-center">{$gestionnaire->getPersonne()->getDateNaissance()}</td>
                                         <td class="text-center">{$gestionnaire->getPersonne()->getTelephone()}</td>
                                         <td class="text-center">{$gestionnaire->getPersonne()->getSexe()}</td>
-                                        <td class="text-center"><a href="{$url_base}Gestionnaire/edit/{$gestionnaire->getId()}">Editer</a></td>
+                                        <td class="text-center"><a href="{$url_base}Gestionnaire/edit/{$gestionnaire->getId()}"><span class="badge badge-warning btn-lg"><font size="2px" color="white"><b>Editer</b></font></span></a></td>
+
                                     </tr>
                                     {/foreach}
                                 </tbody>

@@ -19,6 +19,58 @@
 
             <div class="row">
                 <div class="col-md-12">
+
+                    <div class="row">
+
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-3 widget-content">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Stock Actuel</div>
+                                            <div class="widget-subheading">Nombre de produit en stock </div>
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-success">{$stockActuel}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-3 widget-content">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Produits périmés</div>
+                                            <div class="widget-subheading">Nombre de produit périmé</div>
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-warning">{$nbProduitsPerime}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-3 widget-content">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Total Revenu</div>
+                                            <div class="widget-subheading">Le revenu total en FCFA</div>
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-danger">{$revenus}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <center><a href="{$url_base}Produit/add" class="btn btn-primary mb-4">Ajouter un Produit</a></center>
                     <form class="form-inline mb-4" method="POST" action="{$url_base}Produit/search" id="q">
                         <input class="pull-right form-control " style="background-color: white;" type="button" id="button-imprimer" value="Imprimer" />
@@ -43,6 +95,7 @@
                                         <th class="text-center">En Promotion</th>
                                         <th class="text-center">Date Dépot</th>
                                         <th class="text-center">Date de Dérniere Modification</th>
+                                        <th class="text-center">Activités</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -59,7 +112,8 @@
                                         <td class="text-center"> {if $produit->getEnPromotion() == 1} <font color="green">Oui</font> {else} <font color="red">Non</font> {/if} </td>
                                         <td class="text-center">{$produit->getCreatedAt()}</td>
                                         <td class="text-center">{$produit->getUpdatedAt()}</td>
-                                        <td class="text-center"><a href="{$url_base}Produit/edit/{$produit->getReference()}">Editer</a></td>
+                                        <td class="text-center"><a href="{$url_base}Produit/listeActivite/{$produit->getReference()}"><span class="badge badge-success btn-lg"><b><font size="2px"><b>Afficher Activités</b></font></b></span></a></td>
+                                        <td class="text-center"><a href="{$url_base}Produit/edit/{$produit->getReference()}"><span class="badge badge-warning btn-lg"><font size="2px" color="white"><b>Editer</b></font></span></a></td>
                                     </tr>
                                     {/foreach}
                                 </tbody>

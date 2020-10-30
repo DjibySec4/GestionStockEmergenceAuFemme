@@ -1,4 +1,5 @@
 <?php
+session_start();
 use libs\system\Controller;
 use src\model\UserRepository;
 use src\model\RolesRepository;
@@ -10,12 +11,12 @@ class UserRolesController extends Controller
     public function __construct()
     {
         parent::__construct();
-        // session_start();
-        // if(isset($_SESSION['user_session'])) {
-        //     $this->data['user'] = $_SESSION['user_session'];
-        // } else {
-        //     $this->view->redirect('Login');
-        // }
+        session_start();
+        if(isset($_SESSION['user_session'])) {
+            $this->data['user'] = $_SESSION['user_session'];
+        } else {
+            $this->view->redirect('Login');
+        }
     }
 
     // Retourne la liste des utilisateurs et des roles.
