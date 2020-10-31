@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mer. 28 oct. 2020 à 11:17
+-- Généré le :  sam. 31 oct. 2020 à 13:34
 -- Version du serveur :  10.1.36-MariaDB
 -- Version de PHP :  7.2.11
 
@@ -40,7 +40,8 @@ CREATE TABLE `activites` (
 
 INSERT INTO `activites` (`id`, `nom`, `description`) VALUES
 (1, 'Sucrererie', 'test                                            '),
-(2, 'TEST2', '                                                                    DESC TEST2');
+(2, 'TEST2', '                                                                    DESC TEST2'),
+(8, 'Ble', 'vente de ble');
 
 -- --------------------------------------------------------
 
@@ -176,7 +177,9 @@ INSERT INTO `historiquestocks` (`id`, `dateOperation`, `nomOperation`, `qte`, `p
 (30, '27-10-2020 11:37:22', 'vente', -20, 250000, 1, 1, 'P1'),
 (31, '27-10-2020 11:37:22', 'vente', -20, 250000, 1, 1, 'P1'),
 (32, '27-10-2020 11:37:22', 'vente', -20, 250000, 1, 1, 'P1'),
-(33, '27-10-2020 11:37:22', 'vente', -20, 250000, 1, 1, 'P1');
+(33, '27-10-2020 11:37:22', 'vente', -20, 250000, 1, 1, 'P1'),
+(34, '29-10-2020 11:06:30', 'vente', 18, 250000, 1, 1, 'P1'),
+(35, '29-10-2020 12:10:58', 'vente', 8, 12, 0, 1, 'P2');
 
 -- --------------------------------------------------------
 
@@ -272,8 +275,8 @@ CREATE TABLE `produits` (
 --
 
 INSERT INTO `produits` (`reference`, `nom`, `photo`, `createdAt`, `updatedAt`, `qte`, `prix`, `enPromotion`, `nomOperation`, `dateFabtication`, `dateDePeremsion`, `idUnite`) VALUES
-('P1', 'TEST', '20191107211822.png', '26-10-2020 16:50:43', '27-10-2020 11:37:22', 20, 250000, 1, 'depot', '2020-10-26', '2020-10-31', 1),
-('P2', 'test2', 'balla2.png', '26-10-2020 16:52:50', '27-10-2020 11:11:51', 9, 12, 0, 'depot', '2020-10-26', '2020-10-30', 1);
+('P1', 'TEST', '20191107211822.png', '26-10-2020 16:50:43', '29-10-2020 11:06:30', 18, 250000, 1, 'depot', '2020-10-26', '2020-10-31', 1),
+('P2', 'test2', 'balla2.png', '26-10-2020 16:52:50', '29-10-2020 12:10:58', 8, 12, 0, 'depot', '2020-10-26', '2020-10-30', 1);
 
 -- --------------------------------------------------------
 
@@ -557,7 +560,7 @@ ALTER TABLE `users_roles`
 -- AUTO_INCREMENT pour la table `activites`
 --
 ALTER TABLE `activites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `composants`
@@ -581,7 +584,7 @@ ALTER TABLE `gestionnaires`
 -- AUTO_INCREMENT pour la table `historiquestocks`
 --
 ALTER TABLE `historiquestocks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT pour la table `historiquetravailleurs`

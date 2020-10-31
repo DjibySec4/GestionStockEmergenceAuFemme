@@ -15,7 +15,6 @@ class WelcomeController extends Controller{
 
     public function __construct(){
         parent::__construct();
-
         $this->activite_db = new ActiviteRepository();
         $this->produit_db = new ProduitRepository();
         $this->travailleur_db = new TravailleurRepository();
@@ -24,8 +23,8 @@ class WelcomeController extends Controller{
             $this->data['user'] = $_SESSION['user_session'];     
         } 
         else {
-            echo "La session user_session n'existe pas car sa valeur est : ";
-            var_dump($this->data['user']); die;
+            // echo "La session user_session n'existe pas car sa valeur est : ";
+            // var_dump($_SESSION); die;
             return $this->view->redirect('Login');
         }
     }

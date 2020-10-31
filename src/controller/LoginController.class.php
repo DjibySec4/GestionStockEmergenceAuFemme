@@ -24,8 +24,7 @@ class LoginController extends Controller
 
     // Authentifie l'utilisateur
     public function logon()
-    {
-    
+    {       
         if(isset($_POST['login'])){
             $user = null;
             try {

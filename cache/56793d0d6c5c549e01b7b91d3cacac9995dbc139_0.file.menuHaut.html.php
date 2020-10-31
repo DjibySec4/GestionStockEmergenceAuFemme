@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-10-28 13:57:09
+/* Smarty version 3.1.30, created on 2020-10-31 12:50:58
   from "C:\xampp\htdocs\PHP\SamaneMVC\Gestion_Stock_Eaf_Officiel\src\view\partials\extract_index\menuHaut.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f996aa553be88_77368150',
+  'unifunc' => 'content_5f9d4fa28eccf9_39975151',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '56793d0d6c5c549e01b7b91d3cacac9995dbc139' => 
     array (
       0 => 'C:\\xampp\\htdocs\\PHP\\SamaneMVC\\Gestion_Stock_Eaf_Officiel\\src\\view\\partials\\extract_index\\menuHaut.html',
-      1 => 1603889820,
+      1 => 1604088891,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f996aa553be88_77368150 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f9d4fa28eccf9_39975151 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
     <div class="app-header header-shadow">
@@ -112,8 +112,7 @@ Login/index" class="nav-link">
 UserRoles/liste/1" class="btn" >  <i class="metismenu-icon pe-7s-tools mr-2"></i> Parametrage</a></button>
                                         <button type="button" tabindex="0" class="dropdown-item"><a href="" class="btn" >  <i class="metismenu-icon pe-7s-help1 mr-2"></i> Aides</a></button>
                                         <div tabindex="-1" class="dropdown-divider"></div>
-                                        <button type="button" tabindex="0" class="dropdown-item"><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-Login/logout" class="btn"> <i class="metismenu-icon pe-7s-power  mr-2"></i> Deconnexion</a></button>
+                                        <button type="button" tabindex="0" class="dropdown-item">    <i class="metismenu-icon pe-7s-power  mr-2"></i> Deconnexion</a></button>
                                     </div>
                                 </div>
                             </div>
